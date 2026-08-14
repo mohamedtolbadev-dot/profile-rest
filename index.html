@@ -8,12 +8,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="manifest" id="pwa-manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Fire%20Up%20The%20Grill%22%2C%22short_name%22%3A%22Fire%20Up%20The%20Grill%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23FAFAFA%22%2C%22theme_color%22%3A%22%23E13B3E%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22logo.webp%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fwebp%22%7D%2C%7B%22src%22%3A%22logo.webp%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fwebp%22%7D%5D%7D" />
+<meta name="theme-color" content="#E13B3E" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Fire Up The Grill" />
+<link rel="apple-touch-icon" href="logo.webp" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
     theme: {
       extend: {
-        colors: { primary: "#FB4C03" },
+        colors: { primary: "#E13B3E" },
         fontFamily: {
           display: ["Montserrat", "Noto Sans Arabic", "Helvetica", "Arial", "serif"],
           sans: ["Montserrat", "Noto Sans Arabic", "Helvetica", "Arial", "serif"],
@@ -35,7 +42,7 @@
   .qty-controls { display: none; }
   .qty-controls.visible { display: inline-flex; }
   .add-btn.hidden-btn { display: none; }
-  .lang-btn[aria-pressed="true"] { background: #FB4C03; color: #fff; }
+  .lang-btn[aria-pressed="true"] { background: #E13B3E; color: #fff; }
   .lang-btn[aria-pressed="false"] { background: #F3F4F6; color: #111827; }
   [dir="rtl"] #cart-count { right: auto; left: -0.5rem; }
 </style>
@@ -238,7 +245,7 @@
     <img id="lightbox-img" src="" alt="" class="w-full aspect-square object-cover rounded-3xl bg-[#F3F4F6]" />
     <div class="mt-4 text-center">
       <h2 id="lightbox-title" class="text-lg font-bold text-white font-display"></h2>
-      <p id="lightbox-price" class="text-sm font-semibold text-[#FB4C03] mt-1"></p>
+      <p id="lightbox-price" class="text-sm font-semibold text-[#E13B3E] mt-1"></p>
     </div>
   </div>
 </div>
@@ -248,6 +255,34 @@
   <div class="flex items-center gap-2 bg-[#111827] text-white text-sm font-medium px-4 py-2.5 rounded-full shadow-lg">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M20 6 9 17l-5-5" /></svg>
     <span id="toast-message">Copié !</span>
+  </div>
+</div>
+
+<!-- ================= INSTALL APP BANNER ================= -->
+<div id="install-banner" class="fixed left-0 right-0 bottom-0 z-[80] p-4 pointer-events-none opacity-0 translate-y-4 transition-all duration-300 hidden">
+  <div class="max-w-md mx-auto bg-white rounded-3xl shadow-2xl border border-gray-100 p-4 pointer-events-auto">
+    <div class="flex items-start gap-3">
+      <img src="logo.webp" alt="Fire Up The Grill" class="w-12 h-12 rounded-2xl object-cover shrink-0 bg-[#F3F4F6] ring-1 ring-gray-100" />
+      <div class="min-w-0 flex-1">
+        <p id="install-title" class="text-sm font-bold text-[#111827] leading-snug">Installer l'application</p>
+        <p id="install-desc" class="text-xs text-[#6B7280] mt-0.5 leading-snug">Ajoutez Fire Up The Grill à votre écran d'accueil pour un accès rapide.</p>
+      </div>
+      <button id="btn-install-close" aria-label="Fermer" class="w-7 h-7 flex items-center justify-center rounded-full bg-[#F3F4F6] text-[#6B7280] shrink-0 active:scale-95 transition-transform">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><path d="M18 6 6 18M6 6l12 12" /></svg>
+      </button>
+    </div>
+
+    <!-- Standard install button (Android / Chrome / desktop) -->
+    <div id="install-actions" class="mt-3 grid grid-cols-2 gap-2">
+      <button id="btn-install-later" class="py-2.5 rounded-xl text-sm font-semibold bg-[#F3F4F6] text-[#111827] active:scale-[0.98] transition-transform">Plus tard</button>
+      <button id="btn-install-now" class="py-2.5 rounded-xl text-sm font-semibold bg-primary text-white active:scale-[0.98] transition-transform">Installer</button>
+    </div>
+
+    <!-- iOS manual instructions (Safari has no install prompt API) -->
+    <div id="install-ios-steps" class="hidden mt-3 space-y-1.5 bg-[#FAFAFA] rounded-xl p-3">
+      <p id="install-ios-step1" class="text-xs text-[#111827] flex items-center gap-1.5"><span class="font-bold">1.</span> <span id="install-ios-step1-text">Appuyez sur l'icône de partage</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 inline shrink-0"><path d="M12 16V4M8 8l4-4 4 4" /><path d="M4 14v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5" /></svg></p>
+      <p id="install-ios-step2" class="text-xs text-[#111827] flex items-center gap-1.5"><span class="font-bold">2.</span> <span id="install-ios-step2-text">Choisissez « Sur l'écran d'accueil »</span></p>
+    </div>
   </div>
 </div>
 
@@ -294,6 +329,12 @@ const I18N = {
     addUnit: "Ajouter une unité",
     newOrder: "Nouvelle commande",
     tableLabel: "Table n°",
+    installTitle: "Installer l'application",
+    installDesc: "Ajoutez Fire Up The Grill à votre écran d'accueil pour un accès rapide, sans passer par le navigateur.",
+    installNow: "Installer",
+    installLater: "Plus tard",
+    installIosStep1: "Appuyez sur l'icône de partage",
+    installIosStep2: "Choisissez « Sur l'écran d'accueil »",
   },
   en: {
     subtitle: "Moroccan & Fusion Cuisine",
@@ -333,6 +374,12 @@ const I18N = {
     addUnit: "Add one",
     newOrder: "New order",
     tableLabel: "Table no.",
+    installTitle: "Install the app",
+    installDesc: "Add Fire Up The Grill to your home screen for quick access, no browser needed.",
+    installNow: "Install",
+    installLater: "Later",
+    installIosStep1: "Tap the share icon",
+    installIosStep2: "Choose \"Add to Home Screen\"",
   },
   ar: {
     subtitle: "مطبخ مغربي وفيوجن",
@@ -372,6 +419,12 @@ const I18N = {
     addUnit: "إضافة واحدة",
     newOrder: "طلب جديد",
     tableLabel: "طاولة رقم",
+    installTitle: "ثبّت التطبيق",
+    installDesc: "أضف Fire Up The Grill إلى الشاشة الرئيسية لهاتفك للوصول السريع دون الحاجة للمتصفح.",
+    installNow: "تثبيت",
+    installLater: "لاحقًا",
+    installIosStep1: "اضغط على أيقونة المشاركة",
+    installIosStep2: "اختر «إضافة إلى الشاشة الرئيسية»",
   },
 };
 
@@ -560,6 +613,13 @@ function applyStaticTranslations() {
   document.getElementById("label-send-whatsapp").textContent = t("sendWhatsApp");
 
   document.querySelectorAll("[data-close]").forEach((btn) => btn.setAttribute("aria-label", t("close")));
+
+  document.getElementById("install-title").textContent = t("installTitle");
+  document.getElementById("install-desc").textContent = t("installDesc");
+  document.getElementById("btn-install-now").textContent = t("installNow");
+  document.getElementById("btn-install-later").textContent = t("installLater");
+  document.getElementById("install-ios-step1-text").textContent = t("installIosStep1");
+  document.getElementById("install-ios-step2-text").textContent = t("installIosStep2");
 
   // Re-render dynamic panels that may currently be visible
   renderHours();
@@ -969,6 +1029,105 @@ document.querySelectorAll("[data-track='social_click']").forEach((el) => {
 document.querySelector("[data-track='google_review_click']").addEventListener("click", () => trackEvent("google_review_click"));
 
 /* ==========================================================================
+   INSTALL APP BANNER (Add to Home Screen)
+   ========================================================================== */
+const INSTALL_DISMISS_KEY = "fireupthegrill_install_dismissed_at";
+const INSTALL_SNOOZE_DAYS = 14;
+let deferredInstallPrompt = null;
+
+function isStandaloneDisplay() {
+  return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+}
+function isIOSDevice() {
+  return /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+}
+function wasRecentlyDismissed() {
+  try {
+    const stored = localStorage.getItem(INSTALL_DISMISS_KEY);
+    if (!stored) return false;
+    const elapsedDays = (Date.now() - Number(stored)) / (1000 * 60 * 60 * 24);
+    return elapsedDays < INSTALL_SNOOZE_DAYS;
+  } catch {
+    return false;
+  }
+}
+function markInstallDismissed() {
+  try { localStorage.setItem(INSTALL_DISMISS_KEY, String(Date.now())); } catch {}
+}
+
+function showInstallBanner() {
+  if (isStandaloneDisplay() || wasRecentlyDismissed()) return;
+
+  const banner = document.getElementById("install-banner");
+  const actions = document.getElementById("install-actions");
+  const iosSteps = document.getElementById("install-ios-steps");
+
+  const canPromptNatively = !!deferredInstallPrompt;
+  const showIosInstructions = isIOSDevice() && !canPromptNatively;
+
+  if (!canPromptNatively && !showIosInstructions) return; // nothing actionable to offer
+
+  actions.classList.toggle("hidden", showIosInstructions);
+  iosSteps.classList.toggle("hidden", !showIosInstructions);
+
+  banner.classList.remove("hidden");
+  requestAnimationFrame(() => {
+    banner.classList.remove("opacity-0", "translate-y-4");
+  });
+  trackEvent("install_banner_shown", { platform: showIosInstructions ? "ios" : "other" });
+}
+
+function hideInstallBanner() {
+  const banner = document.getElementById("install-banner");
+  banner.classList.add("opacity-0", "translate-y-4");
+  setTimeout(() => banner.classList.add("hidden"), 300);
+}
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  setTimeout(showInstallBanner, 3000);
+});
+
+window.addEventListener("appinstalled", () => {
+  trackEvent("app_installed");
+  hideInstallBanner();
+  markInstallDismissed();
+});
+
+document.getElementById("btn-install-close").addEventListener("click", () => {
+  markInstallDismissed();
+  hideInstallBanner();
+  trackEvent("install_banner_dismissed");
+});
+document.getElementById("btn-install-later").addEventListener("click", () => {
+  markInstallDismissed();
+  hideInstallBanner();
+  trackEvent("install_banner_dismissed");
+});
+document.getElementById("btn-install-now").addEventListener("click", async () => {
+  if (!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  const { outcome } = await deferredInstallPrompt.userChoice;
+  trackEvent("install_prompt_outcome", { outcome });
+  deferredInstallPrompt = null;
+  hideInstallBanner();
+});
+
+// Optional service worker: enables installability criteria on Chrome/Android
+// and lets the menu keep working offline once cached. Registered from an
+// inline blob so the whole experience stays a single portable HTML file.
+if ("serviceWorker" in navigator) {
+  const swCode = `
+    self.addEventListener('install', () => self.skipWaiting());
+    self.addEventListener('activate', () => self.clients.claim());
+    self.addEventListener('fetch', () => {}); // pass-through, no offline caching by default
+  `;
+  const swUrl = URL.createObjectURL(new Blob([swCode], { type: "text/javascript" }));
+  navigator.serviceWorker.register(swUrl).catch(() => {});
+}
+
+/* ==========================================================================
    INIT
    ========================================================================== */
 function init() {
@@ -978,6 +1137,11 @@ function init() {
   renderMenu();
   renderCartBar();
   setInterval(renderStatus, 60000);
+
+  // iOS has no beforeinstallprompt event, so offer manual instructions instead.
+  if (isIOSDevice() && !isStandaloneDisplay()) {
+    setTimeout(showInstallBanner, 3000);
+  }
 }
 init();
 </script>
