@@ -8,19 +8,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="manifest" id="pwa-manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Fire%20Up%20The%20Grill%22%2C%22short_name%22%3A%22Fire%20Up%20The%20Grill%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23FAFAFA%22%2C%22theme_color%22%3A%22%23E13B3E%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22logo.webp%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fwebp%22%7D%2C%7B%22src%22%3A%22logo.webp%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fwebp%22%7D%5D%7D" />
-<meta name="theme-color" content="#E13B3E" />
+<link rel="manifest" id="pwa-manifest" href="manifest.json" />
+<meta name="theme-color" content="#FB4C03" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Fire Up The Grill" />
-<link rel="apple-touch-icon" href="logo.webp" />
+<link rel="apple-touch-icon" href="icon-192.png" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
     theme: {
       extend: {
-        colors: { primary: "#E13B3E" },
+        colors: { primary: "#FB4C03" },
         fontFamily: {
           display: ["Montserrat", "Noto Sans Arabic", "Helvetica", "Arial", "serif"],
           sans: ["Montserrat", "Noto Sans Arabic", "Helvetica", "Arial", "serif"],
@@ -42,7 +42,7 @@
   .qty-controls { display: none; }
   .qty-controls.visible { display: inline-flex; }
   .add-btn.hidden-btn { display: none; }
-  .lang-btn[aria-pressed="true"] { background: #E13B3E; color: #fff; }
+  .lang-btn[aria-pressed="true"] { background: #FB4C03; color: #fff; }
   .lang-btn[aria-pressed="false"] { background: #F3F4F6; color: #111827; }
   [dir="rtl"] #cart-count { right: auto; left: -0.5rem; }
 </style>
@@ -245,7 +245,7 @@
     <img id="lightbox-img" src="" alt="" class="w-full aspect-square object-cover rounded-3xl bg-[#F3F4F6]" />
     <div class="mt-4 text-center">
       <h2 id="lightbox-title" class="text-lg font-bold text-white font-display"></h2>
-      <p id="lightbox-price" class="text-sm font-semibold text-[#E13B3E] mt-1"></p>
+      <p id="lightbox-price" class="text-sm font-semibold text-[#FB4C03] mt-1"></p>
     </div>
   </div>
 </div>
@@ -1114,17 +1114,11 @@ document.getElementById("btn-install-now").addEventListener("click", async () =>
   hideInstallBanner();
 });
 
-// Optional service worker: enables installability criteria on Chrome/Android
-// and lets the menu keep working offline once cached. Registered from an
-// inline blob so the whole experience stays a single portable HTML file.
+// Registers the real service worker file (sw.js) shipped alongside this
+// page. Enables Chrome/Android "installable" criteria and basic offline
+// caching of the app shell.
 if ("serviceWorker" in navigator) {
-  const swCode = `
-    self.addEventListener('install', () => self.skipWaiting());
-    self.addEventListener('activate', () => self.clients.claim());
-    self.addEventListener('fetch', () => {}); // pass-through, no offline caching by default
-  `;
-  const swUrl = URL.createObjectURL(new Blob([swCode], { type: "text/javascript" }));
-  navigator.serviceWorker.register(swUrl).catch(() => {});
+  navigator.serviceWorker.register("sw.js").catch(() => {});
 }
 
 /* ==========================================================================
