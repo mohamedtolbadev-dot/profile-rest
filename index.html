@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Fire Up The Grill — Menu Digital</title>
+<meta name="description" content="Menu digital interactif — Fire Up The Grill" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { primary: "#FB4C03" },
+        fontFamily: {
+          display: ["Montserrat", "Noto Sans Arabic", "Helvetica", "Arial", "serif"],
+          sans: ["Montserrat", "Noto Sans Arabic", "Helvetica", "Arial", "serif"],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  * { font-family: 'Montserrat', 'Noto Sans Arabic', Helvetica, Arial, serif; }
+  .font-display { font-family: 'Montserrat', 'Noto Sans Arabic', Helvetica, Arial, serif; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  body { background: #FAFAFA; }
+  [data-modal] { display: none; }
+  [data-modal].open { display: flex; }
+  #cart-bar { display: none; }
+  #cart-bar.visible { display: block; }
+  .qty-controls { display: none; }
+  .qty-controls.visible { display: inline-flex; }
+  .add-btn.hidden-btn { display: none; }
+  .lang-btn[aria-pressed="true"] { background: #FB4C03; color: #fff; }
+  .lang-btn[aria-pressed="false"] { background: #F3F4F6; color: #111827; }
+  [dir="rtl"] #cart-count { right: auto; left: -0.5rem; }
+</style>
+</head>
+<body class="min-h-screen bg-[#FAFAFA]">
+
+<div class="max-w-md mx-auto bg-white min-h-screen relative">
+
+  <!-- ================= HEADER ================= -->
+  <header class="px-5 pt-6 pb-4 flex items-center gap-4">
+    <img
+      id="restaurant-profile-img"
+      src="logo.webp"
+      alt="Logo Fire Up The Grill"
+      class="w-20 h-20 rounded-full object-cover shrink-0 bg-[#F3F4F6] ring-1 ring-gray-100"
+    />
+    <div class="min-w-0 flex-1">
+      <h1 class="text-2xl font-bold text-[#111827] leading-tight truncate font-display">Fire Up The Grill</h1>
+      <p id="subtitle" class="text-sm text-[#6B7280] truncate">Cuisine Marocaine &amp; Fusion</p>
+      <div class="flex items-center gap-1.5 mt-1.5">
+        <span id="status-dot" class="w-2 h-2 rounded-full bg-green-600" aria-hidden="true"></span>
+        <span id="status-text" class="text-xs font-medium text-[#111827]">Ouvert maintenant</span>
+      </div>
+      <div class="flex items-center gap-2 mt-2.5">
+        <a href="https://instagram.com/fireupthegrill" target="_blank" rel="noopener noreferrer" aria-label="Instagram" data-track="social_click" data-network="instagram" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F3F4F6] text-[#E1306C] active:scale-95 transition-transform">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" /></svg>
+        </a>
+        <a href="https://tiktok.com/@fireupthegrill" target="_blank" rel="noopener noreferrer" aria-label="TikTok" data-track="social_click" data-network="tiktok" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F3F4F6] text-[#010101] active:scale-95 transition-transform">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M16.6 5.82c-.9-.8-1.45-1.95-1.45-3.22h-3.1v13.6a2.7 2.7 0 1 1-2.7-2.7c.3 0 .59.05.86.13V10.5a5.85 5.85 0 0 0-.86-.07 5.86 5.86 0 1 0 5.86 5.86V9.4a7.36 7.36 0 0 0 4.29 1.37V7.68a3.9 3.9 0 0 1-2.9-1.86Z" /></svg>
+        </a>
+        <a href="https://facebook.com/fireupthegrill" target="_blank" rel="noopener noreferrer" aria-label="Facebook" data-track="social_click" data-network="facebook" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#F3F4F6] text-[#1877F2] active:scale-95 transition-transform">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M13.5 22v-8.4h2.82l.42-3.28H13.5V8.24c0-.95.26-1.6 1.63-1.6h1.74V3.7c-.3-.04-1.33-.13-2.53-.13-2.5 0-4.22 1.53-4.22 4.33v2.42H7.3v3.28h2.82V22h3.38Z" /></svg>
+        </a>
+      </div>
+    </div>
+    <!-- LANGUAGE SWITCHER -->
+    <div id="lang-switcher" role="group" aria-label="Langue / Language / اللغة" class="flex flex-col gap-1 shrink-0 self-start">
+      <button type="button" data-lang="fr" aria-pressed="true" class="lang-btn w-9 h-8 rounded-lg text-[11px] font-bold active:scale-95 transition-transform">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false" class="lang-btn w-9 h-8 rounded-lg text-[11px] font-bold active:scale-95 transition-transform">EN</button>
+      <button type="button" data-lang="ar" aria-pressed="false" class="lang-btn w-9 h-8 rounded-lg text-[11px] font-bold active:scale-95 transition-transform">AR</button>
+    </div>
+  </header>
+
+  <!-- ================= QUICK ACTIONS ================= -->
+  <nav aria-label="Actions rapides" class="px-5 pb-2">
+    <div class="grid grid-cols-3 gap-2">
+      <button id="btn-wifi" class="flex flex-col items-center justify-center gap-1.5 py-3 rounded-2xl bg-[#F3F4F6] text-primary active:scale-95 transition-transform">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M5 12.5a11 11 0 0 1 14 0" /><path d="M8.5 16a6 6 0 0 1 7 0" /><path d="M12 19.5h.01" /></svg>
+        <span id="label-wifi" class="text-xs font-semibold text-[#111827]">Wi-Fi</span>
+      </button>
+
+      <a id="btn-maps" href="https://maps.google.com/?q=Fire+Up+The+Grill+Restaurant+Fes" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center gap-1.5 py-3 rounded-2xl bg-[#F3F4F6] text-primary active:scale-95 transition-transform">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
+        <span id="label-directions" class="text-xs font-semibold text-[#111827]">Itinéraire</span>
+      </a>
+
+      <button id="btn-hours" class="flex flex-col items-center justify-center gap-1.5 py-3 rounded-2xl bg-[#F3F4F6] text-primary active:scale-95 transition-transform">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 3" /></svg>
+        <span id="label-hours" class="text-xs font-semibold text-[#111827]">Horaires</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ================= CATEGORY TABS ================= -->
+  <div id="category-tabs" role="tablist" aria-label="Catégories du menu" class="sticky top-0 z-30 bg-white px-5 py-3 flex gap-2 overflow-x-auto no-scrollbar"></div>
+
+  <!-- ================= MENU LIST ================= -->
+  <section id="menu-panel" role="tabpanel" class="px-5">
+    <h2 id="menu-panel-label" class="sr-only"></h2>
+    <ul id="menu-list"></ul>
+  </section>
+
+  <!-- ================= SOCIAL PROOF ================= -->
+  <section class="px-5 pt-6 pb-28">
+    <a href="https://g.page/r/fireupthegrill/review" target="_blank" rel="noopener noreferrer" data-track="google_review_click" class="w-full flex flex-col items-center justify-center gap-1.5 py-3.5 rounded-2xl border border-gray-200 shadow-sm text-[#111827] font-semibold active:scale-[0.98] transition-transform">
+      <span class="flex items-center gap-2">
+        <svg viewBox="0 0 24 24" class="w-5 h-5 shrink-0" aria-hidden="true">
+          <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.2-2.27H12v4.3h6.47a5.53 5.53 0 0 1-2.4 3.63v3h3.88c2.27-2.09 3.54-5.17 3.54-8.66Z"/>
+          <path fill="#34A853" d="M12 24c3.24 0 5.95-1.07 7.94-2.9l-3.88-3.02c-1.08.72-2.45 1.15-4.06 1.15-3.13 0-5.78-2.11-6.73-4.96H1.27v3.11A12 12 0 0 0 12 24Z"/>
+          <path fill="#FBBC05" d="M5.27 14.27a7.2 7.2 0 0 1 0-4.54v-3.1H1.27a12 12 0 0 0 0 10.75l4-3.11Z"/>
+          <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.44-3.44C17.95 1.19 15.24 0 12 0A12 12 0 0 0 1.27 6.63l4 3.1C6.22 6.86 8.87 4.75 12 4.75Z"/>
+        </svg>
+        <span id="label-google-review">Laissez un avis 5 étoiles sur Google</span>
+      </span>
+      <span class="flex items-center gap-0.5" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="#FBBC05" class="w-4 h-4"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2Z" /></svg>
+        <svg viewBox="0 0 24 24" fill="#FBBC05" class="w-4 h-4"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2Z" /></svg>
+        <svg viewBox="0 0 24 24" fill="#FBBC05" class="w-4 h-4"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2Z" /></svg>
+        <svg viewBox="0 0 24 24" fill="#FBBC05" class="w-4 h-4"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2Z" /></svg>
+        <svg viewBox="0 0 24 24" fill="#FBBC05" class="w-4 h-4"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2Z" /></svg>
+      </span>
+    </a>
+  </section>
+
+</div>
+
+<!-- ================= STICKY CART BAR ================= -->
+<div id="cart-bar" class="fixed bottom-0 left-0 right-0 z-40 p-4 pointer-events-none">
+  <div class="max-w-md mx-auto pointer-events-auto">
+    <button id="btn-view-order" class="w-full flex items-center justify-between bg-primary text-white rounded-2xl px-5 py-4 shadow-lg active:scale-[0.99] transition-transform">
+      <span class="flex items-center gap-2 text-sm font-semibold">
+        <span class="relative">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>
+          <span id="cart-count" class="absolute -top-2 -right-2 bg-white text-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+        </span>
+        <span id="label-view-order">Voir ma commande</span>
+      </span>
+      <span id="cart-total" class="text-sm font-bold">0 DH</span>
+    </button>
+  </div>
+</div>
+
+<!-- ================= WIFI MODAL ================= -->
+<div id="modal-wifi" data-modal class="fixed inset-0 z-50 items-end sm:items-center justify-center bg-black/50">
+  <div role="dialog" aria-modal="true" aria-labelledby="wifi-title" class="w-full sm:max-w-md max-h-[85vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl bg-white p-6 outline-none" tabindex="-1">
+    <div class="flex items-center justify-between mb-4">
+      <h2 id="wifi-title" class="text-lg font-bold text-[#111827] font-display">Connexion Wi-Fi</h2>
+      <button data-close="modal-wifi" id="btn-close-wifi" aria-label="Fermer" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#E5E7EB] text-primary active:scale-95 transition-transform">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M18 6 6 18M6 6l12 12" /></svg>
+      </button>
+    </div>
+    <div class="space-y-4">
+      <div class="bg-[#FAFAFA] rounded-2xl p-4">
+        <p id="label-network-name" class="text-xs text-[#6B7280] mb-1">Nom du réseau</p>
+        <p class="text-base font-semibold text-[#111827]" dir="ltr">FireUpTheGrill_Guest</p>
+      </div>
+      <div class="bg-[#FAFAFA] rounded-2xl p-4">
+        <p id="label-password" class="text-xs text-[#6B7280] mb-1">Mot de passe</p>
+        <p class="text-base font-semibold text-[#111827] tracking-wide" dir="ltr">FireUp2026</p>
+      </div>
+      <button id="btn-copy-wifi" class="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-primary text-white font-semibold active:scale-[0.98] transition-transform">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
+        <span id="btn-copy-wifi-label">Copier le mot de passe</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= HOURS MODAL ================= -->
+<div id="modal-hours" data-modal class="fixed inset-0 z-50 items-end sm:items-center justify-center bg-black/50">
+  <div role="dialog" aria-modal="true" aria-labelledby="hours-title" class="w-full sm:max-w-md max-h-[85vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl bg-white p-6 outline-none" tabindex="-1">
+    <div class="flex items-center justify-between mb-4">
+      <h2 id="hours-title" class="text-lg font-bold text-[#111827] font-display">Horaires d'ouverture</h2>
+      <button data-close="modal-hours" id="btn-close-hours" aria-label="Fermer" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#E5E7EB] text-primary active:scale-95 transition-transform">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M18 6 6 18M6 6l12 12" /></svg>
+      </button>
+    </div>
+    <ul id="hours-list" class="divide-y divide-gray-100"></ul>
+  </div>
+</div>
+
+<!-- ================= CHECKOUT MODAL ================= -->
+<div id="modal-checkout" data-modal class="fixed inset-0 z-50 items-end sm:items-center justify-center bg-black/50">
+  <div role="dialog" aria-modal="true" aria-labelledby="checkout-title" class="w-full sm:max-w-md max-h-[85vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl bg-white p-6 outline-none" tabindex="-1">
+    <div class="flex items-center justify-between mb-4">
+      <h2 id="checkout-title" class="text-lg font-bold text-[#111827] font-display">Ma commande</h2>
+      <button data-close="modal-checkout" id="btn-close-checkout" aria-label="Fermer" class="w-9 h-9 flex items-center justify-center rounded-full bg-[#E5E7EB] text-primary active:scale-95 transition-transform">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M18 6 6 18M6 6l12 12" /></svg>
+      </button>
+    </div>
+
+    <div id="checkout-empty" class="text-sm text-[#6B7280] py-6 text-center">Votre panier est vide.</div>
+
+    <div id="checkout-content" class="hidden">
+      <ul id="checkout-items" class="divide-y divide-gray-100 mb-4"></ul>
+
+      <div class="flex items-center justify-between py-3 border-t border-gray-200 mb-4">
+        <span id="label-checkout-total" class="text-sm font-semibold text-[#111827]">Total</span>
+        <span id="checkout-total" class="text-lg font-bold text-[#111827]">0 DH</span>
+      </div>
+
+      <fieldset class="mb-4">
+        <legend id="legend-order-type" class="text-xs font-semibold text-[#6B7280] mb-2">Type de commande</legend>
+        <div class="grid grid-cols-2 gap-2">
+          <button type="button" id="btn-order-table" aria-pressed="true" class="py-2.5 rounded-xl text-sm font-semibold transition-colors bg-primary text-white">Sur place</button>
+          <button type="button" id="btn-order-takeaway" aria-pressed="false" class="py-2.5 rounded-xl text-sm font-semibold transition-colors bg-[#F3F4F6] text-[#111827]">À emporter</button>
+        </div>
+      </fieldset>
+
+      <div id="table-number-field" class="mb-4">
+        <label id="label-table-number" for="table-number" class="text-xs font-semibold text-[#6B7280] block mb-1.5">Numéro de table</label>
+        <input id="table-number" type="text" inputmode="numeric" placeholder="Ex : 12" dir="ltr" class="w-full px-4 py-3 rounded-xl bg-[#FAFAFA] border border-gray-200 text-sm text-[#111827] focus:outline-none focus:border-primary" aria-describedby="table-error" />
+        <p id="table-error" class="text-xs text-red-600 mt-1.5 hidden">Merci d'indiquer le numéro de table.</p>
+      </div>
+
+      <button id="btn-send-whatsapp" class="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-primary text-white font-semibold active:scale-[0.98] transition-transform">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.83 14.08c-.24.68-1.4 1.32-1.93 1.4-.49.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.09-4.85-4.28-.14-.19-1.17-1.55-1.17-2.96s.74-2.1 1-2.39c.26-.28.57-.35.76-.35s.38 0 .55.01c.18.01.41-.07.64.49.24.58.81 2 .88 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.36-.23.6-.14.24.09 1.55.73 1.81.86.26.13.43.19.5.3.07.11.07.63-.17 1.31Z" /></svg>
+        <span id="label-send-whatsapp">Envoyer via WhatsApp</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= DISH IMAGE LIGHTBOX ================= -->
+<div id="modal-lightbox" data-modal class="fixed inset-0 z-[70] items-center justify-center bg-black/85 p-5">
+  <div role="dialog" aria-modal="true" aria-labelledby="lightbox-title" class="relative w-full max-w-md outline-none" tabindex="-1">
+    <button data-close="modal-lightbox" aria-label="Fermer" class="absolute -top-12 right-0 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white active:scale-95 transition-transform">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M18 6 6 18M6 6l12 12" /></svg>
+    </button>
+    <img id="lightbox-img" src="" alt="" class="w-full aspect-square object-cover rounded-3xl bg-[#F3F4F6]" />
+    <div class="mt-4 text-center">
+      <h2 id="lightbox-title" class="text-lg font-bold text-white font-display"></h2>
+      <p id="lightbox-price" class="text-sm font-semibold text-[#FB4C03] mt-1"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= TOAST ================= -->
+<div id="toast" aria-live="polite" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-[60] opacity-0 translate-y-2 pointer-events-none transition-all duration-300">
+  <div class="flex items-center gap-2 bg-[#111827] text-white text-sm font-medium px-4 py-2.5 rounded-full shadow-lg">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M20 6 9 17l-5-5" /></svg>
+    <span id="toast-message">Copié !</span>
+  </div>
+</div>
+
+<script>
+/* ==========================================================================
+   I18N — UI strings for French / English / Arabic
+   ========================================================================== */
+const I18N = {
+  fr: {
+    subtitle: "Cuisine Marocaine & Fusion",
+    statusOpen: "Ouvert maintenant",
+    statusClosed: "Fermé actuellement",
+    wifi: "Wi-Fi",
+    directions: "Itinéraire",
+    hours: "Horaires",
+    googleReview: "Laissez un avis 5 étoiles sur Google",
+    viewOrder: "Voir ma commande",
+    wifiTitle: "Connexion Wi-Fi",
+    networkName: "Nom du réseau",
+    password: "Mot de passe",
+    copyPassword: "Copier le mot de passe",
+    passwordCopied: "Mot de passe copié",
+    hoursTitle: "Horaires d'ouverture",
+    closedDay: "Fermé",
+    myOrder: "Ma commande",
+    emptyCart: "Votre panier est vide.",
+    total: "Total",
+    orderType: "Type de commande",
+    dineIn: "Sur place",
+    takeaway: "À emporter",
+    tableNumber: "Numéro de table",
+    tablePlaceholder: "Ex : 12",
+    tableError: "Merci d'indiquer le numéro de table.",
+    sendWhatsApp: "Envoyer via WhatsApp",
+    close: "Fermer",
+    perUnit: "unité",
+    toastCopied: "Copié !",
+    toastPasswordCopied: "Mot de passe copié !",
+    toastOrderSent: "Commande envoyée !",
+    add: "Ajouter",
+    addAria: (n) => `Ajouter ${n} au panier`,
+    enlargeAria: (n) => `Agrandir la photo de ${n}`,
+    removeUnit: "Retirer une unité",
+    addUnit: "Ajouter une unité",
+    newOrder: "Nouvelle commande",
+    tableLabel: "Table n°",
+  },
+  en: {
+    subtitle: "Moroccan & Fusion Cuisine",
+    statusOpen: "Open now",
+    statusClosed: "Currently closed",
+    wifi: "Wi-Fi",
+    directions: "Directions",
+    hours: "Hours",
+    googleReview: "Leave a 5-star review on Google",
+    viewOrder: "View my order",
+    wifiTitle: "Wi-Fi connection",
+    networkName: "Network name",
+    password: "Password",
+    copyPassword: "Copy password",
+    passwordCopied: "Password copied",
+    hoursTitle: "Opening hours",
+    closedDay: "Closed",
+    myOrder: "My order",
+    emptyCart: "Your cart is empty.",
+    total: "Total",
+    orderType: "Order type",
+    dineIn: "Dine in",
+    takeaway: "Takeaway",
+    tableNumber: "Table number",
+    tablePlaceholder: "e.g. 12",
+    tableError: "Please enter a table number.",
+    sendWhatsApp: "Send via WhatsApp",
+    close: "Close",
+    perUnit: "unit",
+    toastCopied: "Copied!",
+    toastPasswordCopied: "Password copied!",
+    toastOrderSent: "Order sent!",
+    add: "Add",
+    addAria: (n) => `Add ${n} to cart`,
+    enlargeAria: (n) => `Enlarge photo of ${n}`,
+    removeUnit: "Remove one",
+    addUnit: "Add one",
+    newOrder: "New order",
+    tableLabel: "Table no.",
+  },
+  ar: {
+    subtitle: "مطبخ مغربي وفيوجن",
+    statusOpen: "مفتوح الآن",
+    statusClosed: "مغلق حاليًا",
+    wifi: "واي فاي",
+    directions: "الاتجاهات",
+    hours: "أوقات العمل",
+    googleReview: "اترك تقييم 5 نجوم على جوجل",
+    viewOrder: "عرض طلبي",
+    wifiTitle: "الاتصال بالواي فاي",
+    networkName: "اسم الشبكة",
+    password: "كلمة المرور",
+    copyPassword: "نسخ كلمة المرور",
+    passwordCopied: "تم نسخ كلمة المرور",
+    hoursTitle: "أوقات العمل",
+    closedDay: "مغلق",
+    myOrder: "طلبي",
+    emptyCart: "سلتك فارغة.",
+    total: "المجموع",
+    orderType: "نوع الطلب",
+    dineIn: "في المطعم",
+    takeaway: "طلب خارجي",
+    tableNumber: "رقم الطاولة",
+    tablePlaceholder: "مثال: 12",
+    tableError: "يرجى إدخال رقم الطاولة.",
+    sendWhatsApp: "إرسال عبر واتساب",
+    close: "إغلاق",
+    perUnit: "الوحدة",
+    toastCopied: "تم النسخ!",
+    toastPasswordCopied: "تم نسخ كلمة المرور!",
+    toastOrderSent: "تم إرسال الطلب!",
+    add: "إضافة",
+    addAria: (n) => `إضافة ${n} إلى السلة`,
+    enlargeAria: (n) => `تكبير صورة ${n}`,
+    removeUnit: "إزالة واحدة",
+    addUnit: "إضافة واحدة",
+    newOrder: "طلب جديد",
+    tableLabel: "طاولة رقم",
+  },
+};
+
+let currentLang = "fr";
+const t = (key) => I18N[currentLang][key];
+
+/* ==========================================================================
+   CONFIG — swap these values per client / restaurant
+   ========================================================================== */
+const RESTAURANT = {
+  name: "Fire Up The Grill",
+  phoneWhatsApp: "212600000000", // international format, no + or leading 0
+  wifi: { ssid: "FireUpTheGrill_Guest", password: "FireUp2026" },
+  // Canonical day keys aligned with Date.getDay(): 0=sun ... 6=sat
+  hours: {
+    sun: { open: "13:00", close: "21:30" },
+    mon: { open: "13:00", close: "22:00" },
+    tue: { open: "13:00", close: "22:00" },
+    wed: { open: "13:00", close: "22:00" },
+    thu: { open: "13:00", close: "22:30" },
+    fri: { open: "13:00", close: "23:59" },
+    sat: { open: "13:00", close: "23:59" },
+  },
+};
+
+const DAY_KEYS = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+
+const DAY_LABELS = {
+  fr: { sun: "Dimanche", mon: "Lundi", tue: "Mardi", wed: "Mercredi", thu: "Jeudi", fri: "Vendredi", sat: "Samedi" },
+  en: { sun: "Sunday", mon: "Monday", tue: "Tuesday", wed: "Wednesday", thu: "Thursday", fri: "Friday", sat: "Saturday" },
+  ar: { sun: "الأحد", mon: "الاثنين", tue: "الثلاثاء", wed: "الأربعاء", thu: "الخميس", fri: "الجمعة", sat: "السبت" },
+};
+
+const CATEGORIES = [
+  { id: "grillades", label: { fr: "Grillades", en: "Grills", ar: "مشاوي" } },
+  { id: "burgers", label: { fr: "Burgers", en: "Burgers", ar: "برغر" } },
+  { id: "accompagnements", label: { fr: "Accompagnements", en: "Sides", ar: "أطباق جانبية" } },
+  { id: "boissons", label: { fr: "Boissons", en: "Drinks", ar: "مشروبات" } },
+  { id: "desserts", label: { fr: "Desserts", en: "Desserts", ar: "حلويات" } },
+];
+
+const MENU_ITEMS = [
+  { id: "g1", category: "grillades", price: 55, tags: ["popular"], image: "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?q=80&w=800&auto=format&fit=crop",
+    name: { fr: "Brochettes de Poulet Grillé", en: "Grilled Chicken Skewers", ar: "أسياخ دجاج مشوي" },
+    description: { fr: "Poulet mariné aux épices, grillé à la braise, servi avec sauce maison", en: "Spice-marinated chicken, chargrilled over coals, served with house sauce", ar: "دجاج متبل بالتوابل، مشوي على الفحم، يُقدم مع صلصة البيت" } },
+  { id: "g2", category: "grillades", price: 120, tags: ["popular"], image: "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop",
+    name: { fr: "Entrecôte Grillée", en: "Grilled Ribeye Steak", ar: "أنتركوت مشوي" },
+    description: { fr: "Pièce de bœuf grillée au feu de bois, servie avec beurre maître d'hôtel", en: "Beef ribeye grilled over wood fire, served with herb butter", ar: "قطعة لحم بقري مشوية على نار الحطب، تُقدم مع زبدة الأعشاب" } },
+  { id: "g3", category: "grillades", price: 90, tags: [], image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800&auto=format&fit=crop",
+    name: { fr: "Côtelettes d'Agneau", en: "Lamb Chops", ar: "أضلاع خروف" },
+    description: { fr: "Agneau grillé aux herbes de Provence, marinade maison", en: "Lamb grilled with Provençal herbs, house marinade", ar: "لحم خروف مشوي بأعشاب بروفانس، متبل بتتبيلة البيت" } },
+  { id: "g4", category: "grillades", price: 85, tags: ["spicy", "new"], image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=800&auto=format&fit=crop",
+    name: { fr: "Poisson Grillé Épicé", en: "Spicy Grilled Fish", ar: "سمك مشوي حار" },
+    description: { fr: "Poisson du jour grillé, sauce chermoula relevée", en: "Catch of the day, grilled and served with spicy chermoula sauce", ar: "سمك اليوم مشوي، مع صلصة الشرمولة الحارة" } },
+  { id: "b1", category: "burgers", price: 65, tags: ["popular"], image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800&auto=format&fit=crop",
+    name: { fr: "Burger Fire Up Classique", en: "Classic Fire Up Burger", ar: "برغر فاير أب الكلاسيكي" },
+    description: { fr: "Steak haché 150g grillé, cheddar fondu, salade, tomate, sauce maison", en: "150g grilled beef patty, melted cheddar, lettuce, tomato, house sauce", ar: "قطعة لحم مفروم 150غ مشوية، جبن شيدر ذائب، خس، طماطم، صلصة البيت" } },
+  { id: "b2", category: "burgers", price: 75, tags: ["new"], image: "https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=800&auto=format&fit=crop",
+    name: { fr: "Burger BBQ Bacon", en: "BBQ Bacon Burger", ar: "برغر باربكيو بيكون" },
+    description: { fr: "Steak haché, bacon grillé, cheddar, sauce BBQ maison, oignons frits", en: "Beef patty, grilled bacon, cheddar, house BBQ sauce, crispy onions", ar: "قطعة لحم مفروم، بيكون مشوي، جبن شيدر، صلصة باربكيو منزلية، بصل مقرمش" } },
+  { id: "b3", category: "burgers", price: 70, tags: ["spicy"], image: "https://images.unsplash.com/photo-1481931098730-318b6f776db0?q=80&w=800&auto=format&fit=crop",
+    name: { fr: "Burger Épicé Jalapeños", en: "Spicy Jalapeño Burger", ar: "برغر هلابينو الحار" },
+    description: { fr: "Steak haché, jalapeños, sauce harissa maison, cheddar fondu", en: "Beef patty, jalapeños, house harissa sauce, melted cheddar", ar: "قطعة لحم مفروم، هلابينو، صلصة هريسة منزلية، جبن شيدر ذائب" } },
+  { id: "a1", category: "accompagnements", price: 25, tags: ["popular"], image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=800&auto=format&fit=crop",
+    name: { fr: "Frites Maison", en: "House Fries", ar: "بطاطا مقلية منزلية" },
+    description: { fr: "Pommes de terre fraîches coupées et frites minute", en: "Fresh-cut potatoes, fried to order", ar: "بطاطا طازجة مقطعة ومقلية عند الطلب" } },
+  { id: "a2", category: "accompagnements", price: 30, tags: [], image: "https://images.unsplash.com/photo-1639024471283-03518883512d?q=80&w=800&auto=format&fit=crop",
+    name: { fr: "Onion Rings Croustillants", en: "Crispy Onion Rings", ar: "حلقات بصل مقرمشة" },
+    description: { fr: "Rondelles d'oignons panées et frites, sauce dip maison", en: "Breaded and fried onion rings, house dipping sauce", ar: "حلقات بصل مغطاة بالبقسماط ومقلية، مع صلصة غمس منزلية" } },
+  { id: "a3", category: "accompagnements", price: 35, tags: ["new"], image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop",
+    name: { fr: "Salade César", en: "Caesar Salad", ar: "سلطة سيزر" },
+    description: { fr: "Salade romaine, poulet grillé, parmesan, croûtons, sauce César", en: "Romaine lettuce, grilled chicken, parmesan, croutons, Caesar dressing", ar: "خس روماني، دجاج مشوي، جبن بارميزان، خبز محمص، صلصة سيزر" } },
+  { id: "d1", category: "boissons", price: 35, tags: ["popular"], image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?q=80&w=800&auto=format&fit=crop",
+    name: { fr: "Milkshake Vanille", en: "Vanilla Milkshake", ar: "ميلك شيك فانيليا" },
+    description: { fr: "Glace vanille, lait frais, chantilly maison", en: "Vanilla ice cream, fresh milk, house whipped cream", ar: "آيس كريم فانيليا، حليب طازج، كريمة مخفوقة منزلية" } },
+  { id: "d2", category: "boissons", price: 22, tags: ["new"], image: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?q=80&w=800&auto=format&fit=crop",
+    name: { fr: "Limonade Maison", en: "House Lemonade", ar: "ليموناضة منزلية" },
+    description: { fr: "Citron frais, menthe, eau gazeuse", en: "Fresh lemon, mint, sparkling water", ar: "ليمون طازج، نعناع، ماء غازي" } },
+  { id: "d3", category: "boissons", price: 15, tags: [], image: "https://images.unsplash.com/photo-1554866585-cd94860890b7?q=80&w=800&auto=format&fit=crop",
+    name: { fr: "Soda au Choix", en: "Soda of Your Choice", ar: "مشروب غازي حسب الاختيار" },
+    description: { fr: "Coca-Cola, Sprite, Fanta — servi bien frais", en: "Coca-Cola, Sprite, Fanta — served ice cold", ar: "كوكاكولا، سبرايت، فانتا — يُقدم باردًا" } },
+  { id: "ds1", category: "desserts", price: 38, tags: ["popular"], image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop",
+    name: { fr: "Fondant au Chocolat", en: "Chocolate Fondant", ar: "فوندان الشوكولاتة" },
+    description: { fr: "Cœur coulant, servi tiède avec glace vanille", en: "Molten center, served warm with vanilla ice cream", ar: "قلب سائل، يُقدم دافئًا مع آيس كريم الفانيليا" } },
+  { id: "ds2", category: "desserts", price: 35, tags: ["new"], image: "https://images.unsplash.com/photo-1524351199678-941a58a3df50?q=80&w=800&auto=format&fit=crop",
+    name: { fr: "Cheesecake Maison", en: "House Cheesecake", ar: "تشيز كيك منزلي" },
+    description: { fr: "Base biscuitée, coulis de fruits rouges", en: "Biscuit base, red berry coulis", ar: "قاعدة بسكويت، صوص التوت الأحمر" } },
+];
+
+const TAG_META = {
+  popular: { emoji: "⭐️", label: { fr: "Populaire", en: "Popular", ar: "الأكثر طلبًا" } },
+  spicy: { emoji: "🌶️", label: { fr: "Épicé", en: "Spicy", ar: "حار" } },
+  new: { emoji: "✨", label: { fr: "Nouveau", en: "New", ar: "جديد" } },
+};
+
+/* ==========================================================================
+   ANALYTICS — replace body with real GA4 / telemetry calls
+   ========================================================================== */
+function trackEvent(eventName, payload = {}) {
+  // Hook point for Google Analytics / custom telemetry.
+  // Example: window.gtag && window.gtag('event', eventName, payload);
+  console.log("[trackEvent]", eventName, payload);
+}
+
+/* ==========================================================================
+   STATE
+   ========================================================================== */
+const state = {
+  activeCategory: CATEGORIES[0].id,
+  cart: {}, // { [itemId]: { item, qty } }
+};
+
+/* ==========================================================================
+   HELPERS
+   ========================================================================== */
+function formatDH(amount) {
+  return `${amount} DH`;
+}
+
+function getOpenStatus() {
+  const now = new Date();
+  const dayKey = DAY_KEYS[now.getDay()];
+  const todayHours = RESTAURANT.hours[dayKey];
+  if (!todayHours) return { isOpen: false, dayKey };
+
+  const [openH, openM] = todayHours.open.split(":").map(Number);
+  const [closeH, closeM] = todayHours.close.split(":").map(Number);
+  const openMinutes = openH * 60 + openM;
+  const closeMinutes = closeH * 60 + closeM;
+  const nowMinutes = now.getHours() * 60 + now.getMinutes();
+
+  const isOpen = nowMinutes >= openMinutes && nowMinutes < closeMinutes;
+  return { isOpen, dayKey };
+}
+
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+/* ==========================================================================
+   LANGUAGE SWITCHING
+   ========================================================================== */
+function setLanguage(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+  document.querySelectorAll(".lang-btn").forEach((btn) => {
+    btn.setAttribute("aria-pressed", btn.dataset.lang === lang ? "true" : "false");
+  });
+
+  applyStaticTranslations();
+  renderStatus();
+  renderTabs();
+  renderMenu();
+  renderCartBar();
+  trackEvent("language_change", { lang });
+}
+
+function applyStaticTranslations() {
+  document.getElementById("subtitle").textContent = t("subtitle");
+  document.getElementById("label-wifi").textContent = t("wifi");
+  document.getElementById("label-directions").textContent = t("directions");
+  document.getElementById("label-hours").textContent = t("hours");
+  document.getElementById("label-google-review").textContent = t("googleReview");
+  document.getElementById("label-view-order").textContent = t("viewOrder");
+
+  document.getElementById("wifi-title").textContent = t("wifiTitle");
+  document.getElementById("label-network-name").textContent = t("networkName");
+  document.getElementById("label-password").textContent = t("password");
+  document.getElementById("btn-copy-wifi-label").textContent = t("copyPassword");
+
+  document.getElementById("hours-title").textContent = t("hoursTitle");
+
+  document.getElementById("checkout-title").textContent = t("myOrder");
+  document.getElementById("checkout-empty").textContent = t("emptyCart");
+  document.getElementById("label-checkout-total").textContent = t("total");
+  document.getElementById("legend-order-type").textContent = t("orderType");
+  document.getElementById("btn-order-table").textContent = t("dineIn");
+  document.getElementById("btn-order-takeaway").textContent = t("takeaway");
+  document.getElementById("label-table-number").textContent = t("tableNumber");
+  document.getElementById("table-number").setAttribute("placeholder", t("tablePlaceholder"));
+  document.getElementById("table-error").textContent = t("tableError");
+  document.getElementById("label-send-whatsapp").textContent = t("sendWhatsApp");
+
+  document.querySelectorAll("[data-close]").forEach((btn) => btn.setAttribute("aria-label", t("close")));
+
+  // Re-render dynamic panels that may currently be visible
+  renderHours();
+  renderCheckout();
+}
+
+document.querySelectorAll(".lang-btn").forEach((btn) => {
+  btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+});
+
+/* ==========================================================================
+   RENDER: STATUS BADGE
+   ========================================================================== */
+function renderStatus() {
+  const { isOpen } = getOpenStatus();
+  const dot = document.getElementById("status-dot");
+  const text = document.getElementById("status-text");
+  dot.className = `w-2 h-2 rounded-full ${isOpen ? "bg-green-600" : "bg-red-600"}`;
+  text.textContent = isOpen ? t("statusOpen") : t("statusClosed");
+}
+
+/* ==========================================================================
+   RENDER: CATEGORY TABS
+   ========================================================================== */
+function renderTabs() {
+  const container = document.getElementById("category-tabs");
+  container.innerHTML = CATEGORIES.map((cat) => {
+    const active = cat.id === state.activeCategory;
+    return `
+      <button
+        role="tab"
+        aria-selected="${active}"
+        id="tab-${cat.id}"
+        aria-controls="menu-panel"
+        data-category="${cat.id}"
+        class="tab-btn shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
+          active ? "bg-primary text-white" : "bg-[#F3F4F6] text-[#111827]"
+        }"
+      >${escapeHtml(cat.label[currentLang])}</button>
+    `;
+  }).join("");
+
+  container.querySelectorAll(".tab-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const catId = btn.dataset.category;
+      state.activeCategory = catId;
+      trackEvent("category_click", { category: catId });
+      renderTabs();
+      renderMenu();
+    });
+  });
+}
+
+/* ==========================================================================
+   RENDER: MENU LIST
+   ========================================================================== */
+function renderMenu() {
+  const items = MENU_ITEMS.filter((i) => i.category === state.activeCategory);
+  const categoryLabel = CATEGORIES.find((c) => c.id === state.activeCategory)?.label[currentLang] || "";
+  document.getElementById("menu-panel-label").textContent = categoryLabel;
+  document.getElementById("menu-panel").setAttribute("aria-labelledby", `tab-${state.activeCategory}`);
+
+  const list = document.getElementById("menu-list");
+  list.innerHTML = items.map((item) => {
+    const qty = state.cart[item.id]?.qty || 0;
+    const name = item.name[currentLang];
+    const desc = item.description[currentLang];
+    const tagsHtml = item.tags.length
+      ? `<div class="flex gap-1.5 mt-2">${item.tags
+          .map((tag) => `<span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#F3F4F6] text-primary">${TAG_META[tag].emoji} ${escapeHtml(TAG_META[tag].label[currentLang])}</span>`)
+          .join("")}</div>`
+      : "";
+
+    return `
+      <li class="flex gap-3 py-4 border-b border-gray-100 last:border-b-0">
+        <button type="button" data-lightbox="${item.id}" aria-label="${escapeHtml(t("enlargeAria")(name))}" class="relative shrink-0 active:scale-95 transition-transform">
+          <img src="${item.image}" alt="${escapeHtml(name)}" loading="lazy" class="w-20 h-20 rounded-2xl object-cover bg-[#F3F4F6]" />
+          <span class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-black/60 flex items-center justify-center" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3"><path d="M15 3h6v6" /><path d="M9 21H3v-6" /><path d="M21 3l-7 7" /><path d="M3 21l7-7" /></svg>
+          </span>
+        </button>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="text-sm font-bold text-[#111827] leading-snug">${escapeHtml(name)}</h3>
+            <span class="text-sm font-bold text-[#111827] shrink-0">${formatDH(item.price)}</span>
+          </div>
+          <p class="text-xs text-[#6B7280] mt-0.5 line-clamp-2">${escapeHtml(desc)}</p>
+          ${tagsHtml}
+          <div class="mt-2.5">
+            <button data-add="${item.id}" class="add-btn text-xs font-semibold px-4 py-1.5 rounded-full bg-primary text-white active:scale-95 transition-transform ${qty > 0 ? "hidden-btn" : ""}" aria-label="${escapeHtml(t("addAria")(name))}">${t("add")}</button>
+            <div data-qty-controls="${item.id}" class="qty-controls ${qty > 0 ? "visible" : ""} items-center gap-3 bg-[#F3F4F6] rounded-full px-1 py-1">
+              <button data-decrement="${item.id}" aria-label="${t("removeUnit")}" class="w-6 h-6 flex items-center justify-center rounded-full bg-white text-primary active:scale-90 transition-transform">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="w-3 h-3"><path d="M5 12h14" /></svg>
+              </button>
+              <span data-qty-value="${item.id}" class="text-sm font-bold text-[#111827] min-w-[1ch] text-center" aria-live="polite">${qty}</span>
+              <button data-increment="${item.id}" aria-label="${t("addUnit")}" class="w-6 h-6 flex items-center justify-center rounded-full bg-primary text-white active:scale-90 transition-transform">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="w-3 h-3"><path d="M12 5v14M5 12h14" /></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </li>
+    `;
+  }).join("");
+
+  list.querySelectorAll("[data-lightbox]").forEach((btn) => {
+    btn.addEventListener("click", () => openLightbox(btn.dataset.lightbox));
+  });
+  list.querySelectorAll("[data-add]").forEach((btn) => {
+    btn.addEventListener("click", () => addToCart(btn.dataset.add));
+  });
+  list.querySelectorAll("[data-increment]").forEach((btn) => {
+    btn.addEventListener("click", () => incrementItem(btn.dataset.increment));
+  });
+  list.querySelectorAll("[data-decrement]").forEach((btn) => {
+    btn.addEventListener("click", () => decrementItem(btn.dataset.decrement));
+  });
+}
+
+/* ==========================================================================
+   CART LOGIC
+   ========================================================================== */
+function addToCart(itemId) {
+  const item = MENU_ITEMS.find((i) => i.id === itemId);
+  if (!item) return;
+  const current = state.cart[itemId];
+  state.cart[itemId] = { item, qty: (current?.qty || 0) + 1 };
+  trackEvent("add_to_cart", { itemId, itemName: item.name[currentLang] });
+  syncCartUI();
+}
+
+function incrementItem(itemId) {
+  const current = state.cart[itemId];
+  if (!current) return;
+  state.cart[itemId] = { ...current, qty: current.qty + 1 };
+  syncCartUI();
+}
+
+function decrementItem(itemId) {
+  const current = state.cart[itemId];
+  if (!current) return;
+  if (current.qty <= 1) {
+    delete state.cart[itemId];
+  } else {
+    state.cart[itemId] = { ...current, qty: current.qty - 1 };
+  }
+  syncCartUI();
+}
+
+function getCartTotals() {
+  const entries = Object.values(state.cart);
+  return {
+    totalItems: entries.reduce((sum, e) => sum + e.qty, 0),
+    totalPrice: entries.reduce((sum, e) => sum + e.qty * e.item.price, 0),
+    entries,
+  };
+}
+
+// Lightweight sync: update quantity controls in place without a full re-render
+// (keeps focus/scroll position stable), then refresh cart bar + checkout modal.
+function syncCartUI() {
+  MENU_ITEMS.forEach((item) => {
+    const qty = state.cart[item.id]?.qty || 0;
+    const addBtn = document.querySelector(`[data-add="${item.id}"]`);
+    const qtyControls = document.querySelector(`[data-qty-controls="${item.id}"]`);
+    const qtyValue = document.querySelector(`[data-qty-value="${item.id}"]`);
+    if (addBtn && qtyControls && qtyValue) {
+      if (qty > 0) {
+        addBtn.classList.add("hidden-btn");
+        qtyControls.classList.add("visible");
+        qtyValue.textContent = qty;
+      } else {
+        addBtn.classList.remove("hidden-btn");
+        qtyControls.classList.remove("visible");
+      }
+    }
+  });
+  renderCartBar();
+  renderCheckout();
+}
+
+/* ==========================================================================
+   RENDER: CART BAR
+   ========================================================================== */
+function renderCartBar() {
+  const { totalItems, totalPrice } = getCartTotals();
+  const bar = document.getElementById("cart-bar");
+  document.getElementById("cart-count").textContent = totalItems;
+  document.getElementById("cart-total").textContent = formatDH(totalPrice);
+  bar.classList.toggle("visible", totalItems > 0);
+}
+
+/* ==========================================================================
+   RENDER: HOURS MODAL
+   ========================================================================== */
+function renderHours() {
+  const { dayKey } = getOpenStatus();
+  const list = document.getElementById("hours-list");
+  list.innerHTML = DAY_KEYS.map((key) => {
+    const hours = RESTAURANT.hours[key];
+    const isToday = key === dayKey;
+    const dayLabel = DAY_LABELS[currentLang][key];
+    return `
+      <li class="flex items-center justify-between py-3 px-1 ${isToday ? "bg-[#F3F4F6] rounded-xl px-3" : ""}">
+        <span class="text-sm ${isToday ? "font-bold text-primary" : "font-medium text-[#111827]"}">${escapeHtml(dayLabel)}</span>
+        <span class="text-sm ${isToday ? "font-bold text-primary" : "text-[#6B7280]"}" dir="ltr">${hours ? `${hours.open} – ${hours.close}` : t("closedDay")}</span>
+      </li>
+    `;
+  }).join("");
+}
+
+/* ==========================================================================
+   RENDER: CHECKOUT MODAL
+   ========================================================================== */
+let orderType = "table"; // "table" | "takeaway"
+
+function renderCheckout() {
+  const { entries, totalPrice } = getCartTotals();
+  const empty = document.getElementById("checkout-empty");
+  const content = document.getElementById("checkout-content");
+
+  if (entries.length === 0) {
+    empty.classList.remove("hidden");
+    content.classList.add("hidden");
+    return;
+  }
+  empty.classList.add("hidden");
+  content.classList.remove("hidden");
+
+  const list = document.getElementById("checkout-items");
+  list.innerHTML = entries.map(({ item, qty }) => `
+    <li class="flex items-center justify-between py-3">
+      <div class="min-w-0 pr-2">
+        <p class="text-sm font-semibold text-[#111827] truncate">${escapeHtml(item.name[currentLang])}</p>
+        <p class="text-xs text-[#6B7280]">${formatDH(item.price)} / ${t("perUnit")}</p>
+      </div>
+      <div class="flex items-center gap-3 shrink-0">
+        <div class="inline-flex items-center gap-2 bg-[#F3F4F6] rounded-full px-1 py-1">
+          <button data-checkout-decrement="${item.id}" aria-label="${t("removeUnit")}" class="w-6 h-6 flex items-center justify-center rounded-full bg-white text-primary active:scale-90 transition-transform">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="w-3 h-3"><path d="M5 12h14" /></svg>
+          </button>
+          <span class="text-sm font-bold text-[#111827] min-w-[1ch] text-center">${qty}</span>
+          <button data-checkout-increment="${item.id}" aria-label="${t("addUnit")}" class="w-6 h-6 flex items-center justify-center rounded-full bg-primary text-white active:scale-90 transition-transform">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="w-3 h-3"><path d="M12 5v14M5 12h14" /></svg>
+          </button>
+        </div>
+        <span class="text-sm font-bold text-[#111827] w-14 text-right" dir="ltr">${formatDH(item.price * qty)}</span>
+      </div>
+    </li>
+  `).join("");
+
+  list.querySelectorAll("[data-checkout-increment]").forEach((btn) => {
+    btn.addEventListener("click", () => incrementItem(btn.dataset.checkoutIncrement));
+  });
+  list.querySelectorAll("[data-checkout-decrement]").forEach((btn) => {
+    btn.addEventListener("click", () => decrementItem(btn.dataset.checkoutDecrement));
+  });
+
+  document.getElementById("checkout-total").textContent = formatDH(totalPrice);
+}
+
+function setOrderType(type) {
+  orderType = type;
+  const tableBtn = document.getElementById("btn-order-table");
+  const takeawayBtn = document.getElementById("btn-order-takeaway");
+  const tableField = document.getElementById("table-number-field");
+
+  tableBtn.setAttribute("aria-pressed", type === "table");
+  takeawayBtn.setAttribute("aria-pressed", type === "takeaway");
+  tableBtn.className = `py-2.5 rounded-xl text-sm font-semibold transition-colors ${type === "table" ? "bg-primary text-white" : "bg-[#F3F4F6] text-[#111827]"}`;
+  takeawayBtn.className = `py-2.5 rounded-xl text-sm font-semibold transition-colors ${type === "takeaway" ? "bg-primary text-white" : "bg-[#F3F4F6] text-[#111827]"}`;
+  tableBtn.textContent = t("dineIn");
+  takeawayBtn.textContent = t("takeaway");
+  tableField.classList.toggle("hidden", type !== "table");
+}
+
+function sendWhatsAppOrder() {
+  const { entries, totalPrice } = getCartTotals();
+  const tableInput = document.getElementById("table-number");
+  const errorEl = document.getElementById("table-error");
+
+  if (orderType === "table" && tableInput.value.trim() === "") {
+    errorEl.classList.remove("hidden");
+    return;
+  }
+  errorEl.classList.add("hidden");
+
+  const lines = [];
+  lines.push(`*${t("newOrder")} — ${RESTAURANT.name}*`);
+  lines.push("");
+  entries.forEach(({ item, qty }) => {
+    lines.push(`• ${item.name[currentLang]} x${qty} — ${formatDH(item.price * qty)}`);
+  });
+  lines.push("");
+  lines.push(`*${t("total")} : ${formatDH(totalPrice)}*`);
+  lines.push("");
+  lines.push(orderType === "table" ? `${t("tableLabel")} ${tableInput.value.trim()}` : t("takeaway"));
+
+  const message = encodeURIComponent(lines.join("\n"));
+  const url = `https://wa.me/${RESTAURANT.phoneWhatsApp}?text=${message}`;
+
+  trackEvent("whatsapp_order", { totalItems: getCartTotals().totalItems, totalPrice, orderType, tableNumber: tableInput.value.trim() });
+  window.open(url, "_blank", "noopener,noreferrer");
+
+  // reset
+  state.cart = {};
+  tableInput.value = "";
+  syncCartUI();
+  closeModal("modal-checkout");
+  showToast(t("toastOrderSent"));
+}
+
+/* ==========================================================================
+   DISH IMAGE LIGHTBOX
+   ========================================================================== */
+function openLightbox(itemId) {
+  const item = MENU_ITEMS.find((i) => i.id === itemId);
+  if (!item) return;
+  document.getElementById("lightbox-img").src = item.image;
+  document.getElementById("lightbox-img").alt = item.name[currentLang];
+  document.getElementById("lightbox-title").textContent = item.name[currentLang];
+  document.getElementById("lightbox-price").textContent = formatDH(item.price);
+  trackEvent("dish_image_open", { itemId, itemName: item.name[currentLang] });
+  openModal("modal-lightbox");
+}
+
+/* ==========================================================================
+   MODALS
+   ========================================================================== */
+function openModal(id) {
+  document.getElementById(id).classList.add("open");
+  document.addEventListener("keydown", handleEscape);
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove("open");
+  document.removeEventListener("keydown", handleEscape);
+}
+function handleEscape(e) {
+  if (e.key === "Escape") {
+    document.querySelectorAll("[data-modal].open").forEach((m) => m.classList.remove("open"));
+  }
+}
+
+document.querySelectorAll("[data-modal]").forEach((modal) => {
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal(modal.id);
+  });
+});
+document.querySelectorAll("[data-close]").forEach((btn) => {
+  btn.addEventListener("click", () => closeModal(btn.dataset.close));
+});
+
+/* ==========================================================================
+   TOAST
+   ========================================================================== */
+let toastTimer = null;
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  document.getElementById("toast-message").textContent = message;
+  toast.classList.remove("opacity-0", "translate-y-2", "pointer-events-none");
+  toast.classList.add("opacity-100", "translate-y-0");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.classList.add("opacity-0", "translate-y-2", "pointer-events-none");
+    toast.classList.remove("opacity-100", "translate-y-0");
+  }, 2000);
+}
+
+/* ==========================================================================
+   CLIPBOARD COPY (Wi-Fi password)
+   ========================================================================== */
+async function copyWifiPassword() {
+  try {
+    await navigator.clipboard.writeText(RESTAURANT.wifi.password);
+  } catch {
+    const el = document.createElement("textarea");
+    el.value = RESTAURANT.wifi.password;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+  }
+  const label = document.getElementById("btn-copy-wifi-label");
+  label.textContent = t("passwordCopied");
+  trackEvent("wifi_password_copied");
+  showToast(t("toastPasswordCopied"));
+  setTimeout(() => { label.textContent = t("copyPassword"); }, 2000);
+}
+
+/* ==========================================================================
+   EVENT WIRING
+   ========================================================================== */
+document.getElementById("btn-wifi").addEventListener("click", () => openModal("modal-wifi"));
+document.getElementById("btn-hours").addEventListener("click", () => { renderHours(); openModal("modal-hours"); });
+document.getElementById("btn-view-order").addEventListener("click", () => { renderCheckout(); openModal("modal-checkout"); });
+document.getElementById("btn-copy-wifi").addEventListener("click", copyWifiPassword);
+document.getElementById("btn-order-table").addEventListener("click", () => setOrderType("table"));
+document.getElementById("btn-order-takeaway").addEventListener("click", () => setOrderType("takeaway"));
+document.getElementById("btn-send-whatsapp").addEventListener("click", sendWhatsAppOrder);
+document.getElementById("table-number").addEventListener("input", () => {
+  document.getElementById("table-error").classList.add("hidden");
+});
+document.getElementById("btn-maps").addEventListener("click", () => trackEvent("maps_click"));
+document.querySelectorAll("[data-track='social_click']").forEach((el) => {
+  el.addEventListener("click", () => trackEvent("social_click", { network: el.dataset.network }));
+});
+document.querySelector("[data-track='google_review_click']").addEventListener("click", () => trackEvent("google_review_click"));
+
+/* ==========================================================================
+   INIT
+   ========================================================================== */
+function init() {
+  applyStaticTranslations();
+  renderStatus();
+  renderTabs();
+  renderMenu();
+  renderCartBar();
+  setInterval(renderStatus, 60000);
+}
+init();
+</script>
+</body>
+</html>
