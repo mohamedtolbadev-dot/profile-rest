@@ -3,27 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>متجر لالة | البطاقة الرقمية</title>
-<meta name="description" content="متجر لالة — أزياء وإكسسوارات نسائية. احفظ جهة الاتصال، تسوّق عبر واتساب، وتابعنا مباشرة.">
+<title>عيادة النور الطبية | البطاقة الرقمية</title>
+<meta name="description" content="عيادة النور الطبية — د. سعاد العلوي، أخصائية أمراض القلب. احفظ جهة الاتصال، احجز موعدك، وتواصل معنا مباشرة.">
 
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-  // ==========================================================
-  //  ⚙️ TEMPLATE — غيّر هاد الألوان والخط حسب براند كل زبون فقط
-  // ==========================================================
   tailwind.config = {
     theme: {
       extend: {
         colors: {
-          primary: '#F1502E',      // البرتقالي/الأحمر — اللون المهيمن فاللوغو (الحقيبة)
-          'primary-dark': '#D33C1D',
-          'primary-tint': '#FDECE8',
-          accent: '#1E1240',       // النيلي الغامق — لون ثانوي فاللوغو (السهم)
-          surface: '#FCFAF9',
-          line: '#EDE2DD',
-          ink: '#1E1240',
-          muted: '#847A85'
+          primary: '#6B5B9E',   
+          'primary-dark': '#4E4278', 
+          'primary-tint': '#F1EEF7', 
+          accent: '#02A1BD',    
+          surface: '#FAF9FC',   
+          line: '#E7E2F0',      
+          ink: '#1E1A2E',       
+          muted: '#726C87'      
         },
         fontFamily: {
           display: ['"Cairo"', 'sans-serif'],
@@ -70,7 +67,7 @@
     * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   }
   a:focus-visible, button:focus-visible {
-    outline: 2px solid #F1502E;
+    outline: 2px solid #02A1BD;
     outline-offset: 2px;
     border-radius: 10px;
   }
@@ -79,14 +76,16 @@
 
 <body class="bg-surface font-body text-ink antialiased">
 
-  <div id="profileCard" class="max-w-md mx-auto bg-white min-h-screen relative shadow-[0_0_32px_rgba(28,25,23,0.08)] pb-20">
+  <div id="profileCard" class="max-w-md mx-auto bg-white min-h-screen relative shadow-[0_0_32px_rgba(78,66,120,0.08)] pb-20">
 
     <!-- ============ HEADER / COVER ============ -->
     <header class="relative">
-      <div class="h-32 bg-primary w-full relative overflow-hidden">
+      <div class="h-32 bg-accent w-full relative overflow-hidden">
         <!-- صورة الخلفية المضافة هنا -->
-        <img src="bg-profile-boutique.png" alt="خلفية المتجر" class="absolute inset-0 w-full h-full object-cover z-0">
-       
+        <img src="bg-profile.png" alt="خلفية العيادة" class="absolute inset-0 w-full h-full object-cover z-0">
+        
+        
+
         <button
           id="openQrBtn"
           aria-label="فتح رمز QR"
@@ -107,56 +106,56 @@
           <span class="w-4 h-4 rounded-full bg-accent flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
           </span>
-          <span class="text-[11px] font-semibold text-primary">توصيل داخل المدينة</span>
+          <span class="text-[11px] font-semibold text-primary">طبيبة معتمدة</span>
         </div>
       </div>
 
-      <!-- الشعار -->
+      <!-- الشعار المحدث -->
       <div class="absolute right-6 -bottom-10 z-10">
         <div class="w-20 h-20 rounded-full bg-white border-[3px] border-white flex items-center justify-center overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.12)]">
-          <img src="logo-profile-boutique.png" alt="شعار المتجر" class="w-full h-full object-cover">
+          <img src="logo-profile.png" alt="شعار العيادة" class="w-full h-full object-cover">
         </div>
       </div>
     </header>
 
-    <!-- ============ معلومات المتجر ============ -->
+    <!-- ============ معلومات الطبيبة ============ -->
     <section class="pt-14 px-6 pb-2">
       <div class="flex items-start justify-between gap-3">
         <div>
-          <h1 class="text-[18px] font-display font-extrabold text-ink leading-tight">متجر لالة</h1>
-          <p class="text-primary font-semibold text-[12px] mt-1">أزياء وإكسسوارات نسائية</p>
+          <h1 class="text-[18px] font-display font-extrabold text-ink leading-tight">د. سعاد العلوي</h1>
+          <p class="text-primary font-semibold text-[12px] mt-1">أخصائية أمراض القلب والشرايين</p>
         </div>
-        <span class="shrink-0 mt-1 border border-accent text-accent text-[10px] font-bold px-2 py-0.5 rounded-full">بوتيك</span>
+        <span class="shrink-0 mt-1 border border-primary text-primary text-[10px] font-bold px-2 py-0.5 rounded-full">عيادة النور</span>
       </div>
       <p class="text-muted text-[12.5px] leading-relaxed mt-2.5">
-        فاس — قطع مختارة بعناية، جودة عالية وأثمنة فمتناول الجميع. الدفع عند الاستلام داخل جميع مدن المغرب.
+        فاس — أكثر من 12 سنة خبرة في تشخيص ومتابعة أمراض القلب، بمواعيد مرنة ومتابعة شخصية لكل مريض.
       </p>
     </section>
 
-    <!-- ============ مؤشرات الثقة ============ -->
+  <!-- ============ مؤشرات الثقة ============ -->
     <section class="px-6 mt-4">
       <div class="grid grid-cols-3 border border-line rounded-xl divide-x divide-line divide-x-reverse">
         <div class="text-center py-2.5">
-          <p class="text-[16px] font-display font-extrabold text-primary">+120</p>
-          <p class="text-[11px] text-muted mt-0.5">منتوج</p>
+          <p class="text-[16px] font-display font-extrabold text-primary">+12</p>
+          <p class="text-[11px] text-muted mt-0.5">سنة خبرة</p>
         </div>
         <div class="text-center py-2.5">
-          <p class="text-[16px] font-display font-extrabold text-primary">+2000</p>
-          <p class="text-[11px] text-muted mt-0.5">زبون راضي</p>
+          <p class="text-[16px] font-display font-extrabold text-primary">+3500</p>
+          <p class="text-[11px] text-muted mt-0.5">مريض</p>
         </div>
         <div class="text-center py-2.5">
           <p class="text-[16px] font-display font-extrabold text-primary flex items-center justify-center gap-1">
-            4.8
+            4.9
             <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-accent" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"></polygon></svg>
           </p>
-          <p class="text-[11px] text-muted mt-0.5">تقييم الزبناء</p>
+          <p class="text-[11px] text-muted mt-0.5">تقييم المرضى</p>
         </div>
       </div>
     </section>
-
+    
     <!-- ============ CTA الرئيسي ============ -->
     <section class="px-6 mt-4">
-      <button id="saveContactBtn" class="w-full flex items-center justify-center gap-2 bg-primary text-white font-bold text-[13.5px] py-3.5 rounded-xl active:scale-[0.98] transition-transform">
+      <button id="saveContactBtn" class="w-full flex items-center justify-center gap-2 bg-accent text-white font-bold text-[13.5px] py-3.5 rounded-xl active:scale-[0.98] transition-transform">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
           <polyline points="7 10 12 15 17 10"></polyline>
@@ -168,14 +167,15 @@
       <div class="grid grid-cols-3 gap-2 mt-2">
         <button id="orderNowBtn" class="flex flex-col items-center justify-center gap-1.5 bg-white border border-line text-primary font-semibold text-[10.5px] py-2.5 rounded-full active:scale-[0.97] transition-transform">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
           </svg>
-          اطلب الآن
+          احجز موعد
         </button>
-        <button id="shareBtn" class="flex flex-col items-center justify-center gap-1.5 bg-white border border-line text-accent font-semibold text-[10.5px] py-2.5 rounded-full active:scale-[0.97] transition-transform">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <button id="shareBtn" class="flex flex-col items-center justify-center gap-1.5 bg-white border border-line text-primary font-semibold text-[10.5px] py-2.5 rounded-full active:scale-[0.97] transition-transform">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="18" cy="5" r="3"></circle>
             <circle cx="6" cy="12" r="3"></circle>
             <circle cx="18" cy="19" r="3"></circle>
@@ -196,53 +196,55 @@
       </div>
     </section>
 
-    <!-- ============ التصنيفات ============ -->
+    <!-- ============ الخدمات ============ -->
     <section class="px-6 mt-6">
-      <p class="eyebrow text-primary text-[10px] font-bold tracking-wide mb-1.5">المتجر</p>
-      <h2 class="text-[14.5px] font-display font-bold text-ink mb-3">تصنيفاتنا</h2>
+      <p class="eyebrow text-primary text-[10px] font-bold tracking-wide mb-1.5">خدماتنا</p>
+      <h2 class="text-[14.5px] font-display font-bold text-ink mb-3">كيف يمكننا مساعدتك</h2>
       <div class="grid grid-cols-2 gap-2.5">
 
         <div class="border border-line rounded-xl p-3">
           <div class="w-8 h-8 rounded-full bg-white border border-line flex items-center justify-center mb-2.5">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path>
+              <path d="M4.8 3v6.4a5 5 0 0 0 10 0"></path>
+              <path d="M9.8 3v3"></path>
+              <path d="M4.8 3h5"></path>
+              <circle cx="18" cy="14" r="3.2"></circle>
             </svg>
           </div>
-          <p class="text-[12.5px] font-semibold text-ink">ملابس نسائية</p>
-          <p class="text-[10.5px] text-muted mt-1 leading-relaxed">تشكيلة جديدة كل أسبوع.</p>
+          <p class="text-[12.5px] font-semibold text-ink">كشف طبي عام</p>
+          <p class="text-[10.5px] text-muted mt-1 leading-relaxed">تشخيص شامل ومتابعة الحالة الصحية.</p>
         </div>
 
         <div class="border border-line rounded-xl p-3">
           <div class="w-8 h-8 rounded-full bg-white border border-line flex items-center justify-center mb-2.5">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="8" r="6"></circle>
-              <path d="M9 14 6 22l6-3 6 3-3-8"></path>
+              <polyline points="2 12 6 12 8 6 12 18 15 10 17 12 22 12"></polyline>
             </svg>
           </div>
-          <p class="text-[12.5px] font-semibold text-ink">إكسسوارات</p>
-          <p class="text-[10.5px] text-muted mt-1 leading-relaxed">حقائب، مجوهرات، أحزمة.</p>
+          <p class="text-[12.5px] font-semibold text-ink">تخطيط القلب ECG</p>
+          <p class="text-[10.5px] text-muted mt-1 leading-relaxed">فحص دقيق لنشاط القلب الكهربائي.</p>
         </div>
 
         <div class="border border-line rounded-xl p-3">
           <div class="w-8 h-8 rounded-full bg-white border border-line flex items-center justify-center mb-2.5">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 12h16M4 6h16M4 18h9"></path>
+              <path d="M12 21s-7-4.6-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.4-9.5 9-9.5 9z"></path>
             </svg>
           </div>
-          <p class="text-[12.5px] font-semibold text-ink">أحذية</p>
-          <p class="text-[10.5px] text-muted mt-1 leading-relaxed">مقاسات متوفرة لجميع الأذواق.</p>
+          <p class="text-[12.5px] font-semibold text-ink">متابعة أمراض القلب</p>
+          <p class="text-[10.5px] text-muted mt-1 leading-relaxed">برنامج متابعة دوري للمرضى.</p>
         </div>
 
         <div class="border border-line rounded-xl p-3">
           <div class="w-8 h-8 rounded-full bg-white border border-line flex items-center justify-center mb-2.5">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2 2 7l10 5 10-5-10-5z"></path>
-              <path d="M2 17l10 5 10-5"></path>
-              <path d="M2 12l10 5 10-5"></path>
+              <path d="M9 2v6L4 20a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2L15 8V2"></path>
+              <line x1="9" y1="2" x2="15" y2="2"></line>
+              <line x1="8" y1="15" x2="16" y2="15"></line>
             </svg>
           </div>
-          <p class="text-[12.5px] font-semibold text-ink">عروض الموسم</p>
-          <p class="text-[10.5px] text-muted mt-1 leading-relaxed">تخفيضات تصل حتى 40%.</p>
+          <p class="text-[12.5px] font-semibold text-ink">فحوصات مخبرية</p>
+          <p class="text-[10.5px] text-muted mt-1 leading-relaxed">تحاليل شاملة لصحة القلب.</p>
         </div>
 
       </div>
@@ -251,49 +253,60 @@
     <!-- ============ التواصل ============ -->
     <section class="px-6 mt-6">
       <p class="eyebrow text-primary text-[10px] font-bold tracking-wide mb-1.5">التواصل</p>
-      <h2 class="text-[14.5px] font-display font-bold text-ink mb-2.5">تواصلي معنا مباشرة</h2>
+      <h2 class="text-[14.5px] font-display font-bold text-ink mb-2.5">تواصل معنا مباشرة</h2>
 
       <div class="border border-line rounded-xl overflow-hidden divide-y divide-line">
-        <a href="tel:+212612345678" class="row-active flex items-center gap-3 px-4 py-3 active:bg-surface transition-colors">
-          <span class="w-8 h-8 rounded-full border border-line text-primary flex items-center justify-center shrink-0">
+        <a href="tel:+212612455372" class="row-active flex items-center gap-3 px-4 py-3 active:bg-surface transition-colors">
+          <span class="w-8 h-8 rounded-full border border-line text-accent flex items-center justify-center shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           </span>
           <div class="flex-1 min-w-0">
-            <p class="text-[13px] font-semibold text-ink">اتصلي بنا</p>
+            <p class="text-[13px] font-semibold text-ink">اتصل بنا</p>
             <p class="text-[10.5px] text-muted" dir="ltr">+212 6 12 34 56 78</p>
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-muted shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 3 12 9 6" transform="scale(-1,1) translate(-24,0)"></polyline></svg>
         </a>
 
-        <a href="https://wa.me/212612345678?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A8%D8%BA%D9%8A%D8%AA%20%D9%86%D8%B7%D9%84%D8%A8%20%D9%85%D9%86%D8%AA%D9%88%D8%AC" target="_blank" rel="noopener" class="row-active flex items-center gap-3 px-4 py-3 active:bg-surface transition-colors">
+        <a href="https://wa.me/212612455372?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%AD%D8%AC%D8%B2%20%D9%85%D9%88%D8%B9%D8%AF" target="_blank" rel="noopener" class="row-active flex items-center gap-3 px-4 py-3 active:bg-surface transition-colors">
           <span class="w-8 h-8 rounded-full border border-line flex items-center justify-center shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="#25D366"><path d="M17.47 14.38c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.15-.2.29-.76.95-.93 1.15-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.33-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.66-1.6-.91-2.19-.24-.58-.48-.5-.66-.51-.17-.01-.36-.01-.56-.01-.19 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.44s1.05 2.83 1.19 3.02c.15.19 2.06 3.15 5 4.42.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.12.56-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"></path><path d="M12.02 2C6.5 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.96 9.96 0 0 0 12.02 22C17.53 22 22 17.52 22 12S17.53 2 12.02 2zm0 18.06c-1.66 0-3.2-.48-4.5-1.31l-.32-.2-3.05.8.81-2.98-.21-.32A8.03 8.03 0 0 1 3.98 12c0-4.44 3.6-8.04 8.04-8.04S20.06 7.56 20.06 12s-3.6 8.06-8.04 8.06z"></path></svg>
           </span>
           <div class="flex-1 min-w-0">
             <p class="text-[13px] font-semibold text-ink">واتساب</p>
-            <p class="text-[10.5px] text-muted">اطلبي مباشرة عبر واتساب</p>
+            <p class="text-[10.5px] text-muted">تواصلي معنا مباشرة</p>
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-muted shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 3 12 9 6" transform="scale(-1,1) translate(-24,0)"></polyline></svg>
         </a>
 
-        <a href="https://instagram.com/matjar.lalla" target="_blank" rel="noopener" class="row-active flex items-center gap-3 px-4 py-3 active:bg-surface transition-colors">
-          <span class="w-8 h-8 rounded-full border border-line text-accent flex items-center justify-center shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37a4 4 0 1 1-7.914 1.174A4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        <a href="https://www.clinique-alnour.ma" target="_blank" rel="noopener" class="row-active flex items-center gap-3 px-4 py-3 active:bg-surface transition-colors">
+          <span class="w-8 h-8 rounded-full border border-line text-primary flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
           </span>
           <div class="flex-1 min-w-0">
-            <p class="text-[13px] font-semibold text-ink">إنستغرام</p>
-            <p class="text-[10.5px] text-muted" dir="ltr">@matjar.lalla</p>
+            <p class="text-[13px] font-semibold text-ink">الموقع الإلكتروني</p>
+            <p class="text-[10.5px] text-muted" dir="ltr">clinique-alnour.ma</p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-muted shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 3 12 9 6" transform="scale(-1,1) translate(-24,0)"></polyline></svg>
+        </a>
+
+        <a href="mailto:contact@clinique-alnour.ma" class="row-active flex items-center gap-3 px-4 py-3 active:bg-surface transition-colors">
+          <span class="w-8 h-8 rounded-full border border-line text-accent flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6c0-1.1-.9-2-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6z"></path><polyline points="22 6 12 13 2 6"></polyline></svg>
+          </span>
+          <div class="flex-1 min-w-0">
+            <p class="text-[13px] font-semibold text-ink">البريد الإلكتروني</p>
+            <p class="text-[10.5px] text-muted" dir="ltr">contact@clinique-alnour.ma</p>
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-muted shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 3 12 9 6" transform="scale(-1,1) translate(-24,0)"></polyline></svg>
         </a>
 
         <a href="https://maps.google.com/?q=شارع+محمد+الخامس+فاس" target="_blank" rel="noopener" class="row-active flex items-center gap-3 px-4 py-3 active:bg-surface transition-colors">
-          <span class="w-8 h-8 rounded-full border border-line text-accent flex items-center justify-center shrink-0">
+          <span class="w-8 h-8 rounded-full border border-line text-primary flex items-center justify-center shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
           </span>
           <div class="flex-1 min-w-0">
-            <p class="text-[13px] font-semibold text-ink">شارع محمد الخامس، فاس</p>
-            <p class="text-[10.5px] text-muted">المحل رقم 8</p>
+            <p class="text-[13px] font-semibold text-ink">شارع محمد الخامس، عمارة 12، ط 2</p>
+            <p class="text-[10.5px] text-muted">فاس، المغرب</p>
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-muted shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 3 12 9 6" transform="scale(-1,1) translate(-24,0)"></polyline></svg>
         </a>
@@ -302,12 +315,16 @@
 
     <!-- ============ ساعات العمل ============ -->
     <section class="px-6 mt-6">
-      <p class="eyebrow text-accent text-[10px] font-bold tracking-wide mb-1.5">أوقات العمل</p>
+      <p class="eyebrow text-primary text-[10px] font-bold tracking-wide mb-1.5">أوقات الاستقبال</p>
       <h2 class="text-[14.5px] font-display font-bold text-ink mb-2.5">متى نستقبلك</h2>
       <div class="border border-line rounded-xl divide-y divide-line">
         <div class="flex items-center justify-between px-4 py-2.5">
-          <span class="text-ink text-[13px] font-medium">الإثنين — السبت</span>
-          <span class="text-muted text-[13px]" dir="ltr">09:30 – 20:00</span>
+          <span class="text-ink text-[13px] font-medium">الإثنين — الجمعة</span>
+          <span class="text-muted text-[13px]" dir="ltr">09:00 – 18:00</span>
+        </div>
+        <div class="flex items-center justify-between px-4 py-2.5">
+          <span class="text-ink text-[13px] font-medium">السبت</span>
+          <span class="text-muted text-[13px]" dir="ltr">09:00 – 13:00</span>
         </div>
         <div class="flex items-center justify-between px-4 py-2.5">
           <span class="text-ink text-[13px] font-medium">الأحد</span>
@@ -321,7 +338,7 @@
   <!-- ============ شريط ثابت ============ -->
   <div class="fixed bottom-0 left-0 w-full z-40 bg-white border-t border-line">
     <div class="max-w-md mx-auto px-4 py-2.5">
-      <button id="stickySaveBtn" class="w-full flex items-center justify-center gap-2 bg-primary text-white font-bold text-[13px] py-3 rounded-xl active:scale-[0.98] transition-transform">
+      <button id="stickySaveBtn" class="w-full flex items-center justify-center gap-2 bg-accent text-white font-bold text-[13px] py-3 rounded-xl active:scale-[0.98] transition-transform">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
           <polyline points="7 10 12 15 17 10"></polyline>
@@ -348,34 +365,34 @@
       <button id="closeQrBtn" aria-label="إغلاق" class="absolute top-4 left-4 w-8 h-8 rounded-full border border-line flex items-center justify-center">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
-      <h3 class="font-display font-bold text-ink text-center mb-4 mt-2">امسحي الرمز لفتح البطاقة</h3>
+      <h3 class="font-display font-bold text-ink text-center mb-4 mt-2">امسح الرمز لفتح البطاقة</h3>
       <div id="qrcode-box" class="flex items-center justify-center"></div>
     </div>
   </div>
 
-  <!-- ============ قالب البطاقة المخفي (لتصديرها كصورة - كمبيوتر) ============ -->
+  <!-- ============ قالب البطاقة المخفي (لتصديرها كصورة) ============ -->
   <div id="cardExportTemplate" style="position:fixed; left:-9999px; top:0;" class="w-[1050px] h-[600px] bg-white rounded-[28px] overflow-hidden flex" dir="rtl">
 
-    <div class="w-[400px] h-full bg-primary relative overflow-hidden flex flex-col justify-between p-10">
+    <div class="w-[400px] h-full bg-accent relative overflow-hidden flex flex-col justify-between p-10">
       <!-- صورة الخلفية للتصدير مع طبقة شفافة لتوضيح النص -->
-      <img src="bg-profile-boutique.png" alt="خلفية" class="absolute inset-0 w-full h-full object-cover z-0">
-      <div class="absolute inset-0 bg-primary/70 z-0"></div>
-      <svg class="absolute inset-0 w-full h-full opacity-[0.10] z-[1]" viewBox="0 0 400 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="0" y1="80" x2="400" y2="80" stroke="#fff" stroke-width="1"></line>
-        <line x1="0" y1="220" x2="400" y2="220" stroke="#fff" stroke-width="1"></line>
-        <line x1="0" y1="360" x2="400" y2="360" stroke="#fff" stroke-width="1"></line>
-        <line x1="0" y1="500" x2="400" y2="500" stroke="#fff" stroke-width="1"></line>
+      <img src="ChatGPT Image Aug 15, 2026, 01_20_22 AM_3.png" alt="خلفية" class="absolute inset-0 w-full h-full object-cover z-0">
+      <div class="absolute inset-0 bg-accent/70 z-0"></div>
+      
+      <svg class="absolute bottom-0 left-0 w-full h-[130px] z-10" viewBox="0 0 400 130" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="0,80 70,80 88,30 106,110 124,80 400,80" fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></polyline>
       </svg>
+      <div class="absolute bottom-[128px] left-0 w-full h-[2px] bg-primary z-10"></div>
 
       <div class="relative z-10">
+        <!-- الشعار المحدث للكمبيوتر -->
         <div class="w-20 h-20 rounded-full bg-white flex items-center justify-center mb-8 overflow-hidden shadow-lg border-[3px] border-white">
-          <img src="logo-profile.png" alt="شعار المتجر" class="w-full h-full object-cover">
+          <img src="ChatGPT Image Aug 15, 2026, 01_21_50 AM_2.png" alt="شعار العيادة" class="w-full h-full object-cover">
         </div>
-        <h2 class="font-display font-extrabold text-white text-[30px] leading-[1.3] mb-4">متجر لالة</h2>
-        <div class="w-10 h-[3px] bg-accent rounded-full mb-4"></div>
-        <p class="text-white text-[13px] font-semibold leading-relaxed tracking-wide">أزياء وإكسسوارات<br>نسائية</p>
+        <h2 class="font-display font-extrabold text-white text-[30px] leading-[1.3] mb-4">د. سعاد العلوي</h2>
+        <div class="w-10 h-[3px] bg-primary rounded-full mb-4"></div>
+        <p class="text-white text-[13px] font-semibold leading-relaxed tracking-wide">أخصائية أمراض القلب<br>والشرايين</p>
       </div>
-      <p class="relative z-10 text-white text-[12px] leading-relaxed">فاس، المغرب<br>شارع محمد الخامس</p>
+      <p class="relative z-10 text-white text-[12px] leading-relaxed">عيادة النور الطبية<br>فاس، المغرب</p>
     </div>
 
     <div class="w-[650px] h-full bg-white p-10 flex flex-col justify-between">
@@ -395,11 +412,21 @@
 
           <div class="flex items-center gap-3">
             <span class="w-10 h-10 rounded-full border border-line text-primary flex items-center justify-center shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37a4 4 0 1 1-7.914 1.174A4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6c0-1.1-.9-2-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6z"></path><polyline points="22 6 12 13 2 6"></polyline></svg>
             </span>
             <div>
-              <p class="text-ink text-[13px] font-semibold leading-tight" dir="ltr">@matjar.lalla</p>
-              <p class="text-muted text-[10px] mt-0.5">إنستغرام</p>
+              <p class="text-ink text-[13px] font-semibold leading-tight" dir="ltr">contact@clinique-alnour.ma</p>
+              <p class="text-muted text-[10px] mt-0.5">البريد الإلكتروني</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-full border border-line text-primary flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            </span>
+            <div>
+              <p class="text-ink text-[14px] font-semibold leading-tight" dir="ltr">clinique-alnour.ma</p>
+              <p class="text-muted text-[10px] mt-0.5">الموقع الإلكتروني</p>
             </div>
           </div>
 
@@ -410,16 +437,6 @@
             <div>
               <p class="text-ink text-[14px] font-semibold leading-tight">شارع محمد الخامس</p>
               <p class="text-muted text-[10px] mt-0.5">فاس، المغرب</p>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <span class="w-10 h-10 rounded-full border border-line text-primary flex items-center justify-center shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            </span>
-            <div>
-              <p class="text-ink text-[14px] font-semibold leading-tight">09:30 – 20:00</p>
-              <p class="text-muted text-[10px] mt-0.5">الإثنين — السبت</p>
             </div>
           </div>
 
@@ -439,27 +456,27 @@
   <!-- ============ قالب البطاقة المخفي (للهاتف) ============ -->
   <div id="cardExportTemplateMobile" style="position:fixed; left:-9999px; top:0;" class="w-[900px] h-[1125px] bg-white rounded-[28px] overflow-hidden flex flex-col" dir="rtl">
 
-    <div class="bg-primary relative overflow-hidden px-12 pt-14 pb-12 flex flex-col items-center text-center">
+    <div class="bg-accent relative overflow-hidden px-12 pt-14 pb-12 flex flex-col items-center text-center">
       <!-- صورة الخلفية للتصدير (هاتف) مع طبقة شفافة لتوضيح النص -->
-      <img src="bg-profile-boutique.png" alt="خلفية" class="absolute inset-0 w-full h-full object-cover z-0">
-      <div class="absolute inset-0 bg-primary/70 z-0"></div>
-      <svg class="absolute inset-0 w-full h-full opacity-[0.10] z-[1]" viewBox="0 0 900 340" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="0" y1="60" x2="900" y2="60" stroke="#fff" stroke-width="1"></line>
-        <line x1="0" y1="140" x2="900" y2="140" stroke="#fff" stroke-width="1"></line>
-        <line x1="0" y1="220" x2="900" y2="220" stroke="#fff" stroke-width="1"></line>
-        <line x1="0" y1="300" x2="900" y2="300" stroke="#fff" stroke-width="1"></line>
+      <img src="ChatGPT Image Aug 15, 2026, 01_20_22 AM_3.png" alt="خلفية" class="absolute inset-0 w-full h-full object-cover z-0">
+      <div class="absolute inset-0 bg-accent/70 z-0"></div>
+      
+      <svg class="absolute bottom-0 left-0 w-full h-[90px] z-10" viewBox="0 0 900 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="0,55 160,55 195,20 230,80 265,55 900,55" fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></polyline>
       </svg>
+      <div class="absolute bottom-[88px] left-0 w-full h-[2px] bg-primary z-10"></div>
 
       <div class="relative z-10 flex flex-col items-center">
+        <!-- الشعار المحدث للهاتف -->
         <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center mb-6 overflow-hidden shadow-lg border-[3px] border-white">
-          <img src="logo-profile.png" alt="شعار المتجر" class="w-full h-full object-cover">
+          <img src="ChatGPT Image Aug 15, 2026, 01_21_50 AM_2.png" alt="شعار العيادة" class="w-full h-full object-cover">
         </div>
-        <h2 class="font-display font-extrabold text-white text-[32px] leading-[1.3]">متجر لالة</h2>
-        <div class="w-12 h-[3px] bg-accent rounded-full my-3"></div>
-        <p class="text-white text-[15px] font-semibold leading-relaxed tracking-wide">أزياء وإكسسوارات نسائية</p>
+        <h2 class="font-display font-extrabold text-white text-[32px] leading-[1.3]">د. سعاد العلوي</h2>
+        <div class="w-12 h-[3px] bg-primary rounded-full my-3"></div>
+        <p class="text-white text-[15px] font-semibold leading-relaxed tracking-wide">أخصائية أمراض القلب والشرايين</p>
         <span class="mt-5 inline-flex items-center gap-1.5 bg-white/15 text-white text-[12px] font-semibold px-4 py-1.5 rounded-full">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          توصيل داخل المدينة
+          طبيبة معتمدة
         </span>
       </div>
     </div>
@@ -479,11 +496,21 @@
 
       <div class="flex items-center gap-4">
         <span class="w-12 h-12 rounded-full border border-line text-primary flex items-center justify-center shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37a4 4 0 1 1-7.914 1.174A4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6c0-1.1-.9-2-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6z"></path><polyline points="22 6 12 13 2 6"></polyline></svg>
         </span>
         <div>
-          <p class="text-ink text-[17px] font-semibold leading-tight" dir="ltr">@matjar.lalla</p>
-          <p class="text-muted text-[12px] mt-0.5">إنستغرام</p>
+          <p class="text-ink text-[17px] font-semibold leading-tight" dir="ltr">contact@clinique-alnour.ma</p>
+          <p class="text-muted text-[12px] mt-0.5">البريد الإلكتروني</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <span class="w-12 h-12 rounded-full border border-line text-primary flex items-center justify-center shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </span>
+        <div>
+          <p class="text-ink text-[17px] font-semibold leading-tight" dir="ltr">clinique-alnour.ma</p>
+          <p class="text-muted text-[12px] mt-0.5">الموقع الإلكتروني</p>
         </div>
       </div>
 
@@ -493,24 +520,14 @@
         </span>
         <div>
           <p class="text-ink text-[17px] font-semibold leading-tight">شارع محمد الخامس، فاس</p>
-          <p class="text-muted text-[12px] mt-0.5">المحل رقم 8</p>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-4">
-        <span class="w-12 h-12 rounded-full border border-line text-primary flex items-center justify-center shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-        </span>
-        <div>
-          <p class="text-ink text-[17px] font-semibold leading-tight">09:30 – 20:00</p>
-          <p class="text-muted text-[12px] mt-0.5">الإثنين — السبت</p>
+          <p class="text-muted text-[12px] mt-0.5">عمارة 12، الطابق 2</p>
         </div>
       </div>
     </div>
 
     <div class="px-12 py-8 border-t border-line flex items-center justify-between">
       <div>
-        <p class="text-ink text-[16px] font-bold">متجر لالة</p>
+        <p class="text-ink text-[16px] font-bold">عيادة النور الطبية</p>
         <p class="text-muted text-[12px] mt-1">فاس، المغرب</p>
         <p class="text-muted text-[11.5px] mt-3 leading-relaxed max-w-[280px]">امسحي الرمز لفتح البطاقة الرقمية الكاملة.</p>
       </div>
@@ -539,14 +556,15 @@
       const vCard = [
         'BEGIN:VCARD',
         'VERSION:3.0',
-        'N:;متجر لالة;;;',
-        'FN:متجر لالة',
-        'ORG:متجر لالة',
-        'TITLE:أزياء وإكسسوارات نسائية',
-        'TEL;TYPE=WORK,VOICE:+212612345678',
-        'URL:https://instagram.com/matjar.lalla',
-        'ADR;TYPE=WORK:;;شارع محمد الخامس، المحل رقم 8;فاس;;;المغرب',
-        'NOTE:متجر لالة — أزياء وإكسسوارات نسائية',
+        'N:العلوي;سعاد;د.;;',
+        'FN:د. سعاد العلوي',
+        'ORG:عيادة النور الطبية',
+        'TITLE:أخصائية أمراض القلب والشرايين',
+        'TEL;TYPE=WORK,VOICE:+212612455372',
+        'EMAIL;TYPE=WORK:contact@clinique-alnour.ma',
+        'URL:https://www.clinique-alnour.ma',
+        'ADR;TYPE=WORK:;;شارع محمد الخامس، عمارة 12، الطابق 2;فاس;;;المغرب',
+        'NOTE:عيادة النور الطبية — أمراض القلب والشرايين',
         'END:VCARD'
       ].join('\n');
 
@@ -554,7 +572,7 @@
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = 'Matjar-Lalla.vcf';
+      link.download = 'Dr-Souad-Alaoui.vcf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -565,8 +583,8 @@
 
     document.getElementById('shareBtn').addEventListener('click', async function () {
       const shareData = {
-        title: 'متجر لالة',
-        text: 'أزياء وإكسسوارات نسائية. اطّلعي على البطاقة الرقمية للمتجر.',
+        title: 'د. سعاد العلوي — عيادة النور الطبية',
+        text: 'أخصائية أمراض القلب والشرايين. اطّلعي على البطاقة الرقمية للعيادة.',
         url: window.location.href
       };
       try {
@@ -589,8 +607,8 @@
     });
 
     document.getElementById('orderNowBtn').addEventListener('click', function () {
-      const phone = '212612345678';
-      const message = 'مرحبا، بغيت نطلب منتوج من متجركم.';
+      const phone = '212612455372';
+      const message = 'مرحبا، أرغب في حجز موعد مع د. سعاد العلوي.';
       window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(message), '_blank');
     });
 
@@ -617,7 +635,7 @@
           text: window.location.href,
           width: qrSize,
           height: qrSize,
-          colorDark: '#1E1240',
+          colorDark: '#1E1A2E',
           colorLight: '#ffffff',
           correctLevel: QRCode.CorrectLevel.M
         });
@@ -634,7 +652,7 @@
           const url = URL.createObjectURL(blob);
           const link = document.createElement('a');
           link.href = url;
-          link.download = isMobile ? 'Matjar-Lalla-Business-Card-Mobile.png' : 'Matjar-Lalla-Business-Card.png';
+          link.download = isMobile ? 'Clinique-Al-Nour-Business-Card-Mobile.png' : 'Clinique-Al-Nour-Business-Card.png';
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
@@ -660,7 +678,7 @@
         text: window.location.href,
         width: 180,
         height: 180,
-        colorDark: '#1E1240',
+        colorDark: '#1E1A2E',
         colorLight: '#ffffff',
         correctLevel: QRCode.CorrectLevel.M
       });
