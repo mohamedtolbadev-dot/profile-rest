@@ -39,7 +39,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&family=Josefin+Sans:wght@500;600;700&display=swap" rel="stylesheet">
 
 <!-- QR Code generator -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -51,6 +51,10 @@
   * { -webkit-tap-highlight-color: transparent; }
   html, body { font-family: 'Cairo', sans-serif; }
   h1, h2, h3, .font-display { font-family: 'Cairo', sans-serif; }
+
+  body.lang-fr, body.lang-fr h1, body.lang-fr h2, body.lang-fr h3, body.lang-fr .font-display {
+    font-family: "Droid Arabic Kufi", "Josefin Sans", sans-serif;
+  }
   #qrcode-box img, #qrcode-box canvas,
   #cardExportQr img, #cardExportQr canvas,
   #cardExportQrMobile img, #cardExportQrMobile canvas { margin: 0 auto; }
@@ -111,7 +115,7 @@
 </style>
 </head>
 
-<body class="bg-surface font-body text-ink antialiased">
+<body class="lang-ar bg-surface font-body text-ink antialiased">
 
   <div id="profileCard" class="max-w-md mx-auto bg-white min-h-screen relative pb-24">
 
@@ -723,6 +727,8 @@
       const dict = translations[lang];
       document.documentElement.setAttribute('lang', lang === 'ar' ? 'ar' : 'fr');
       document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+      document.body.classList.remove('lang-ar', 'lang-fr');
+      document.body.classList.add('lang-' + lang);
 
       document.querySelectorAll('[data-i18n]').forEach(function (el) {
         const key = el.getAttribute('data-i18n');
