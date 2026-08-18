@@ -118,18 +118,17 @@
 
     <!-- ============ HEADER / COVER ============ -->
     <header class="relative">
-      <div class="h-44 bg-primary relative overflow-hidden">
-        <!-- خلفية متدرجة كبديل للصورة -->
-        <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-primary via-primary to-primary-dark opacity-90 z-0"></div>
+      <!-- صورة الغلاف -->
+      <div class="h-44 relative overflow-hidden bg-surface">
+        <img src="bg-web.png" alt="Tolba Web Cover" class="w-full h-full object-cover object-center absolute inset-0 z-0">
         
-        <!-- زخرفة نقطية -->
-        <div class="absolute -top-6 -start-6 w-32 h-32 text-white/10 pattern-dots z-[1]"></div>
-        <div class="absolute -bottom-10 -end-10 w-40 h-40 text-accent/10 pattern-dots z-[1]"></div>
+        <!-- طبقة خفيفة للتباين (اختياري، يمكن إزالتها إذا كانت الصورة واضحة) -->
+        <div class="absolute inset-0 w-full h-full bg-black/10 z-0"></div>
 
         <div class="absolute inset-x-0 top-0 flex items-center justify-between px-5 pt-6 z-10">
-          <span class="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full pe-3 ps-1.5 py-1">
+          <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md border border-white/30 rounded-full pe-3 ps-1.5 py-1 shadow-sm">
             <span class="w-2.5 h-2.5 rounded-full bg-accent flex items-center justify-center shrink-0 animate-pulse"></span>
-            <span class="text-[11px] font-bold text-white" data-i18n="availableBadge">متاح للعمل</span>
+            <span class="text-[11px] font-bold text-ink" data-i18n="availableBadge">متاح للعمل</span>
           </span>
 
           <div class="flex items-center gap-2">
@@ -137,20 +136,20 @@
               id="langToggleBtn"
               type="button"
               aria-label="تبديل اللغة"
-              class="h-10 px-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center gap-1.5 active:scale-90 transition-transform shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              class="h-10 px-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center gap-1.5 active:scale-90 transition-transform shrink-0 shadow-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"></circle>
                 <line x1="2" y1="12" x2="22" y2="12"></line>
                 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
               </svg>
-              <span id="langToggleLabel" class="text-[11px] font-bold text-white font-en">EN</span>
+              <span id="langToggleLabel" class="text-[11px] font-bold text-ink font-en">EN</span>
             </button>
 
             <button
               id="openQrBtn"
               aria-label="فتح رمز QR"
-              class="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center active:scale-90 transition-transform shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px] text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center active:scale-90 transition-transform shrink-0 shadow-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px] text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="7" height="7" rx="1"></rect>
                 <rect x="14" y="3" width="7" height="7" rx="1"></rect>
                 <rect x="3" y="14" width="7" height="7" rx="1"></rect>
@@ -165,13 +164,13 @@
         </div>
       </div>
 
-      <!-- بطاقة الشعار العائمة -->
+      <!-- بطاقة الشعار (Profile Image) -->
       <div class="absolute end-6 -bottom-12 z-10">
         <div class="w-[90px] h-[90px] rounded-[24px] bg-white p-1 shadow-floaty">
-          <div class="w-full h-full rounded-[20px] overflow-hidden bg-primary border border-line flex items-center justify-center relative">
-            <span class="text-white font-en font-black text-2xl tracking-tighter">TW</span>
+          <div class="w-full h-full rounded-[20px] overflow-hidden bg-white border border-line flex items-center justify-center relative">
+            <img src="logo-web.png" alt="Tolba Web Logo" class="w-full h-full object-contain p-1">
             <!-- علامة التوثيق -->
-            <div class="absolute bottom-1 start-1 bg-accent text-white w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
+            <div class="absolute bottom-0 start-0 translate-x-1/4 translate-y-1/4 bg-accent text-white w-5 h-5 rounded-full border-2 border-white flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
           </div>
@@ -429,14 +428,15 @@
 
   <!-- ============ قالب البطاقة المخفي (لتصديرها كصورة للكمبيوتر) ============ -->
   <div id="cardExportTemplate" style="position:fixed; left:-9999px; top:0;" class="w-[1050px] h-[600px] bg-white rounded-[28px] overflow-hidden flex" dir="rtl">
-    <div class="w-[420px] h-full bg-primary relative overflow-hidden flex flex-col justify-between p-12">
-      <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-primary via-primary to-primary-dark z-0"></div>
-      <div class="absolute -top-10 -start-10 w-40 h-40 text-white/10 pattern-dots z-[1]"></div>
+    <div class="w-[420px] h-full relative overflow-hidden flex flex-col justify-between p-12 bg-surface">
+      <!-- خلفية الصورة المصدرة -->
+      <img src="ChatGPT Image Aug 18, 2026, 10_47_39 PM.png" alt="Cover" class="absolute inset-0 w-full h-full object-cover object-left opacity-30 z-0 mix-blend-multiply">
+      <div class="absolute inset-0 w-full h-full bg-primary/90 z-[1]"></div>
       
       <div class="relative z-10 mt-8">
-        <div class="w-24 h-24 rounded-[26px] bg-white p-1.5 mb-8">
-          <div class="w-full h-full rounded-[20px] overflow-hidden bg-primary border border-line flex items-center justify-center">
-            <span class="text-white font-en font-black text-3xl tracking-tighter">TW</span>
+        <div class="w-24 h-24 rounded-[26px] bg-white p-1.5 mb-8 shadow-md">
+          <div class="w-full h-full rounded-[20px] overflow-hidden bg-white border border-line flex items-center justify-center">
+            <img src="612462673_122119631883041050_6871540460842610633_n.jpg" alt="Logo" class="w-full h-full object-contain p-2">
           </div>
         </div>
         <h2 class="font-en font-extrabold text-white text-[38px] leading-[1.2] mb-4 tracking-tight">TOLBA WEB</h2>
