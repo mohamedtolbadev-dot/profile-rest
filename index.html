@@ -166,13 +166,13 @@
 
       <!-- بطاقة الشعار (Profile Image) -->
       <div class="absolute end-6 -bottom-12 z-10">
-        <div class="w-[90px] h-[90px] rounded-full bg-white p-1 shadow-floaty">
-          <div class="w-full h-full rounded-full overflow-hidden bg-white border-2 border-line flex items-center justify-center relative">
+        <div class="w-[90px] h-[90px] rounded-full bg-white p-1 shadow-floaty relative">
+          <div class="w-full h-full rounded-full overflow-hidden bg-white border-2 border-line flex items-center justify-center">
             <img src="logo-web.png" alt="Tolba Web Logo" class="w-full h-full object-cover p-0.5">
-            <!-- علامة التوثيق -->
-            <div class="absolute bottom-1 start-1 bg-accent text-white w-5 h-5 rounded-full border-2 border-white flex items-center justify-center shadow-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </div>
+          </div>
+          <!-- علامة التوثيق -->
+          <div class="absolute bottom-0 start-0 bg-[#2E90FA] text-white w-6 h-6 rounded-full border-2 border-white flex items-center justify-center shadow-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
           </div>
         </div>
       </div>
@@ -307,6 +307,45 @@
           <p class="text-[11px] text-muted mt-1.5 leading-relaxed font-medium" data-i18n="svc4Desc">تهيئة موقعك لتصدر نتائج البحث في جوجل.</p>
         </div>
 
+        <div class="col-span-2 bg-surface rounded-2xl p-4 border border-line/50 hover:border-primary/30 transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+              <line x1="3" y1="9" x2="21" y2="9"></line>
+              <line x1="7" y1="14" x2="10" y2="14"></line>
+              <line x1="7" y1="17" x2="13" y2="17"></line>
+            </svg>
+          </div>
+          <p class="text-[13px] font-bold text-ink" data-i18n="svc5Title">تطبيقات ويب مخصصة</p>
+          <p class="text-[11px] text-muted mt-1.5 leading-relaxed font-medium" data-i18n="svc5Desc">أنظمة وأدوات ويب مخصصة تُبنى حسب احتياجات عملك.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ التقنيات ============ -->
+    <section class="px-6 mt-10 reveal" style="animation-delay: .18s">
+      <p class="eyebrow text-accent text-[11px] font-bold tracking-wider mb-2" data-i18n="techEyebrow">مهاراتي التقنية</p>
+      <h2 class="text-[16px] font-display font-extrabold text-ink mb-4" data-i18n="techTitle">التقنيات التي أستعملها</h2>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-flex items-center gap-2 bg-surface border border-line/50 rounded-full px-3.5 py-2 text-[12px] font-en font-bold text-ink">
+          <span class="w-2 h-2 rounded-full shrink-0" style="background:#61DAFB"></span>React.js
+        </span>
+        <span class="inline-flex items-center gap-2 bg-surface border border-line/50 rounded-full px-3.5 py-2 text-[12px] font-en font-bold text-ink">
+          <span class="w-2 h-2 rounded-full shrink-0" style="background:#0B132B"></span>Next.js
+        </span>
+        <span class="inline-flex items-center gap-2 bg-surface border border-line/50 rounded-full px-3.5 py-2 text-[12px] font-en font-bold text-ink">
+          <span class="w-2 h-2 rounded-full shrink-0" style="background:#3C873A"></span>Node.js / Express
+        </span>
+        <span class="inline-flex items-center gap-2 bg-surface border border-line/50 rounded-full px-3.5 py-2 text-[12px] font-en font-bold text-ink">
+          <span class="w-2 h-2 rounded-full shrink-0" style="background:#D3112B"></span>Laravel
+        </span>
+        <span class="inline-flex items-center gap-2 bg-surface border border-line/50 rounded-full px-3.5 py-2 text-[12px] font-en font-bold text-ink">
+          <span class="w-2 h-2 rounded-full shrink-0" style="background:#4479A1"></span>MySQL
+        </span>
+        <span class="inline-flex items-center gap-2 bg-surface border border-line/50 rounded-full px-3.5 py-2 text-[12px] font-en font-bold text-ink">
+          <span class="w-2 h-2 rounded-full shrink-0" style="background:#38BDF8"></span>Tailwind CSS
+        </span>
       </div>
     </section>
 
@@ -507,6 +546,10 @@
         svc3Desc: 'واجهات مستخدم عصرية ومدروسة لتجربة أفضل.',
         svc4Title: 'سيو (SEO)',
         svc4Desc: 'تهيئة موقعك لتصدر نتائج البحث في جوجل.',
+        svc5Title: 'تطبيقات ويب مخصصة',
+        svc5Desc: 'أنظمة وأدوات ويب مخصصة تُبنى حسب احتياجات عملك.',
+        techEyebrow: 'مهاراتي التقنية',
+        techTitle: 'التقنيات التي أستعملها',
         contactEyebrow: 'التواصل',
         contactTitle: 'تواصل معي مباشرة',
         whatsapp: 'واتساب',
@@ -546,6 +589,10 @@
         svc3Desc: 'Modern and thoughtful user interfaces.',
         svc4Title: 'SEO',
         svc4Desc: 'Optimize your site to rank higher on Google.',
+        svc5Title: 'Custom Web Apps',
+        svc5Desc: 'Custom web systems and tools built around your business needs.',
+        techEyebrow: 'Tech Skills',
+        techTitle: 'Technologies I Use',
         contactEyebrow: 'Contact',
         contactTitle: 'Get In Touch With Me',
         whatsapp: 'WhatsApp',
