@@ -327,25 +327,51 @@
     <section class="px-6 mt-10 reveal" style="animation-delay: .18s">
       <p class="eyebrow text-accent text-[11px] font-bold tracking-wider mb-2" data-i18n="techEyebrow">مهاراتي التقنية</p>
       <h2 class="text-[16px] font-display font-extrabold text-ink mb-4" data-i18n="techTitle">التقنيات التي أستعملها</h2>
-      <div class="flex flex-wrap gap-2">
-        <span class="inline-flex items-center gap-2 bg-surface border border-line/50 rounded-full px-3.5 py-2 text-[12px] font-en font-bold text-ink">
-          <span class="w-2 h-2 rounded-full shrink-0" style="background:#61DAFB"></span>React.js
-        </span>
-        <span class="inline-flex items-center gap-2 bg-surface border border-line/50 rounded-full px-3.5 py-2 text-[12px] font-en font-bold text-ink">
-          <span class="w-2 h-2 rounded-full shrink-0" style="background:#0B132B"></span>Next.js
-        </span>
-        <span class="inline-flex items-center gap-2 bg-surface border border-line/50 rounded-full px-3.5 py-2 text-[12px] font-en font-bold text-ink">
-          <span class="w-2 h-2 rounded-full shrink-0" style="background:#3C873A"></span>Node.js / Express
-        </span>
-        <span class="inline-flex items-center gap-2 bg-surface border border-line/50 rounded-full px-3.5 py-2 text-[12px] font-en font-bold text-ink">
-          <span class="w-2 h-2 rounded-full shrink-0" style="background:#D3112B"></span>Laravel
-        </span>
-        <span class="inline-flex items-center gap-2 bg-surface border border-line/50 rounded-full px-3.5 py-2 text-[12px] font-en font-bold text-ink">
-          <span class="w-2 h-2 rounded-full shrink-0" style="background:#4479A1"></span>MySQL
-        </span>
-        <span class="inline-flex items-center gap-2 bg-surface border border-line/50 rounded-full px-3.5 py-2 text-[12px] font-en font-bold text-ink">
-          <span class="w-2 h-2 rounded-full shrink-0" style="background:#38BDF8"></span>Tailwind CSS
-        </span>
+
+      <div class="mb-5">
+        <p class="text-[11px] font-bold text-muted mb-2.5" data-i18n="techFrontend">الواجهة الأمامية (Front-End)</p>
+        <div class="flex flex-wrap gap-2.5">
+          <div class="flex items-center gap-2 bg-surface border border-line/50 rounded-xl px-3 py-2.5">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React.js" class="w-5 h-5 object-contain shrink-0">
+            <span class="text-[12px] font-en font-bold text-ink">React.js</span>
+          </div>
+          <div class="flex items-center gap-2 bg-surface border border-line/50 rounded-xl px-3 py-2.5">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" class="w-5 h-5 object-contain shrink-0">
+            <span class="text-[12px] font-en font-bold text-ink">Next.js</span>
+          </div>
+          <div class="flex items-center gap-2 bg-surface border border-line/50 rounded-xl px-3 py-2.5">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="w-5 h-5 object-contain shrink-0">
+            <span class="text-[12px] font-en font-bold text-ink">Tailwind CSS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <p class="text-[11px] font-bold text-muted mb-2.5" data-i18n="techBackend">الخلفية (Back-End)</p>
+        <div class="flex flex-wrap gap-2.5">
+          <div class="flex items-center gap-2 bg-surface border border-line/50 rounded-xl px-3 py-2.5">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="w-5 h-5 object-contain shrink-0">
+            <span class="text-[12px] font-en font-bold text-ink">Node.js</span>
+          </div>
+          <div class="flex items-center gap-2 bg-surface border border-line/50 rounded-xl px-3 py-2.5">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" class="w-5 h-5 object-contain shrink-0">
+            <span class="text-[12px] font-en font-bold text-ink">Express.js</span>
+          </div>
+          <div class="flex items-center gap-2 bg-surface border border-line/50 rounded-xl px-3 py-2.5">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel" class="w-5 h-5 object-contain shrink-0">
+            <span class="text-[12px] font-en font-bold text-ink">Laravel</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-[11px] font-bold text-muted mb-2.5" data-i18n="techDatabase">قواعد البيانات (Database)</p>
+        <div class="flex flex-wrap gap-2.5">
+          <div class="flex items-center gap-2 bg-surface border border-line/50 rounded-xl px-3 py-2.5">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="w-5 h-5 object-contain shrink-0">
+            <span class="text-[12px] font-en font-bold text-ink">MySQL</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -550,6 +576,9 @@
         svc5Desc: 'أنظمة وأدوات ويب مخصصة تُبنى حسب احتياجات عملك.',
         techEyebrow: 'مهاراتي التقنية',
         techTitle: 'التقنيات التي أستعملها',
+        techFrontend: 'الواجهة الأمامية (Front-End)',
+        techBackend: 'الخلفية (Back-End)',
+        techDatabase: 'قواعد البيانات (Database)',
         contactEyebrow: 'التواصل',
         contactTitle: 'تواصل معي مباشرة',
         whatsapp: 'واتساب',
@@ -593,6 +622,9 @@
         svc5Desc: 'Custom web systems and tools built around your business needs.',
         techEyebrow: 'Tech Skills',
         techTitle: 'Technologies I Use',
+        techFrontend: 'Front-End',
+        techBackend: 'Back-End',
+        techDatabase: 'Database',
         contactEyebrow: 'Contact',
         contactTitle: 'Get In Touch With Me',
         whatsapp: 'WhatsApp',
