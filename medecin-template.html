@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title data-i18n="pageTitle">عيادة النور الطبية | البطاقة الرقمية</title>
+<meta name="description" data-i18n-attr="content" content="عيادة النور الطبية — د. سعاد العلوي، أخصائية أمراض القلب. احفظ جهة الاتصال، احجز موعدك، وتواصل معنا مباشرة.">
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: '#6B5B9E',
+          'primary-dark': '#453A6E',
+          'primary-soft': '#EFEBF8',
+          accent: '#02A1BD',
+          'accent-soft': '#E3F6F9',
+          surface: '#FAF9FC',
+          line: '#EAE5F2',
+          ink: '#211C33',
+          muted: '#786F92'
+        },
+        fontFamily: {
+          display: ['"Cairo"', 'sans-serif'],
+          body: ['"Cairo"', 'sans-serif']
+        },
+        boxShadow: {
+          card: '0 1px 2px rgba(33,28,51,0.04), 0 8px 24px rgba(69,58,110,0.07)',
+          floaty: '0 10px 30px rgba(69,58,110,0.16)'
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&family=Josefin+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- QR Code generator -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<!-- html2canvas: used to export the business card as an image -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<style>
+  * { -webkit-tap-highlight-color: transparent; }
+  html, body { font-family: 'Cairo', sans-serif; }
+  h1, h2, h3, .font-display { font-family: 'Cairo', sans-serif; }
+
+  body.lang-fr, body.lang-fr h1, body.lang-fr h2, body.lang-fr h3, body.lang-fr .font-display {
+    font-family: "Droid Arabic Kufi", "Josefin Sans", sans-serif;
+  }
+  #qrcode-box img, #qrcode-box canvas,
+  #cardExportQr img, #cardExportQr canvas,
+  #cardExportQrMobile img, #cardExportQrMobile canvas { margin: 0 auto; }
+
+  @keyframes riseIn {
+    from { opacity: 0; transform: translate(-50%, 12px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+  }
+  .toast-show { animation: riseIn 0.25s ease-out forwards; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { animation: fadeUp 0.5s ease-out both; }
+
+  .row-active:active { transform: scale(0.98); }
+
+  .eyebrow {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 16px;
+    height: 3px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+
+  .stat-divider { position: relative; }
+  .stat-divider::after {
+    content: "";
+    position: absolute;
+    inset-inline-end: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: #EAE5F2;
+  }
+  .stat-divider:last-child::after { display: none; }
+
+  .pattern-dots {
+    background-image: radial-gradient(currentColor 1.4px, transparent 1.4px);
+    background-size: 14px 14px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid #02A1BD;
+    outline-offset: 2px;
+    border-radius: 10px;
+  }
+</style>
+</head>
+
+<body class="lang-ar bg-surface font-body text-ink antialiased">
+
+  <div id="profileCard" class="max-w-md mx-auto bg-white min-h-screen relative pb-24">
+
+    <!-- ============ HEADER / COVER ============ -->
+    <header class="relative">
+      <div class="h-40 bg-primary-dark w-full relative overflow-hidden">
+        <img src="bg-profile.png" alt="خلفية العيادة" class="absolute inset-0 w-full h-full object-cover z-0">
+
+        <!-- زخرفة نقطية -->
+        <div class="absolute -top-6 -start-6 w-28 h-28 text-white/10 pattern-dots z-[1]"></div>
+
+        <div class="absolute inset-x-0 top-0 flex items-center justify-between px-5 pt-5 z-10">
+          <span class="inline-flex items-center gap-1.5 bg-white/95 rounded-full pe-3 ps-1.5 py-1">
+            <span class="w-4 h-4 rounded-full bg-accent flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-2.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            <span class="text-[11px] font-bold text-primary-dark" data-i18n="certifiedBadge">طبيبة معتمدة</span>
+          </span>
+
+          <div class="flex items-center gap-2">
+            <button
+              id="langToggleBtn"
+              type="button"
+              aria-label="تبديل اللغة"
+              class="h-10 px-3 rounded-full bg-white flex items-center gap-1.5 active:scale-90 transition-transform shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span id="langToggleLabel" class="text-[11px] font-bold text-primary-dark">FR</span>
+            </button>
+
+            <button
+              id="openQrBtn"
+              aria-label="فتح رمز QR"
+              class="w-10 h-10 rounded-full bg-white flex items-center justify-center active:scale-90 transition-transform shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px] text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1.4"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1.4"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1.4"></rect>
+                <line x1="14" y1="14" x2="14" y2="17"></line>
+                <line x1="14" y1="20" x2="14" y2="20.01"></line>
+                <line x1="17" y1="14" x2="20" y2="14"></line>
+                <line x1="20" y1="17" x2="17" y2="17"></line>
+                <line x1="17" y1="20" x2="21" y2="20"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- بطاقة الشعار العائمة -->
+      <div class="absolute end-6 -bottom-11 z-10">
+        <div class="w-[84px] h-[84px] rounded-[22px] bg-white p-1 shadow-floaty">
+          <div class="w-full h-full rounded-[18px] overflow-hidden bg-surface border border-line flex items-center justify-center">
+            <img src="logo-profile.png" alt="شعار العيادة" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============ معلومات الطبيبة ============ -->
+    <section class="pt-16 px-6 pb-1 reveal">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <h1 class="text-[20px] font-display font-extrabold text-ink leading-tight" data-i18n="doctorName">د. سعاد العلوي</h1>
+          <p class="text-primary font-bold text-[12.5px] mt-1.5" data-i18n="doctorTitle">أخصائية أمراض القلب والشرايين</p>
+        </div>
+        <span class="shrink-0 mt-1 bg-primary text-white text-[10.5px] font-bold px-3 py-1 rounded-full" data-i18n="clinicShortName">عيادة النور</span>
+      </div>
+      <p class="text-muted text-[12.5px] leading-relaxed mt-3" data-i18n="bioText">
+        فاس — أكثر من 12 سنة خبرة في تشخيص ومتابعة أمراض القلب، بمواعيد مرنة ومتابعة شخصية لكل مريض.
+      </p>
+    </section>
+
+    <!-- ============ مؤشرات الثقة ============ -->
+    <section class="px-6 mt-5 reveal" style="animation-delay: .05s">
+      <div class="grid grid-cols-3 bg-surface rounded-2xl">
+        <div class="stat-divider text-center py-3.5">
+          <p class="text-[17px] font-display font-extrabold text-ink">+12</p>
+          <p class="text-[10.5px] text-muted mt-0.5 font-medium" data-i18n="statYears">سنة خبرة</p>
+        </div>
+        <div class="stat-divider text-center py-3.5">
+          <p class="text-[17px] font-display font-extrabold text-ink">+3500</p>
+          <p class="text-[10.5px] text-muted mt-0.5 font-medium" data-i18n="statPatients">مريض</p>
+        </div>
+        <div class="stat-divider text-center py-3.5">
+          <p class="text-[17px] font-display font-extrabold text-ink flex items-center justify-center gap-1">
+            4.9
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-accent" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"></polygon></svg>
+          </p>
+          <p class="text-[10.5px] text-muted mt-0.5 font-medium" data-i18n="statRating">تقييم المرضى</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA الرئيسي ============ -->
+    <section class="px-6 mt-5 reveal" style="animation-delay: .1s">
+      <button id="saveContactBtn" class="w-full flex items-center justify-center gap-2 bg-accent text-white font-bold text-[13.5px] py-4 rounded-2xl active:scale-[0.98] transition-transform shadow-card">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span data-i18n="saveContact">حفظ جهة الاتصال</span>
+      </button>
+
+      <div class="grid grid-cols-3 gap-2.5 mt-2.5">
+        <button id="orderNowBtn" class="flex flex-col items-center justify-center gap-2 bg-white border border-line text-primary-dark font-bold text-[10.5px] py-3.5 rounded-2xl active:scale-[0.97] transition-transform">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span data-i18n="bookAppt">احجز موعد</span>
+        </button>
+        <button id="shareBtn" class="flex flex-col items-center justify-center gap-2 bg-white border border-line text-primary-dark font-bold text-[10.5px] py-3.5 rounded-2xl active:scale-[0.97] transition-transform">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line>
+            <line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line>
+          </svg>
+          <span data-i18n="shareBtn">مشاركة</span>
+        </button>
+        <button id="downloadImageBtn" class="flex flex-col items-center justify-center gap-2 bg-white border border-line text-primary-dark font-bold text-[10.5px] py-3.5 rounded-2xl active:scale-[0.97] transition-transform">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+            <line x1="6" y1="10" x2="10" y2="10"></line>
+            <line x1="6" y1="13" x2="9" y2="13"></line>
+            <line x1="14" y1="10" x2="18" y2="13"></line>
+          </svg>
+          <span data-i18n="saveAsCard">حفظ كبطاقة</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ الخدمات ============ -->
+    <section class="px-6 mt-8 reveal" style="animation-delay: .15s">
+      <p class="eyebrow text-accent text-[10px] font-bold tracking-wide mb-1.5" data-i18n="servicesEyebrow">خدماتنا</p>
+      <h2 class="text-[15px] font-display font-bold text-ink mb-3.5" data-i18n="servicesTitle">كيف يمكننا مساعدتك</h2>
+      <div class="grid grid-cols-2 gap-3">
+
+        <div class="bg-surface rounded-2xl p-4">
+          <div class="w-9 h-9 rounded-xl bg-white border border-line flex items-center justify-center mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4.8 3v6.4a5 5 0 0 0 10 0"></path>
+              <path d="M9.8 3v3"></path>
+              <path d="M4.8 3h5"></path>
+              <circle cx="18" cy="14" r="3.2"></circle>
+            </svg>
+          </div>
+          <p class="text-[12.5px] font-bold text-ink" data-i18n="svc1Title">كشف طبي عام</p>
+          <p class="text-[10.5px] text-muted mt-1 leading-relaxed" data-i18n="svc1Desc">تشخيص شامل ومتابعة الحالة الصحية.</p>
+        </div>
+
+        <div class="bg-surface rounded-2xl p-4">
+          <div class="w-9 h-9 rounded-xl bg-white border border-line flex items-center justify-center mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="2 12 6 12 8 6 12 18 15 10 17 12 22 12"></polyline>
+            </svg>
+          </div>
+          <p class="text-[12.5px] font-bold text-ink" data-i18n="svc2Title">تخطيط القلب ECG</p>
+          <p class="text-[10.5px] text-muted mt-1 leading-relaxed" data-i18n="svc2Desc">فحص دقيق لنشاط القلب الكهربائي.</p>
+        </div>
+
+        <div class="bg-surface rounded-2xl p-4">
+          <div class="w-9 h-9 rounded-xl bg-white border border-line flex items-center justify-center mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s-7-4.6-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.4-9.5 9-9.5 9z"></path>
+            </svg>
+          </div>
+          <p class="text-[12.5px] font-bold text-ink" data-i18n="svc3Title">متابعة أمراض القلب</p>
+          <p class="text-[10.5px] text-muted mt-1 leading-relaxed" data-i18n="svc3Desc">برنامج متابعة دوري للمرضى.</p>
+        </div>
+
+        <div class="bg-surface rounded-2xl p-4">
+          <div class="w-9 h-9 rounded-xl bg-white border border-line flex items-center justify-center mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 2v6L4 20a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2L15 8V2"></path>
+              <line x1="9" y1="2" x2="15" y2="2"></line>
+              <line x1="8" y1="15" x2="16" y2="15"></line>
+            </svg>
+          </div>
+          <p class="text-[12.5px] font-bold text-ink" data-i18n="svc4Title">فحوصات مخبرية</p>
+          <p class="text-[10.5px] text-muted mt-1 leading-relaxed" data-i18n="svc4Desc">تحاليل شاملة لصحة القلب.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ التواصل ============ -->
+    <section class="px-6 mt-8 reveal" style="animation-delay: .2s">
+      <p class="eyebrow text-accent text-[10px] font-bold tracking-wide mb-1.5" data-i18n="contactEyebrow">التواصل</p>
+      <h2 class="text-[15px] font-display font-bold text-ink mb-3" data-i18n="contactTitle">تواصل معنا مباشرة</h2>
+
+      <div class="flex flex-col gap-2">
+        <a href="tel:+212612455372" class="row-active flex items-center gap-3 bg-surface rounded-2xl px-4 py-3.5 active:bg-line transition-colors">
+          <span class="w-10 h-10 rounded-xl bg-white text-accent flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </span>
+          <div class="flex-1 min-w-0">
+            <p class="text-[13px] font-bold text-ink" data-i18n="callUs">اتصل بنا</p>
+            <p class="text-[10.5px] text-muted mt-0.5" dir="ltr">+212 6 12 34 56 78</p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-muted shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 3 12 9 6" transform="scale(-1,1) translate(-24,0)"></polyline></svg>
+        </a>
+
+        <a href="https://wa.me/212612455372?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%AD%D8%AC%D8%B2%20%D9%85%D9%88%D8%B9%D8%AF" target="_blank" rel="noopener" class="row-active flex items-center gap-3 bg-surface rounded-2xl px-4 py-3.5 active:bg-line transition-colors">
+          <span class="w-10 h-10 rounded-xl bg-white flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="#25D366"><path d="M17.47 14.38c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.15-.2.29-.76.95-.93 1.15-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.33-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.66-1.6-.91-2.19-.24-.58-.48-.5-.66-.51-.17-.01-.36-.01-.56-.01-.19 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.44s1.05 2.83 1.19 3.02c.15.19 2.06 3.15 5 4.42.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.12.56-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"></path><path d="M12.02 2C6.5 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.96 9.96 0 0 0 12.02 22C17.53 22 22 17.52 22 12S17.53 2 12.02 2zm0 18.06c-1.66 0-3.2-.48-4.5-1.31l-.32-.2-3.05.8.81-2.98-.21-.32A8.03 8.03 0 0 1 3.98 12c0-4.44 3.6-8.04 8.04-8.04S20.06 7.56 20.06 12s-3.6 8.06-8.04 8.06z"></path></svg>
+          </span>
+          <div class="flex-1 min-w-0">
+            <p class="text-[13px] font-bold text-ink" data-i18n="whatsapp">واتساب</p>
+            <p class="text-[10.5px] text-muted mt-0.5" data-i18n="whatsappDesc">تواصلي معنا مباشرة</p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-muted shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 3 12 9 6" transform="scale(-1,1) translate(-24,0)"></polyline></svg>
+        </a>
+
+        <a href="https://www.clinique-alnour.ma" target="_blank" rel="noopener" class="row-active flex items-center gap-3 bg-surface rounded-2xl px-4 py-3.5 active:bg-line transition-colors">
+          <span class="w-10 h-10 rounded-xl bg-white text-primary flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          </span>
+          <div class="flex-1 min-w-0">
+            <p class="text-[13px] font-bold text-ink" data-i18n="website">الموقع الإلكتروني</p>
+            <p class="text-[10.5px] text-muted mt-0.5" dir="ltr">clinique-alnour.ma</p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-muted shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 3 12 9 6" transform="scale(-1,1) translate(-24,0)"></polyline></svg>
+        </a>
+
+        <a href="mailto:contact@clinique-alnour.ma" class="row-active flex items-center gap-3 bg-surface rounded-2xl px-4 py-3.5 active:bg-line transition-colors">
+          <span class="w-10 h-10 rounded-xl bg-white text-accent flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6c0-1.1-.9-2-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6z"></path><polyline points="22 6 12 13 2 6"></polyline></svg>
+          </span>
+          <div class="flex-1 min-w-0">
+            <p class="text-[13px] font-bold text-ink" data-i18n="email">البريد الإلكتروني</p>
+            <p class="text-[10.5px] text-muted mt-0.5" dir="ltr">contact@clinique-alnour.ma</p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-muted shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 3 12 9 6" transform="scale(-1,1) translate(-24,0)"></polyline></svg>
+        </a>
+
+        <a href="https://maps.google.com/?q=شارع+محمد+الخامس+فاس" target="_blank" rel="noopener" class="row-active flex items-center gap-3 bg-surface rounded-2xl px-4 py-3.5 active:bg-line transition-colors">
+          <span class="w-10 h-10 rounded-xl bg-white text-primary flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </span>
+          <div class="flex-1 min-w-0">
+            <p class="text-[13px] font-bold text-ink" data-i18n="addressLine1">شارع محمد الخامس، عمارة 12، ط 2</p>
+            <p class="text-[10.5px] text-muted mt-0.5" data-i18n="addressLine2">فاس، المغرب</p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-muted shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 3 12 9 6" transform="scale(-1,1) translate(-24,0)"></polyline></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ ساعات العمل ============ -->
+    <section class="px-6 mt-8 reveal" style="animation-delay: .25s">
+      <p class="eyebrow text-accent text-[10px] font-bold tracking-wide mb-1.5" data-i18n="hoursEyebrow">أوقات الاستقبال</p>
+      <h2 class="text-[15px] font-display font-bold text-ink mb-3" data-i18n="hoursTitle">متى نستقبلك</h2>
+      <div class="bg-surface rounded-2xl px-4 divide-y divide-white">
+        <div class="flex items-center justify-between py-3">
+          <span class="text-ink text-[13px] font-semibold" data-i18n="daysWeekdays">الإثنين — الجمعة</span>
+          <span class="text-muted text-[13px] font-medium" dir="ltr">09:00 – 18:00</span>
+        </div>
+        <div class="flex items-center justify-between py-3">
+          <span class="text-ink text-[13px] font-semibold" data-i18n="daySaturday">السبت</span>
+          <span class="text-muted text-[13px] font-medium" dir="ltr">09:00 – 13:00</span>
+        </div>
+        <div class="flex items-center justify-between py-3">
+          <span class="text-ink text-[13px] font-semibold" data-i18n="daySunday">الأحد</span>
+          <span class="inline-flex items-center gap-1.5 text-accent text-[12px] font-bold">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+            <span data-i18n="closed">مغلق</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ============ شريط ثابت ============ -->
+  <div class="fixed bottom-0 left-0 w-full z-40 bg-white border-t border-line">
+    <div class="max-w-md mx-auto px-5 py-3">
+      <button id="stickySaveBtn" class="w-full flex items-center justify-center gap-2 bg-accent text-white font-bold text-[13px] py-3.5 rounded-2xl active:scale-[0.98] transition-transform shadow-card">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span data-i18n="saveContact">حفظ جهة الاتصال</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ TOAST ============ -->
+  <div id="toast" class="hidden fixed bottom-24 left-1/2 -translate-x-1/2 z-50">
+    <div class="flex items-center gap-2.5 bg-ink text-white rounded-2xl shadow-floaty px-4 py-3">
+      <span class="w-6 h-6 rounded-full bg-accent flex items-center justify-center shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </span>
+      <p id="toastMsg" class="text-sm font-medium whitespace-nowrap"></p>
+    </div>
+  </div>
+
+  <!-- ============ QR MODAL ============ -->
+  <div id="qrModal" class="hidden fixed inset-0 bg-ink/60 z-50 items-center justify-center px-6">
+    <div class="bg-white rounded-[28px] p-6 max-w-xs w-full relative">
+      <button id="closeQrBtn" aria-label="إغلاق" class="absolute top-4 start-4 w-8 h-8 rounded-full bg-surface flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <h3 class="font-display font-bold text-ink text-center mb-4 mt-2" data-i18n="scanToOpen">امسح الرمز لفتح البطاقة</h3>
+      <div id="qrcode-box" class="flex items-center justify-center p-3 bg-surface rounded-2xl"></div>
+    </div>
+  </div>
+
+  <!-- ============ قالب البطاقة المخفي (لتصديرها كصورة) ============ -->
+  <div id="cardExportTemplate" style="position:fixed; left:-9999px; top:0;" class="w-[1050px] h-[600px] bg-white rounded-[28px] overflow-hidden flex" dir="rtl">
+
+    <div class="w-[400px] h-full bg-primary-dark relative overflow-hidden flex flex-col justify-between p-10">
+      <img src="ChatGPT Image Aug 15, 2026, 01_20_22 AM_3.png" alt="خلفية" class="absolute inset-0 w-full h-full object-cover z-0">
+
+      <div class="absolute -top-8 -start-8 w-32 h-32 text-white/10 pattern-dots z-[1]"></div>
+
+      <div class="relative z-10">
+        <div class="w-20 h-20 rounded-[22px] bg-white p-1 mb-8">
+          <div class="w-full h-full rounded-2xl overflow-hidden bg-surface border border-line">
+            <img src="ChatGPT Image Aug 15, 2026, 01_21_50 AM_2.png" alt="شعار العيادة" class="w-full h-full object-cover">
+          </div>
+        </div>
+        <h2 class="font-display font-extrabold text-white text-[30px] leading-[1.3] mb-4" data-i18n="doctorName">د. سعاد العلوي</h2>
+        <div class="w-10 h-[3px] bg-accent rounded-full mb-4"></div>
+        <p class="text-white/90 text-[13px] font-semibold leading-relaxed tracking-wide" data-i18n="doctorTitleBr">أخصائية أمراض القلب<br>والشرايين</p>
+      </div>
+      <p class="relative z-10 text-white/80 text-[12px] leading-relaxed" data-i18n="clinicFooterBr">عيادة النور الطبية<br>فاس، المغرب</p>
+    </div>
+
+    <div class="w-[650px] h-full bg-white p-10 flex flex-col justify-between">
+      <div>
+        <p class="text-muted text-[11px] font-bold tracking-[0.18em] mb-5" data-i18n="contactInfoLabel">معلومات التواصل</p>
+        <div class="grid grid-cols-2 gap-4">
+
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-surface text-primary flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            </span>
+            <div>
+              <p class="text-ink text-[14px] font-semibold leading-tight" dir="ltr">+212 6 12 34 56 78</p>
+              <p class="text-muted text-[10px] mt-0.5" data-i18n="phoneWhatsapp">هاتف وواتساب</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-surface text-primary flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6c0-1.1-.9-2-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6z"></path><polyline points="22 6 12 13 2 6"></polyline></svg>
+            </span>
+            <div>
+              <p class="text-ink text-[13px] font-semibold leading-tight" dir="ltr">contact@clinique-alnour.ma</p>
+              <p class="text-muted text-[10px] mt-0.5" data-i18n="email">البريد الإلكتروني</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-surface text-primary flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            </span>
+            <div>
+              <p class="text-ink text-[14px] font-semibold leading-tight" dir="ltr">clinique-alnour.ma</p>
+              <p class="text-muted text-[10px] mt-0.5" data-i18n="website">الموقع الإلكتروني</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-surface text-primary flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </span>
+            <div>
+              <p class="text-ink text-[14px] font-semibold leading-tight" data-i18n="addressStreetOnly">شارع محمد الخامس</p>
+              <p class="text-muted text-[10px] mt-0.5" data-i18n="addressLine2">فاس، المغرب</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="flex items-end justify-between">
+        <p class="text-muted text-[10px] leading-relaxed max-w-[280px]" data-i18n="scanToOpenFullBr">امسحي الرمز لفتح<br>البطاقة الرقمية الكاملة.</p>
+        <div class="flex flex-col items-center shrink-0">
+          <div id="cardExportQr" class="w-[92px] h-[92px] bg-white border-2 border-accent rounded-xl flex items-center justify-center overflow-hidden"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ قالب البطاقة المخفي (للهاتف) ============ -->
+  <div id="cardExportTemplateMobile" style="position:fixed; left:-9999px; top:0;" class="w-[900px] h-[1125px] bg-white rounded-[28px] overflow-hidden flex flex-col" dir="rtl">
+
+    <div class="bg-primary-dark relative overflow-hidden px-12 pt-14 pb-12 flex flex-col items-center text-center">
+      <img src="ChatGPT Image Aug 15, 2026, 01_20_22 AM_3.png" alt="خلفية" class="absolute inset-0 w-full h-full object-cover z-0">
+
+      <div class="absolute -top-10 -start-10 w-40 h-40 text-white/10 pattern-dots z-[1]"></div>
+
+      <div class="relative z-10 flex flex-col items-center">
+        <div class="w-24 h-24 rounded-[26px] bg-white p-1.5 mb-6">
+          <div class="w-full h-full rounded-[20px] overflow-hidden bg-surface border border-line">
+            <img src="ChatGPT Image Aug 15, 2026, 01_21_50 AM_2.png" alt="شعار العيادة" class="w-full h-full object-cover">
+          </div>
+        </div>
+        <h2 class="font-display font-extrabold text-white text-[32px] leading-[1.3]" data-i18n="doctorName">د. سعاد العلوي</h2>
+        <div class="w-12 h-[3px] bg-accent rounded-full my-3"></div>
+        <p class="text-white/90 text-[15px] font-semibold leading-relaxed tracking-wide" data-i18n="doctorTitle">أخصائية أمراض القلب والشرايين</p>
+        <span class="mt-5 inline-flex items-center gap-1.5 bg-white/15 text-white text-[12px] font-semibold px-4 py-1.5 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span data-i18n="certifiedBadge">طبيبة معتمدة</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="flex-1 px-12 py-10 flex flex-col justify-center gap-6">
+      <p class="text-muted text-[12px] font-bold tracking-[0.18em]" data-i18n="contactInfoLabel">معلومات التواصل</p>
+
+      <div class="flex items-center gap-4">
+        <span class="w-12 h-12 rounded-2xl bg-surface text-primary flex items-center justify-center shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </span>
+        <div>
+          <p class="text-ink text-[17px] font-semibold leading-tight" dir="ltr">+212 6 12 34 56 78</p>
+          <p class="text-muted text-[12px] mt-0.5" data-i18n="phoneWhatsapp">هاتف وواتساب</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <span class="w-12 h-12 rounded-2xl bg-surface text-primary flex items-center justify-center shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6c0-1.1-.9-2-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6z"></path><polyline points="22 6 12 13 2 6"></polyline></svg>
+        </span>
+        <div>
+          <p class="text-ink text-[17px] font-semibold leading-tight" dir="ltr">contact@clinique-alnour.ma</p>
+          <p class="text-muted text-[12px] mt-0.5" data-i18n="email">البريد الإلكتروني</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <span class="w-12 h-12 rounded-2xl bg-surface text-primary flex items-center justify-center shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </span>
+        <div>
+          <p class="text-ink text-[17px] font-semibold leading-tight" dir="ltr">clinique-alnour.ma</p>
+          <p class="text-muted text-[12px] mt-0.5" data-i18n="website">الموقع الإلكتروني</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <span class="w-12 h-12 rounded-2xl bg-surface text-primary flex items-center justify-center shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        </span>
+        <div>
+          <p class="text-ink text-[17px] font-semibold leading-tight" data-i18n="addressLine1Full">شارع محمد الخامس، فاس</p>
+          <p class="text-muted text-[12px] mt-0.5" data-i18n="addressBuildingFloor">عمارة 12، الطابق 2</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="px-12 py-8 border-t border-line flex items-center justify-between">
+      <div>
+        <p class="text-ink text-[16px] font-bold" data-i18n="clinicFullName">عيادة النور الطبية</p>
+        <p class="text-muted text-[12px] mt-1" data-i18n="addressLine2">فاس، المغرب</p>
+        <p class="text-muted text-[11.5px] mt-3 leading-relaxed max-w-[280px]" data-i18n="scanToOpenFull">امسحي الرمز لفتح البطاقة الرقمية الكاملة.</p>
+      </div>
+      <div id="cardExportQrMobile" class="w-[130px] h-[130px] bg-white border-2 border-accent rounded-2xl flex items-center justify-center overflow-hidden shrink-0"></div>
+    </div>
+
+  </div>
+
+  <script>
+    /* ============ الترجمة / TRADUCTION ============ */
+    const translations = {
+      ar: {
+        pageTitle: 'عيادة النور الطبية | البطاقة الرقمية',
+        metaDescription: 'عيادة النور الطبية — د. سعاد العلوي، أخصائية أمراض القلب. احفظ جهة الاتصال، احجز موعدك، وتواصل معنا مباشرة.',
+        certifiedBadge: 'طبيبة معتمدة',
+        doctorName: 'د. سعاد العلوي',
+        doctorTitle: 'أخصائية أمراض القلب والشرايين',
+        doctorTitleBr: 'أخصائية أمراض القلب<br>والشرايين',
+        clinicShortName: 'عيادة النور',
+        clinicFullName: 'عيادة النور الطبية',
+        clinicFooterBr: 'عيادة النور الطبية<br>فاس، المغرب',
+        bioText: 'فاس — أكثر من 12 سنة خبرة في تشخيص ومتابعة أمراض القلب، بمواعيد مرنة ومتابعة شخصية لكل مريض.',
+        statYears: 'سنة خبرة',
+        statPatients: 'مريض',
+        statRating: 'تقييم المرضى',
+        saveContact: 'حفظ جهة الاتصال',
+        bookAppt: 'احجز موعد',
+        shareBtn: 'مشاركة',
+        saveAsCard: 'حفظ كبطاقة',
+        servicesEyebrow: 'خدماتنا',
+        servicesTitle: 'كيف يمكننا مساعدتك',
+        svc1Title: 'كشف طبي عام',
+        svc1Desc: 'تشخيص شامل ومتابعة الحالة الصحية.',
+        svc2Title: 'تخطيط القلب ECG',
+        svc2Desc: 'فحص دقيق لنشاط القلب الكهربائي.',
+        svc3Title: 'متابعة أمراض القلب',
+        svc3Desc: 'برنامج متابعة دوري للمرضى.',
+        svc4Title: 'فحوصات مخبرية',
+        svc4Desc: 'تحاليل شاملة لصحة القلب.',
+        contactEyebrow: 'التواصل',
+        contactTitle: 'تواصل معنا مباشرة',
+        callUs: 'اتصل بنا',
+        whatsapp: 'واتساب',
+        whatsappDesc: 'تواصلي معنا مباشرة',
+        website: 'الموقع الإلكتروني',
+        email: 'البريد الإلكتروني',
+        addressLine1: 'شارع محمد الخامس، عمارة 12، ط 2',
+        addressLine1Full: 'شارع محمد الخامس، فاس',
+        addressLine2: 'فاس، المغرب',
+        addressStreetOnly: 'شارع محمد الخامس',
+        addressBuildingFloor: 'عمارة 12، الطابق 2',
+        hoursEyebrow: 'أوقات الاستقبال',
+        hoursTitle: 'متى نستقبلك',
+        daysWeekdays: 'الإثنين — الجمعة',
+        daySaturday: 'السبت',
+        daySunday: 'الأحد',
+        closed: 'مغلق',
+        scanToOpen: 'امسح الرمز لفتح البطاقة',
+        scanToOpenFull: 'امسحي الرمز لفتح البطاقة الرقمية الكاملة.',
+        scanToOpenFullBr: 'امسحي الرمز لفتح<br>البطاقة الرقمية الكاملة.',
+        contactInfoLabel: 'معلومات التواصل',
+        phoneWhatsapp: 'هاتف وواتساب',
+        toastSaved: 'تم حفظ جهة الاتصال بنجاح!',
+        toastLinkCopied: 'تم نسخ الرابط!',
+        toastShareFail: 'تعذّرت المشاركة حاليًا',
+        toastImageSaved: 'تم تحميل بطاقة العمل!',
+        toastImageFail: 'تعذّر إنشاء صورة البطاقة',
+        generating: 'جارٍ الإنشاء…',
+        shareText: 'أخصائية أمراض القلب والشرايين. اطّلعي على البطاقة الرقمية للعيادة.',
+        whatsappMessage: 'مرحبا، أرغب في حجز موعد مع د. سعاد العلوي.',
+        langToggleLabel: 'FR',
+        langAriaLabel: 'تبديل اللغة إلى الفرنسية'
+      },
+      fr: {
+        pageTitle: 'Clinique Al Nour | Carte Digitale',
+        metaDescription: "Clinique Al Nour — Dr. Souad Alaoui, cardiologue. Enregistrez le contact, prenez rendez-vous et contactez-nous directement.",
+        certifiedBadge: 'Médecin certifiée',
+        doctorName: 'Dr. Souad Alaoui',
+        doctorTitle: 'Cardiologue',
+        doctorTitleBr: 'Cardiologue',
+        clinicShortName: 'Al Nour',
+        clinicFullName: 'Clinique Al Nour',
+        clinicFooterBr: 'Clinique Al Nour<br>Fès, Maroc',
+        bioText: "Fès — plus de 12 ans d'expérience dans le diagnostic et le suivi des maladies cardiaques, avec des rendez-vous flexibles et un suivi personnalisé pour chaque patient.",
+        statYears: "ans d'expérience",
+        statPatients: 'patients',
+        statRating: 'avis patients',
+        saveContact: 'Enregistrer le contact',
+        bookAppt: 'Prendre RDV',
+        shareBtn: 'Partager',
+        saveAsCard: 'Télécharger',
+        servicesEyebrow: 'Nos services',
+        servicesTitle: 'Comment pouvons-nous vous aider',
+        svc1Title: 'Consultation générale',
+        svc1Desc: 'Diagnostic complet et suivi de votre état de santé.',
+        svc2Title: 'ECG',
+        svc2Desc: "Examen précis de l'activité électrique du cœur.",
+        svc3Title: 'Suivi cardiologique',
+        svc3Desc: 'Programme de suivi régulier pour les patients.',
+        svc4Title: 'Analyses de laboratoire',
+        svc4Desc: 'Bilans complets pour la santé cardiaque.',
+        contactEyebrow: 'Contact',
+        contactTitle: 'Contactez-nous directement',
+        callUs: 'Appelez-nous',
+        whatsapp: 'WhatsApp',
+        whatsappDesc: 'Écrivez-nous directement',
+        website: 'Site web',
+        email: 'E-mail',
+        addressLine1: 'Avenue Mohammed V, immeuble 12, 2e étage',
+        addressLine1Full: 'Avenue Mohammed V, Fès',
+        addressLine2: 'Fès, Maroc',
+        addressStreetOnly: 'Avenue Mohammed V',
+        addressBuildingFloor: 'Immeuble 12, 2e étage',
+        hoursEyebrow: "Heures d'ouverture",
+        hoursTitle: 'Nos horaires',
+        daysWeekdays: 'Lundi — Vendredi',
+        daySaturday: 'Samedi',
+        daySunday: 'Dimanche',
+        closed: 'Fermé',
+        scanToOpen: 'Scannez le code pour ouvrir la carte',
+        scanToOpenFull: 'Scannez le code pour découvrir la carte numérique complète.',
+        scanToOpenFullBr: 'Scannez le code pour découvrir<br>la carte numérique complète.',
+        contactInfoLabel: 'Informations de contact',
+        phoneWhatsapp: 'Téléphone et WhatsApp',
+        toastSaved: 'Contact enregistré avec succès !',
+        toastLinkCopied: 'Lien copié !',
+        toastShareFail: 'Partage impossible pour le moment',
+        toastImageSaved: 'Carte de visite téléchargée !',
+        toastImageFail: "Impossible de créer l'image de la carte",
+        generating: 'Génération…',
+        shareText: 'Cardiologue. Découvrez la carte digitale de la clinique.',
+        whatsappMessage: 'Bonjour, je souhaite prendre rendez-vous avec le Dr. Souad Alaoui.',
+        langToggleLabel: 'AR',
+        langAriaLabel: 'Basculer la langue vers l\'arabe'
+      }
+    };
+
+    const htmlContentKeys = ['doctorTitleBr', 'clinicFooterBr', 'scanToOpenFullBr'];
+    let currentLang = localStorage.getItem('clinicLang') || 'ar';
+
+    function applyTranslations(lang) {
+      const dict = translations[lang];
+      document.documentElement.setAttribute('lang', lang === 'ar' ? 'ar' : 'fr');
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+      document.body.classList.remove('lang-ar', 'lang-fr');
+      document.body.classList.add('lang-' + lang);
+
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        const key = el.getAttribute('data-i18n');
+        if (!dict[key]) return;
+        if (htmlContentKeys.includes(key)) {
+          el.innerHTML = dict[key];
+        } else {
+          el.textContent = dict[key];
+        }
+      });
+
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', dict.metaDescription);
+      document.title = dict.pageTitle;
+
+      const langLabel = document.getElementById('langToggleLabel');
+      const langBtn = document.getElementById('langToggleBtn');
+      if (langLabel) langLabel.textContent = dict.langToggleLabel;
+      if (langBtn) langBtn.setAttribute('aria-label', dict.langAriaLabel);
+
+      // مزامنة اتجاه قوالب تصدير البطاقة
+      const templateDesktop = document.getElementById('cardExportTemplate');
+      const templateMobile = document.getElementById('cardExportTemplateMobile');
+      const dir = lang === 'ar' ? 'rtl' : 'ltr';
+      if (templateDesktop) templateDesktop.setAttribute('dir', dir);
+      if (templateMobile) templateMobile.setAttribute('dir', dir);
+
+      currentLang = lang;
+      localStorage.setItem('clinicLang', lang);
+    }
+
+    document.getElementById('langToggleBtn').addEventListener('click', function () {
+      applyTranslations(currentLang === 'ar' ? 'fr' : 'ar');
+    });
+
+    applyTranslations(currentLang);
+
+    /* ============ منطق الصفحة / LOGIQUE DE LA PAGE ============ */
+    let toastTimer = null;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const msg = document.getElementById('toastMsg');
+      msg.textContent = message;
+      toast.classList.remove('hidden');
+      toast.classList.remove('toast-show');
+      void toast.offsetWidth;
+      toast.classList.add('toast-show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 2600);
+    }
+
+    document.getElementById('saveContactBtn').addEventListener('click', function () {
+      const isAr = currentLang === 'ar';
+      const vCard = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        isAr ? 'N:العلوي;سعاد;د.;;' : 'N:Alaoui;Souad;Dr.;;',
+        isAr ? 'FN:د. سعاد العلوي' : 'FN:Dr. Souad Alaoui',
+        isAr ? 'ORG:عيادة النور الطبية' : 'ORG:Clinique Al Nour',
+        isAr ? 'TITLE:أخصائية أمراض القلب والشرايين' : 'TITLE:Cardiologue',
+        'TEL;TYPE=WORK,VOICE:+212612455372',
+        'EMAIL;TYPE=WORK:contact@clinique-alnour.ma',
+        'URL:https://www.clinique-alnour.ma',
+        isAr
+          ? 'ADR;TYPE=WORK:;;شارع محمد الخامس، عمارة 12، الطابق 2;فاس;;;المغرب'
+          : 'ADR;TYPE=WORK:;;Avenue Mohammed V, immeuble 12, 2e étage;Fès;;;Maroc',
+        isAr ? 'NOTE:عيادة النور الطبية — أمراض القلب والشرايين' : 'NOTE:Clinique Al Nour — Cardiologie',
+        'END:VCARD'
+      ].join('\n');
+
+      const blob = new Blob([vCard], { type: 'text/vcard;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Dr-Souad-Alaoui.vcf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      showToast(translations[currentLang].toastSaved);
+    });
+
+    document.getElementById('shareBtn').addEventListener('click', async function () {
+      const dict = translations[currentLang];
+      const shareData = {
+        title: dict.doctorName + ' — ' + dict.clinicFullName,
+        text: dict.shareText,
+        url: window.location.href
+      };
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else {
+          await navigator.clipboard.writeText(shareData.url);
+          showToast(dict.toastLinkCopied);
+        }
+      } catch (err) {
+        if (err && err.name !== 'AbortError') {
+          try {
+            await navigator.clipboard.writeText(shareData.url);
+            showToast(dict.toastLinkCopied);
+          } catch (e) {
+            showToast(dict.toastShareFail);
+          }
+        }
+      }
+    });
+
+    document.getElementById('orderNowBtn').addEventListener('click', function () {
+      const phone = '212612455372';
+      const message = translations[currentLang].whatsappMessage;
+      window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(message), '_blank');
+    });
+
+    document.getElementById('stickySaveBtn').addEventListener('click', function () {
+      document.getElementById('saveContactBtn').click();
+    });
+
+    document.getElementById('downloadImageBtn').addEventListener('click', async function () {
+      const btn = this;
+      const isMobile = window.matchMedia('(max-width: 640px)').matches;
+      const template = document.getElementById(isMobile ? 'cardExportTemplateMobile' : 'cardExportTemplate');
+      const qrHolder = document.getElementById(isMobile ? 'cardExportQrMobile' : 'cardExportQr');
+      const qrSize = isMobile ? 130 : 92;
+      const exportWidth = isMobile ? 900 : 1050;
+      const exportHeight = isMobile ? 1125 : 600;
+      const originalLabel = btn.innerHTML;
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="text-xs">' + translations[currentLang].generating + '</span>';
+
+      try {
+        qrHolder.innerHTML = '';
+        new QRCode(qrHolder, {
+          text: window.location.href,
+          width: qrSize,
+          height: qrSize,
+          colorDark: '#211C33',
+          colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.M
+        });
+
+        const canvas = await html2canvas(template, {
+          backgroundColor: null,
+          scale: isMobile ? 2 : 3,
+          useCORS: true,
+          width: exportWidth,
+          height: exportHeight
+        });
+
+        canvas.toBlob(function (blob) {
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = isMobile ? 'Clinique-Al-Nour-Business-Card-Mobile.png' : 'Clinique-Al-Nour-Business-Card.png';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+          showToast(translations[currentLang].toastImageSaved);
+        }, 'image/png');
+      } catch (err) {
+        showToast(translations[currentLang].toastImageFail);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalLabel;
+      }
+    });
+
+    const qrModal = document.getElementById('qrModal');
+    const qrBox = document.getElementById('qrcode-box');
+    let qrRendered = false;
+
+    function renderQr() {
+      if (qrRendered) return;
+      qrBox.innerHTML = '';
+      new QRCode(qrBox, {
+        text: window.location.href,
+        width: 180,
+        height: 180,
+        colorDark: '#211C33',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.M
+      });
+      qrRendered = true;
+    }
+
+    document.getElementById('openQrBtn').addEventListener('click', function () {
+      renderQr();
+      qrModal.classList.remove('hidden');
+      qrModal.classList.add('flex');
+    });
+
+    document.getElementById('closeQrBtn').addEventListener('click', function () {
+      qrModal.classList.add('hidden');
+      qrModal.classList.remove('flex');
+    });
+
+    qrModal.addEventListener('click', function (e) {
+      if (e.target === qrModal) {
+        qrModal.classList.add('hidden');
+        qrModal.classList.remove('flex');
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !qrModal.classList.contains('hidden')) {
+        qrModal.classList.add('hidden');
+        qrModal.classList.remove('flex');
+      }
+    });
+  </script>
+
+</body>
+</html>
