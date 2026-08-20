@@ -15,7 +15,7 @@
                         primaryHover: '#006673'
                     },
                     fontFamily: {
-                        sans: ['Droid Arabic Kufi', 'Josefin Sans', 'sans-serif'],
+                        sans: ['Josefin Sans', 'Reem Kufi', 'sans-serif'],
                     }
                 }
             }
@@ -25,7 +25,7 @@
     
     <style>
         body {
-            font-family: 'Droid Arabic Kufi', 'Josefin Sans', sans-serif;
+            font-family: 'Josefin Sans', 'Reem Kufi', sans-serif;
             background-color: #f3f4f6;
             scroll-behavior: smooth;
         }
@@ -77,6 +77,12 @@
                 </div>
             </div>
             
+            <!-- Language Toggle (FR / AR) -->
+            <button id="langToggle" onclick="toggleLanguage()" class="absolute top-4 left-4 bg-white/90 backdrop-blur text-gray-800 text-xs font-bold px-3 py-1 rounded-full shadow-lg hover:bg-white transition flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 12a9 9 0 019-9m-9 9a9 9 0 009 9m0-18a9 9 0 019 9m-9-9c1.657 0 3 4.03 3 9s-1.343 9-3 9m0-18c-1.657 0-3 4.03-3 9s1.343 9 3 9m-9-9a9 9 0 009-9"></path></svg>
+                <span id="langToggleLabel">العربية</span>
+            </button>
+
             <!-- Open Status Badge (dynamique, calculé via JS depuis openingHours) -->
             <button id="statusBadge" onclick="openHoursModal()" class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg flex items-center gap-1 hover:bg-green-600 transition">
                 <span id="statusBadgeText">...</span>
@@ -85,7 +91,7 @@
         </div>
 
         <div class="pt-12 px-6 pb-4 bg-white relative z-10">
-            <h1 class="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">Café Restaurant Pâtisserie Miramar</h1>
+            <h1 class="text-xl sm:text-2xl font-bold text-gray-900 leading-tight" data-i18n="restaurantName">Café Restaurant Pâtisserie Miramar</h1>
             
             <div class="flex items-center flex-wrap gap-x-1 text-sm text-gray-600 mt-2">
                 <span class="font-medium mr-1 text-gray-800">4.8</span>
@@ -97,7 +103,7 @@
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                     <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                 </div>
-                <span class="ml-1 text-gray-500">(168 avis) · Marocain & International</span>
+                <span class="ml-1 text-gray-500">(168 <span data-i18n="reviews">avis</span>) · <span data-i18n="cuisineType">Marocain &amp; International</span></span>
             </div>
             
             <div class="text-sm text-gray-500 mt-2 flex items-center flex-wrap gap-y-2 justify-between">
@@ -107,7 +113,7 @@
                 </div>
                 <button onclick="openHoursModal()" class="flex items-center gap-1 text-primary font-medium hover:underline flex-shrink-0">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    Horaires
+                    <span data-i18n="hoursBtn">Horaires</span>
                 </button>
             </div>
 
@@ -135,19 +141,19 @@
             <div class="flex overflow-x-auto hide-scrollbar p-3 space-x-2" id="nav-list">
                 <!-- Added data-target for JavaScript to know which section is linked -->
                 <button data-target="f-petit-dej" class="nav-btn px-5 py-2.5 bg-primary text-white rounded-full text-sm font-medium whitespace-nowrap shadow-md shadow-primary/30 transition">
-                    Petit Déjeuner
+                    <span data-i18n="navBreakfast">Petit Déjeuner</span>
                 </button>
                 <button data-target="f-plats" class="nav-btn px-5 py-2.5 bg-gray-100 text-gray-700 rounded-full text-sm font-medium whitespace-nowrap hover:bg-gray-200 transition">
-                    Plats
+                    <span data-i18n="navMains">Plats</span>
                 </button>
                 <button data-target="f-burgers" class="nav-btn px-5 py-2.5 bg-gray-100 text-gray-700 rounded-full text-sm font-medium whitespace-nowrap hover:bg-gray-200 transition">
-                    Burgers & Snacks
+                    <span data-i18n="navBurgers">Burgers &amp; Snacks</span>
                 </button>
                 <button data-target="f-boissons" class="nav-btn px-5 py-2.5 bg-gray-100 text-gray-700 rounded-full text-sm font-medium whitespace-nowrap hover:bg-gray-200 transition">
-                    Boissons
+                    <span data-i18n="navDrinks">Boissons</span>
                 </button>
                 <button data-target="f-desserts" class="nav-btn px-5 py-2.5 bg-gray-100 text-gray-700 rounded-full text-sm font-medium whitespace-nowrap hover:bg-gray-200 transition">
-                    Desserts
+                    <span data-i18n="navDesserts">Desserts</span>
                 </button>
             </div>
         </div>
@@ -157,13 +163,13 @@
             <!-- SECTION 1: Petit Déjeuner -->
             <div id="f-petit-dej" class="menu-section pt-2">
                 <h2 class="px-4 py-3 text-lg font-bold text-gray-900 bg-gray-50 flex items-center">
-                    <span class="w-1.5 h-6 bg-primary rounded-full mr-2"></span> Petit Déjeuner
+                    <span class="w-1.5 h-6 bg-primary rounded-full mr-2"></span> <span data-i18n="navBreakfast">Petit Déjeuner</span>
                 </h2>
                 
                 <div class="flex p-4 border-b border-gray-100 hover:bg-gray-50 transition cursor-pointer group">
                     <div class="flex-1 pr-4">
-                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition">Petit Déjeuner Beldi</h3>
-                        <p class="text-sm text-gray-500 mt-1 line-clamp-2">Thé à la menthe, jus d'orange frais, oeufs au plat, msemen, pain complet, huile d'olive, olives et miel.</p>
+                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition" data-i18n="item1Name">Petit Déjeuner Beldi</h3>
+                        <p class="text-sm text-gray-500 mt-1 line-clamp-2" data-i18n="item1Desc">Thé à la menthe, jus d'orange frais, oeufs au plat, msemen, pain complet, huile d'olive, olives et miel.</p>
                         <div class="flex items-center justify-between mt-3">
                             <div class="text-primary font-bold text-lg">MAD 45</div>
                             <div id="ctrl-1" class="flex items-center gap-2">
@@ -180,8 +186,8 @@
 
                 <div class="flex p-4 border-b border-gray-100 hover:bg-gray-50 transition cursor-pointer group">
                     <div class="flex-1 pr-4">
-                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition">Petit Déjeuner Continental</h3>
-                        <p class="text-sm text-gray-500 mt-1 line-clamp-2">Boisson chaude au choix, 2 viennoiseries, tartines avec beurre et confiture, jus d'orange.</p>
+                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition" data-i18n="item2Name">Petit Déjeuner Continental</h3>
+                        <p class="text-sm text-gray-500 mt-1 line-clamp-2" data-i18n="item2Desc">Boisson chaude au choix, 2 viennoiseries, tartines avec beurre et confiture, jus d'orange.</p>
                         <div class="flex items-center justify-between mt-3">
                             <div class="text-primary font-bold text-lg">MAD 35</div>
                             <div id="ctrl-2" class="flex items-center gap-2">
@@ -200,13 +206,13 @@
             <!-- SECTION 2: Plats -->
             <div id="f-plats" class="menu-section pt-2">
                 <h2 class="px-4 py-3 text-lg font-bold text-gray-900 bg-gray-50 flex items-center mt-2">
-                    <span class="w-1.5 h-6 bg-primary rounded-full mr-2"></span> Plats Principaux
+                    <span class="w-1.5 h-6 bg-primary rounded-full mr-2"></span> <span data-i18n="sectionMains">Plats Principaux</span>
                 </h2>
                 
                 <div class="flex p-4 border-b border-gray-100 hover:bg-gray-50 transition cursor-pointer group">
                     <div class="flex-1 pr-4">
-                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition">Tajine Poulet au Citron</h3>
-                        <p class="text-sm text-gray-500 mt-1 line-clamp-2">Tajine traditionnel de poulet fermier aux olives et citrons confits, servi avec pain maison.</p>
+                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition" data-i18n="item3Name">Tajine Poulet au Citron</h3>
+                        <p class="text-sm text-gray-500 mt-1 line-clamp-2" data-i18n="item3Desc">Tajine traditionnel de poulet fermier aux olives et citrons confits, servi avec pain maison.</p>
                         <div class="flex items-center justify-between mt-3">
                             <div class="text-primary font-bold text-lg">MAD 65</div>
                             <div id="ctrl-3" class="flex items-center gap-2">
@@ -223,8 +229,8 @@
 
                 <div class="flex p-4 border-b border-gray-100 hover:bg-gray-50 transition cursor-pointer group">
                     <div class="flex-1 pr-4">
-                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition">Pâtes aux Fruits de Mer</h3>
-                        <p class="text-sm text-gray-500 mt-1 line-clamp-2">Linguine fraîches, crevettes, calamars, moules, sauce tomate à l'ail et persil.</p>
+                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition" data-i18n="item4Name">Pâtes aux Fruits de Mer</h3>
+                        <p class="text-sm text-gray-500 mt-1 line-clamp-2" data-i18n="item4Desc">Linguine fraîches, crevettes, calamars, moules, sauce tomate à l'ail et persil.</p>
                         <div class="flex items-center justify-between mt-3">
                             <div class="text-primary font-bold text-lg">MAD 85</div>
                             <div id="ctrl-4" class="flex items-center gap-2">
@@ -243,13 +249,13 @@
             <!-- SECTION 3: Burgers -->
             <div id="f-burgers" class="menu-section pt-2">
                 <h2 class="px-4 py-3 text-lg font-bold text-gray-900 bg-gray-50 flex items-center mt-2">
-                    <span class="w-1.5 h-6 bg-primary rounded-full mr-2"></span> Burgers & Snacks
+                    <span class="w-1.5 h-6 bg-primary rounded-full mr-2"></span> <span data-i18n="navBurgers">Burgers &amp; Snacks</span>
                 </h2>
                 
                 <div class="flex p-4 border-b border-gray-100 hover:bg-gray-50 transition cursor-pointer group">
                     <div class="flex-1 pr-4">
-                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition">Classic Cheese Burger</h3>
-                        <p class="text-sm text-gray-500 mt-1 line-clamp-2">Steak de bœuf 150g, cheddar fondu, salade, tomate, oignons caramélisés, sauce maison. Servi avec frites.</p>
+                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition" data-i18n="item5Name">Classic Cheese Burger</h3>
+                        <p class="text-sm text-gray-500 mt-1 line-clamp-2" data-i18n="item5Desc">Steak de bœuf 150g, cheddar fondu, salade, tomate, oignons caramélisés, sauce maison. Servi avec frites.</p>
                         <div class="flex items-center justify-between mt-3">
                             <div class="text-primary font-bold text-lg">MAD 55</div>
                             <div id="ctrl-5" class="flex items-center gap-2">
@@ -268,13 +274,13 @@
             <!-- SECTION 4: Boissons -->
             <div id="f-boissons" class="menu-section pt-2">
                 <h2 class="px-4 py-3 text-lg font-bold text-gray-900 bg-gray-50 flex items-center mt-2">
-                    <span class="w-1.5 h-6 bg-primary rounded-full mr-2"></span> Boissons
+                    <span class="w-1.5 h-6 bg-primary rounded-full mr-2"></span> <span data-i18n="navDrinks">Boissons</span>
                 </h2>
                 
                 <div class="flex p-4 border-b border-gray-100 hover:bg-gray-50 transition cursor-pointer group">
                     <div class="flex-1 pr-4">
-                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition">Mojito Framboise (Sans Alcool)</h3>
-                        <p class="text-sm text-gray-500 mt-1 line-clamp-2">Menthe fraîche, citron vert, framboises écrasées, eau gazeuse, glace pilée.</p>
+                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition" data-i18n="item6Name">Mojito Framboise (Sans Alcool)</h3>
+                        <p class="text-sm text-gray-500 mt-1 line-clamp-2" data-i18n="item6Desc">Menthe fraîche, citron vert, framboises écrasées, eau gazeuse, glace pilée.</p>
                         <div class="flex items-center justify-between mt-3">
                             <div class="text-primary font-bold text-lg">MAD 25</div>
                             <div id="ctrl-6" class="flex items-center gap-2">
@@ -291,8 +297,8 @@
 
                 <div class="flex p-4 border-b border-gray-100 hover:bg-gray-50 transition cursor-pointer group">
                     <div class="flex-1 pr-4">
-                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition">Cappuccino</h3>
-                        <p class="text-sm text-gray-500 mt-1 line-clamp-2">Espresso, lait chaud et mousse de lait onctueuse.</p>
+                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition" data-i18n="item7Name">Cappuccino</h3>
+                        <p class="text-sm text-gray-500 mt-1 line-clamp-2" data-i18n="item7Desc">Espresso, lait chaud et mousse de lait onctueuse.</p>
                         <div class="flex items-center justify-between mt-3">
                             <div class="text-primary font-bold text-lg">MAD 18</div>
                             <div id="ctrl-7" class="flex items-center gap-2">
@@ -311,13 +317,13 @@
              <!-- SECTION 5: Desserts -->
              <div id="f-desserts" class="menu-section pt-2">
                 <h2 class="px-4 py-3 text-lg font-bold text-gray-900 bg-gray-50 flex items-center mt-2">
-                    <span class="w-1.5 h-6 bg-primary rounded-full mr-2"></span> Desserts & Pâtisseries
+                    <span class="w-1.5 h-6 bg-primary rounded-full mr-2"></span> <span data-i18n="sectionDesserts">Desserts &amp; Pâtisseries</span>
                 </h2>
                 
                 <div class="flex p-4 border-b border-gray-100 hover:bg-gray-50 transition cursor-pointer group">
                     <div class="flex-1 pr-4">
-                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition">Cheesecake Fruits Rouges</h3>
-                        <p class="text-sm text-gray-500 mt-1 line-clamp-2">Cheesecake crémeux maison, coulis de fruits rouges frais, base biscuit croustillant.</p>
+                        <h3 class="text-base font-semibold text-gray-900 group-hover:text-primary transition" data-i18n="item8Name">Cheesecake Fruits Rouges</h3>
+                        <p class="text-sm text-gray-500 mt-1 line-clamp-2" data-i18n="item8Desc">Cheesecake crémeux maison, coulis de fruits rouges frais, base biscuit croustillant.</p>
                         <div class="flex items-center justify-between mt-3">
                             <div class="text-primary font-bold text-lg">MAD 30</div>
                             <div id="ctrl-8" class="flex items-center gap-2">
@@ -347,7 +353,7 @@
             <div class="absolute inset-0 bg-black/50" onclick="closeCartModal()"></div>
             <div class="absolute bottom-0 left-0 right-0 max-w-md mx-auto bg-white rounded-t-3xl shadow-2xl max-h-[80vh] flex flex-col">
                 <div class="flex items-center justify-between px-6 pt-5 pb-3 border-b border-gray-100">
-                    <h3 class="text-lg font-bold text-gray-900">Mon panier</h3>
+                    <h3 class="text-lg font-bold text-gray-900" data-i18n="cartTitle">Mon panier</h3>
                     <button onclick="closeCartModal()" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
@@ -355,12 +361,12 @@
                 <div id="cartItemsList" class="flex-1 overflow-y-auto px-6 py-3 divide-y divide-gray-100"></div>
                 <div class="px-6 py-4 border-t border-gray-100 bg-white">
                     <div class="flex items-center justify-between mb-4">
-                        <span class="text-gray-600 font-medium">Total</span>
+                        <span class="text-gray-600 font-medium" data-i18n="totalLabel">Total</span>
                         <span id="cartModalTotal" class="text-xl font-bold text-primary">0 MAD</span>
                     </div>
                     <button onclick="sendOrder()" class="w-full bg-primary text-white py-3.5 rounded-full font-medium flex items-center justify-center gap-2 hover:bg-primaryHover transition shadow-lg shadow-primary/30">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.37c1.36.75 2.92 1.18 4.6 1.18h.02c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.72 14.06c-.24.68-1.18 1.24-1.94 1.4-.52.11-1.2.2-3.48-.75-2.92-1.21-4.8-4.17-4.95-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2.01.9 2.15.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.26.13.44.19.5.3.06.12.06.66-.18 1.34z"/></svg>
-                        <span>Commander via WhatsApp</span>
+                        <span data-i18n="orderBtn">Commander via WhatsApp</span>
                     </button>
                 </div>
             </div>
@@ -371,7 +377,7 @@
             <div class="absolute inset-0 bg-black/50" onclick="closeHoursModal()"></div>
             <div class="absolute bottom-0 left-0 right-0 max-w-md mx-auto bg-white rounded-t-3xl shadow-2xl max-h-[85vh] flex flex-col">
                 <div class="flex items-center justify-between px-6 pt-5 pb-3 border-b border-gray-100">
-                    <h3 class="text-lg font-bold text-gray-900">Horaires d'ouverture</h3>
+                    <h3 class="text-lg font-bold text-gray-900" data-i18n="hoursModalTitle">Horaires d'ouverture</h3>
                     <button onclick="closeHoursModal()" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
@@ -383,18 +389,92 @@
     </div>
 
     <script>
+        // ============ LANGUE / LANGUAGE (FR ↔ AR) ============
+        let currentLang = localStorage.getItem('restaurant_lang') || 'fr';
+
+        const translations = {
+            restaurantName: { fr: 'Café Restaurant Pâtisserie Miramar', ar: 'مقهى مطعم وحلويات ميرامار' },
+            reviews: { fr: 'avis', ar: 'تقييم' },
+            cuisineType: { fr: 'Marocain & International', ar: 'مغربي وعالمي' },
+            hoursBtn: { fr: 'Horaires', ar: 'أوقات العمل' },
+            navBreakfast: { fr: 'Petit Déjeuner', ar: 'الفطور' },
+            navMains: { fr: 'Plats', ar: 'الأطباق' },
+            navBurgers: { fr: 'Burgers & Snacks', ar: 'برجر ووجبات خفيفة' },
+            navDrinks: { fr: 'Boissons', ar: 'المشروبات' },
+            navDesserts: { fr: 'Desserts', ar: 'الحلويات' },
+            sectionMains: { fr: 'Plats Principaux', ar: 'الأطباق الرئيسية' },
+            sectionDesserts: { fr: 'Desserts & Pâtisseries', ar: 'الحلويات والمعجنات' },
+
+            item1Name: { fr: 'Petit Déjeuner Beldi', ar: 'فطور بلدي' },
+            item1Desc: { fr: "Thé à la menthe, jus d'orange frais, oeufs au plat, msemen, pain complet, huile d'olive, olives et miel.", ar: 'أتاي بالنعناع، عصير برتقال طازج، بيض مقلي، مسمن، خبز كامل، زيت زيتون، زيتون وعسل.' },
+            item2Name: { fr: 'Petit Déjeuner Continental', ar: 'فطور كونتيننتال' },
+            item2Desc: { fr: 'Boisson chaude au choix, 2 viennoiseries, tartines avec beurre et confiture, jus d\'orange.', ar: 'مشروب ساخن حسب الاختيار، قطعتان من المعجنات، خبز محمص بالزبدة والمربى، عصير برتقال.' },
+            item3Name: { fr: 'Tajine Poulet au Citron', ar: 'طاجين الدجاج بالليمون' },
+            item3Desc: { fr: 'Tajine traditionnel de poulet fermier aux olives et citrons confits, servi avec pain maison.', ar: 'طاجين تقليدي بدجاج بلدي مع الزيتون والليمون المخلل، يقدم مع خبز منزلي.' },
+            item4Name: { fr: 'Pâtes aux Fruits de Mer', ar: 'معكرونة بالمأكولات البحرية' },
+            item4Desc: { fr: "Linguine fraîches, crevettes, calamars, moules, sauce tomate à l'ail et persil.", ar: 'لينغويني طازجة، جمبري، كاليماري، بلح البحر، صلصة طماطم بالثوم والبقدونس.' },
+            item5Name: { fr: 'Classic Cheese Burger', ar: 'برجر جبن كلاسيكي' },
+            item5Desc: { fr: 'Steak de bœuf 150g, cheddar fondu, salade, tomate, oignons caramélisés, sauce maison. Servi avec frites.', ar: 'قطعة لحم بقري 150غ، جبن شيدر ذائب، خس، طماطم، بصل مكرمل، صلصة منزلية. يقدم مع البطاطا المقلية.' },
+            item6Name: { fr: 'Mojito Framboise (Sans Alcool)', ar: 'موخيتو بالتوت (بدون كحول)' },
+            item6Desc: { fr: 'Menthe fraîche, citron vert, framboises écrasées, eau gazeuse, glace pilée.', ar: 'نعناع طازج، ليمون أخضر، توت مهروس، ماء غازي، ثلج مجروش.' },
+            item7Name: { fr: 'Cappuccino', ar: 'كابتشينو' },
+            item7Desc: { fr: 'Espresso, lait chaud et mousse de lait onctueuse.', ar: 'إسبريسو، حليب ساخن ورغوة حليب ناعمة.' },
+            item8Name: { fr: 'Cheesecake Fruits Rouges', ar: 'تشيز كيك بالفواكه الحمراء' },
+            item8Desc: { fr: 'Cheesecake crémeux maison, coulis de fruits rouges frais, base biscuit croustillant.', ar: 'تشيز كيك منزلي كريمي، صوص فواكه حمراء طازجة، قاعدة بسكويت مقرمشة.' },
+
+            cartTitle: { fr: 'Mon panier', ar: 'سلتي' },
+            totalLabel: { fr: 'Total', ar: 'المجموع' },
+            orderBtn: { fr: 'Commander via WhatsApp', ar: 'اطلب عبر واتساب' },
+            hoursModalTitle: { fr: "Horaires d'ouverture", ar: 'أوقات العمل' },
+            viewCart: { fr: 'Voir le panier', ar: 'عرض السلة' },
+            emptyCart: { fr: 'Votre panier est vide', ar: 'سلتك فارغة' },
+            today: { fr: "Aujourd'hui", ar: 'اليوم' },
+            openLabel: { fr: 'Ouvert', ar: 'مفتوح' }
+        };
+
+        // Applies the chosen language to every translatable element + updates dir/lang + persists choice
+        function applyLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('restaurant_lang', lang);
+
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if (translations[key]) {
+                    el.textContent = translations[key][lang];
+                }
+            });
+
+            const toggleLabel = document.getElementById('langToggleLabel');
+            if (toggleLabel) toggleLabel.textContent = lang === 'ar' ? 'Français' : 'العربية';
+
+            // Refresh dynamic (JS-rendered) pieces that also carry text
+            updateCartBar();
+            updateStatusBadge();
+            if (!document.getElementById('hoursModal').classList.contains('hidden')) {
+                renderHoursList();
+            }
+        }
+
+        function toggleLanguage() {
+            applyLanguage(currentLang === 'ar' ? 'fr' : 'ar');
+        }
+        // ============ FIN LANGUE ============
+
         // ============ PANIER / CART ============
         const WHATSAPP_NUMBER = '212612455372';
 
         const itemsData = {
-            '1': { name: 'Petit Déjeuner Beldi', price: 45, img: 'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
-            '2': { name: 'Petit Déjeuner Continental', price: 35, img: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
-            '3': { name: 'Tajine Poulet au Citron', price: 65, img: 'https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
-            '4': { name: 'Pâtes aux Fruits de Mer', price: 85, img: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
-            '5': { name: 'Classic Cheese Burger', price: 55, img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
-            '6': { name: 'Mojito Framboise (Sans Alcool)', price: 25, img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
-            '7': { name: 'Cappuccino', price: 18, img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
-            '8': { name: 'Cheesecake Fruits Rouges', price: 30, img: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' }
+            '1': { name: { fr: 'Petit Déjeuner Beldi', ar: 'فطور بلدي' }, price: 45, img: 'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
+            '2': { name: { fr: 'Petit Déjeuner Continental', ar: 'فطور كونتيننتال' }, price: 35, img: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
+            '3': { name: { fr: 'Tajine Poulet au Citron', ar: 'طاجين الدجاج بالليمون' }, price: 65, img: 'https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
+            '4': { name: { fr: 'Pâtes aux Fruits de Mer', ar: 'معكرونة بالمأكولات البحرية' }, price: 85, img: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
+            '5': { name: { fr: 'Classic Cheese Burger', ar: 'برجر جبن كلاسيكي' }, price: 55, img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
+            '6': { name: { fr: 'Mojito Framboise (Sans Alcool)', ar: 'موخيتو بالتوت (بدون كحول)' }, price: 25, img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
+            '7': { name: { fr: 'Cappuccino', ar: 'كابتشينو' }, price: 18, img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
+            '8': { name: { fr: 'Cheesecake Fruits Rouges', ar: 'تشيز كيك بالفواكه الحمراء' }, price: 30, img: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' }
         };
 
         const cart = {};
@@ -429,7 +509,7 @@
         function updateCartBar() {
             const items = Object.values(cart);
             const count = items.reduce((s, i) => s + i.qty, 0);
-            document.getElementById('cart-label').textContent = `Voir le panier (${count})`;
+            document.getElementById('cart-label').textContent = `${translations.viewCart[currentLang]} (${count})`;
             renderCartModal();
         }
 
@@ -438,16 +518,16 @@
             const totalEl = document.getElementById('cartModalTotal');
             const entries = Object.entries(cart);
             if (entries.length === 0) {
-                listEl.innerHTML = `<p class="text-center text-gray-400 py-10">Votre panier est vide</p>`;
+                listEl.innerHTML = `<p class="text-center text-gray-400 py-10">${translations.emptyCart[currentLang]}</p>`;
                 totalEl.textContent = '0 MAD';
                 return;
             }
             listEl.innerHTML = entries.map(([id, item]) => `
                 <div class="flex items-center justify-between py-3">
                     <div class="flex items-center flex-1 pr-3">
-                        <img src="${item.img}" alt="${item.name}" class="w-12 h-12 rounded-xl object-cover flex-shrink-0 mr-3 border border-gray-100">
+                        <img src="${item.img}" alt="${item.name[currentLang]}" class="w-12 h-12 rounded-xl object-cover flex-shrink-0 mr-3 border border-gray-100">
                         <div>
-                            <p class="font-semibold text-gray-900">${item.name}</p>
+                            <p class="font-semibold text-gray-900">${item.name[currentLang]}</p>
                             <p class="text-sm text-gray-500">${item.price} MAD x ${item.qty}</p>
                         </div>
                     </div>
@@ -476,36 +556,41 @@
         function sendOrder() {
             const items = Object.values(cart);
             if (items.length === 0) return;
-            let msg = 'Bonjour, je souhaite commander depuis le menu digital Miramar:%0A%0A';
+            const intro = currentLang === 'ar'
+                ? 'السلام، بغيت نطلب من المنيو ديال Miramar:%0A%0A'
+                : 'Bonjour, je souhaite commander depuis le menu digital Miramar:%0A%0A';
+            let msg = intro;
             items.forEach(i => {
-                msg += `- ${i.name} x${i.qty} (${i.price * i.qty} MAD)%0A`;
+                msg += `- ${i.name[currentLang]} x${i.qty} (${i.price * i.qty} MAD)%0A`;
             });
             const total = items.reduce((s, i) => s + i.price * i.qty, 0);
-            msg += `%0ATotal: ${total} MAD`;
+            const totalLabel = translations.totalLabel[currentLang];
+            msg += `%0A${totalLabel}: ${total} MAD`;
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
         }
         // ============ FIN PANIER ============
 
         // ============ HORAIRES ============
         const openingHours = [
-            { day: 'Lundi', hours: '08:00 - 23:00' },
-            { day: 'Mardi', hours: '08:00 - 23:00' },
-            { day: 'Mercredi', hours: '08:00 - 23:00' },
-            { day: 'Jeudi', hours: '08:00 - 23:00' },
-            { day: 'Vendredi', hours: '08:00 - 23:30' },
-            { day: 'Samedi', hours: '08:00 - 23:30' },
-            { day: 'Dimanche', hours: '09:00 - 22:00' }
+            { day: { fr: 'Lundi', ar: 'الاثنين' }, hours: '08:00 - 23:00' },
+            { day: { fr: 'Mardi', ar: 'الثلاثاء' }, hours: '08:00 - 23:00' },
+            { day: { fr: 'Mercredi', ar: 'الأربعاء' }, hours: '08:00 - 23:00' },
+            { day: { fr: 'Jeudi', ar: 'الخميس' }, hours: '08:00 - 23:00' },
+            { day: { fr: 'Vendredi', ar: 'الجمعة' }, hours: '08:00 - 23:30' },
+            { day: { fr: 'Samedi', ar: 'السبت' }, hours: '08:00 - 23:30' },
+            { day: { fr: 'Dimanche', ar: 'الأحد' }, hours: '09:00 - 22:00' }
         ];
 
         function renderHoursList() {
             const listEl = document.getElementById('hoursList');
             const jsDay = new Date().getDay(); // 0 = Dimanche
             const todayIndex = jsDay === 0 ? 6 : jsDay - 1; // aligner sur Lundi=0 ... Dimanche=6
+            const todayLabel = translations.today[currentLang];
 
             listEl.innerHTML = openingHours.map((d, i) => `
                 <div class="flex items-center justify-between py-2.5 ${i !== openingHours.length - 1 ? 'border-b border-gray-50' : ''} ${i === todayIndex ? 'bg-primary/5 -mx-2 px-2 rounded-lg' : ''}">
                     <span class="font-medium ${i === todayIndex ? 'text-primary font-bold' : 'text-gray-700'}">
-                        ${d.day} ${i === todayIndex ? '· Aujourd\'hui' : ''}
+                        ${d.day[currentLang]} ${i === todayIndex ? '· ' + todayLabel : ''}
                     </span>
                     <span class="${i === todayIndex ? 'text-primary font-bold' : 'text-gray-500'}">${d.hours}</span>
                 </div>
@@ -561,20 +646,23 @@
 
             if (isOpen && closingSoon) {
                 badge.classList.add('bg-orange-500', 'hover:bg-orange-600');
-                label.textContent = `Ferme à ${closeStr}`;
+                label.textContent = currentLang === 'ar' ? `يغلق الساعة ${closeStr}` : `Ferme à ${closeStr}`;
             } else if (isOpen) {
                 badge.classList.add('bg-green-500', 'hover:bg-green-600');
-                label.textContent = 'Ouvert';
+                label.textContent = translations.openLabel[currentLang];
             } else {
                 badge.classList.add('bg-red-500', 'hover:bg-red-600');
-                label.textContent = `Ferme · Ouvre à ${openStr}`;
+                label.textContent = currentLang === 'ar' ? `مغلق · يفتح الساعة ${openStr}` : `Ferme · Ouvre à ${openStr}`;
             }
         }
         // ============ FIN STATUT OUVERT/FERMÉ ============
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Applique la langue sauvegardée (ou français par défaut) : traduit les textes,
+            // met à jour dir="rtl"/"ltr", et rafraîchit le badge de statut + le panier
+            applyLanguage(currentLang);
+
             // Calcule le statut Ouvert/Fermé dès le chargement, puis le rafraîchit chaque minute
-            updateStatusBadge();
             setInterval(updateStatusBadge, 60 * 1000);
 
             const sections = document.querySelectorAll('.menu-section');
