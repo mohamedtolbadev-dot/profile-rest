@@ -228,9 +228,9 @@ const BANK_TRANSFER_INFO = {
 };
 
 const INITIAL_CLEANERS = [
-    { id: "c1", name: "سارة المراكشية", phone: "+212661234567", city: "مراكش", area: "Targa", rating: 4.9, reviewCount: 128, experienceYears: 5, completedJobs: 87, hourlyRate: 55, monthlyFullRate: 2800, monthlyPartRate: 1600, verified: true, photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400", bio: "متخصصة في تنظيف الفيلات الكبيرة والمجمعات السكنية الفاخرة بمدينة مراكش، وتقدم أيضاً خدمة تحضير الوجبات اليومية. خبرة أكثر من 5 سنوات في الاهتمام بالديكورات الحساسة والسجاد الفاخر.", roles: ["cleaning", "cooking"], services: ["تنظيف عادي", "تنظيف عميق", "تجهيز الفيلا للضيوف", "تحضير وجبات يومية"], workTypes: ["hourly", "weekly", "monthly_part"], workingDays: ["السبت", "الأحد", "الإثنين", "الثلاثاء", "الاربعاء", "الخميس"], matchScore: 96 },
+    { id: "c1", name: "سارة المراكشية", phone: "+212661234567", city: "مراكش", area: "Targa", rating: 4.9, reviewCount: 128, experienceYears: 5, completedJobs: 87, hourlyRate: 55, monthlyFullRate: 2800, monthlyPartRate: 1600, liveInRate: 4200, verified: true, photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400", bio: "متخصصة في تنظيف الفيلات الكبيرة والمجمعات السكنية الفاخرة بمدينة مراكش، وتقدم أيضاً خدمة تحضير الوجبات اليومية. خبرة أكثر من 5 سنوات في الاهتمام بالديكورات الحساسة والسجاد الفاخر.", roles: ["cleaning", "cooking"], services: ["تنظيف عادي", "تنظيف عميق", "تجهيز الفيلا للضيوف", "تحضير وجبات يومية"], workTypes: ["hourly", "weekly", "monthly_part", "live_in"], workingDays: ["السبت", "الأحد", "الإثنين", "الثلاثاء", "الاربعاء", "الخميس"], matchScore: 96 },
     { id: "c2", name: "فاطمة الزهراء", phone: "+212662987654", city: "مراكش", area: "Gueliz", rating: 4.8, reviewCount: 94, experienceYears: 4, completedJobs: 62, hourlyRate: 50, monthlyFullRate: 2500, monthlyPartRate: 1400, verified: true, photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400", bio: "دقيقة جداً في العمل وتجيد ترتيب الأثاث والاهتمام بالمطابخ الكبيرة وتجهيز الفيلات قبل وبعد المناسبات والضيوف.", roles: ["cleaning"], services: ["تنظيف عميق", "تجهيز الفيلا للضيوف", "تنظيف بعد المغادرة"], workTypes: ["hourly", "weekly"], workingDays: ["السبت", "الإثنين", "الأربعاء", "الجمعة"], matchScore: 91 },
-    { id: "c3", name: "نعيمة البيضاوية", phone: "+212663112233", city: "الدار البيضاء", area: "Ain Diab", rating: 5.0, reviewCount: 156, experienceYears: 7, completedJobs: 110, hourlyRate: 70, monthlyFullRate: 3500, monthlyPartRate: 2000, verified: true, photo: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&q=80&w=400", bio: "خبرة طويلة مع العائلات وأصحاب الفيلات بالدار البيضاء وبوسكورة، تجمع بين إتقان التنظيف والاهتمام برعاية الأطفال. أضمن الأمانة والسرعة والجودة العالية.", roles: ["cleaning", "childcare"], services: ["تنظيف عادي", "تنظيف عميق", "تنظيف بعد المغادرة", "رعاية ومتابعة الأطفال"], workTypes: ["hourly", "weekly", "monthly_full", "monthly_part"], workingDays: ["السبت", "الأحد", "الثلاثاء", "الخميس"], matchScore: 94 },
+    { id: "c3", name: "نعيمة البيضاوية", phone: "+212663112233", city: "الدار البيضاء", area: "Ain Diab", rating: 5.0, reviewCount: 156, experienceYears: 7, completedJobs: 110, hourlyRate: 70, monthlyFullRate: 3500, monthlyPartRate: 2000, liveInRate: 5200, verified: true, photo: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&q=80&w=400", bio: "خبرة طويلة مع العائلات وأصحاب الفيلات بالدار البيضاء وبوسكورة، تجمع بين إتقان التنظيف والاهتمام برعاية الأطفال. أضمن الأمانة والسرعة والجودة العالية.", roles: ["cleaning", "childcare"], services: ["تنظيف عادي", "تنظيف عميق", "تنظيف بعد المغادرة", "رعاية ومتابعة الأطفال"], workTypes: ["hourly", "weekly", "monthly_full", "monthly_part", "live_in"], workingDays: ["السبت", "الأحد", "الثلاثاء", "الخميس"], matchScore: 94 },
     { id: "c4", name: "حليمة الرباطية", phone: "+212664556677", city: "الرباط", area: "Hay Riad", rating: 4.7, reviewCount: 42, experienceYears: 3, completedJobs: 35, hourlyRate: 45, monthlyFullRate: 2200, monthlyPartRate: 1300, verified: true, photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400", bio: "مربية أطفال متخصصة، حاصلة على تجربة طويلة في مرافقة الأطفال ومتابعة واجباتهم بفيلات الرباط والسويسي. صبورة وملتزمة تماماً بالمواعيد.", roles: ["childcare"], services: ["رعاية ومتابعة الأطفال", "مرافقة إلى المدرسة"], workTypes: ["hourly", "weekly", "monthly_part"], workingDays: ["الإثنين", "الثلاثاء", "الاربعاء", "الخميس", "السبت"], matchScore: 88 },
     { id: "c5", name: "خديجة الطنجاوية", phone: "+212665778899", city: "طنجة", area: "Malabata", rating: 4.6, reviewCount: 28, experienceYears: 2, completedJobs: 22, hourlyRate: 40, monthlyFullRate: 2000, monthlyPartRate: 1200, verified: true, photo: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&q=80&w=400", bio: "مدبرة منزل شابة ومجتهدة، تجمع بين التنظيف والطبخ ورعاية الأطفال بفيلات وشقق طنجة الفاخرة. أسعار مناسبة وجودة عالية فكل الأدوار.", roles: ["cleaning", "cooking", "childcare"], services: ["تنظيف عادي", "تنظيف عميق", "تحضير وجبات يومية", "رعاية ومتابعة الأطفال"], workTypes: ["hourly", "weekly", "monthly_full"], workingDays: ["السبت", "الأحد", "الإثنين", "الثلاثاء", "الاربعاء"], matchScore: 85 }
 ];
@@ -650,9 +650,11 @@ function renderRoleBadgesHtml(cleaner) {
 
 function renderCleanerCardFeaturedHtml(cleaner) {
     const isFav = favoritesStore.includes(cleaner.id);
-    const primaryWorkType = cleaner.workTypes.includes('monthly_full') || cleaner.workTypes.includes('monthly_part')
+    const primaryWorkType = cleaner.workTypes.includes('live_in')
+        ? '<span class="tag bg-brand-50 text-brand-700 border border-brand-100"><i class="fa-solid fa-bed ml-1"></i>متاحة مع المبيت</span>'
+        : (cleaner.workTypes.includes('monthly_full') || cleaner.workTypes.includes('monthly_part')
         ? '<span class="tag bg-gray-100 text-gray-700 border border-gray-200">متاحة شهرياً</span>'
-        : (cleaner.workTypes.includes('weekly') ? '<span class="tag bg-gray-100 text-gray-700 border border-gray-200">متاحة أسبوعياً</span>' : '');
+        : (cleaner.workTypes.includes('weekly') ? '<span class="tag bg-gray-100 text-gray-700 border border-gray-200">متاحة أسبوعياً</span>' : ''));
     return `
         <div class="card-hover bg-white border border-gray-200 rounded-2xl p-5 shadow-sm transition relative">
             <button onclick="toggleFavoriteCleaner('${cleaner.id}')" class="absolute top-4 left-4 w-8 h-8 rounded-full bg-gray-50 hover:bg-gray-100 flex items-center justify-center text-gray-400 hover:text-brand-600 transition">
@@ -758,6 +760,7 @@ function renderCleanersListView() {
                         <option value="weekly">بالأسبوع</option>
                         <option value="monthly_full">شهري - دوام كامل</option>
                         <option value="monthly_part">شهري - دوام جزئي</option>
+                        <option value="live_in">مع المبيت</option>
                     </select>
                 </div>
                 <div>
@@ -784,6 +787,7 @@ function renderCleanerCardHtml(cleaner) {
         if (wt === 'weekly') return '<span class="tag bg-brand-50 text-brand-700 border border-brand-100">أسبوعي</span>';
         if (wt === 'monthly_full') return '<span class="tag bg-gray-50 text-gray-700 border border-gray-200">شهري كامل</span>';
         if (wt === 'monthly_part') return '<span class="tag bg-gray-50 text-gray-700 border border-gray-200">شهري جزئي</span>';
+        if (wt === 'live_in') return '<span class="tag bg-brand-50 text-brand-700 border border-brand-100"><i class="fa-solid fa-bed ml-1"></i>متاحة مع المبيت</span>';
         return '';
     }).join(' ');
     return `
@@ -835,6 +839,7 @@ function renderCleanerProfileView(cleanerId) {
         if (wt === 'weekly') return `<option value="weekly">بالأسبوع (منتظم)</option>`;
         if (wt === 'monthly_full') return `<option value="monthly_full">شهري - دوام كامل (8 ساعات/يوم)</option>`;
         if (wt === 'monthly_part') return `<option value="monthly_part">شهري - دوام جزئي (4 ساعات/يوم)</option>`;
+        if (wt === 'live_in') return `<option value="live_in">مع المبيت (إقامة بالفيلا)</option>`;
         return '';
     }).join('');
     return `
@@ -873,6 +878,7 @@ function renderCleanerProfileView(cleanerId) {
                         ${cleaner.workTypes.includes('weekly') ? `<div class="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl border border-gray-100 text-xs font-semibold text-gray-800"><i class="fa-solid fa-calendar-week text-brand-500 text-sm"></i><div><span class="block">بالأسبوع</span><span class="text-gray-400 font-normal">1-3 مرات أسبوعياً</span></div></div>` : ''}
                         ${cleaner.workTypes.includes('monthly_full') ? `<div class="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl border border-gray-200 text-xs font-semibold text-gray-800"><i class="fa-solid fa-calendar text-gray-700 text-sm"></i><div><span class="block">شهري - دوام كامل</span><span class="text-gray-400 font-normal">8 ساعات/يوم، 5-6 أيام</span></div></div>` : ''}
                         ${cleaner.workTypes.includes('monthly_part') ? `<div class="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl border border-gray-200 text-xs font-semibold text-gray-800"><i class="fa-solid fa-calendar-half text-gray-700 text-sm"></i><div><span class="block">شهري - دوام جزئي</span><span class="text-gray-400 font-normal">4 ساعات/يوم، 5-6 أيام</span></div></div>` : ''}
+                        ${cleaner.workTypes.includes('live_in') ? `<div class="flex items-center gap-3 p-3 bg-brand-50 rounded-2xl border border-brand-100 text-xs font-semibold text-brand-900"><i class="fa-solid fa-bed text-brand-600 text-sm"></i><div><span class="block">متاحة مع المبيت</span><span class="text-brand-700 font-normal">إقامة بالفيلا باتفاق وتأكيد مسبق</span></div></div>` : ''}
                     </div>
                 </div>
                 <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
@@ -950,6 +956,13 @@ function renderCleanerProfileView(cleanerId) {
                             <div><label class="block text-xs font-semibold text-gray-700 mb-1.5">عدد أيام العمل في الأسبوع</label><select id="book-monthly-days" onchange="calculateBookingTotal('${cleaner.id}')" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-xs font-medium text-gray-800"><option value="5">5 أيام</option><option value="6">6 أيام</option></select></div>
                             <div class="bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs text-gray-800"><i class="fa-solid fa-circle-info ml-1 text-brand-600"></i>العمل الشهري يشمل التزاماً من الطرفين لمدة شهر قابلة للتجديد. الدفع يكون شهرياً.</div>
                         </div>
+                        <div id="live-in-options" class="hidden space-y-3">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div><label class="block text-xs font-semibold text-gray-700 mb-1.5">تاريخ بداية المبيت</label><input type="date" id="book-live-in-start" value="2026-09-01" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-xs font-medium text-gray-800"></div>
+                                <div><label class="block text-xs font-semibold text-gray-700 mb-1.5">مدة الترتيب</label><select id="book-live-in-duration" onchange="calculateBookingTotal('${cleaner.id}')" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-xs font-medium text-gray-800"><option value="7">أسبوع تجريبي</option><option value="14">أسبوعان</option><option value="30" selected>شهر</option></select></div>
+                            </div>
+                            <div class="bg-brand-50 p-3 rounded-xl border border-brand-100 text-xs text-brand-900 leading-relaxed"><i class="fa-solid fa-bed ml-1 text-brand-600"></i>هذا الخيار يشمل المبيت في الفيلا، وليس خدمة نهارية. الإقامة والمهام والتفاصيل تُتفق عليها وتُؤكّد مع العاملة والإدارة قبل بدء الخدمة.</div>
+                        </div>
                         <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 space-y-2">
                             <div class="flex justify-between text-xs text-gray-600"><span id="price-label">تكلفة ساعات التنظيف:</span><span id="price-subtotal">220 DH</span></div>
                             <div class="flex justify-between text-xs text-gray-600"><span>رسوم حجز المنصة:</span><span class="text-brand-600 font-bold">مجاناً</span></div>
@@ -973,6 +986,7 @@ function renderOwnerDashboardView() {
     const myBookings = bookingsStore;
     const upcoming = myBookings.filter(b => b.status === 'مؤكد' || b.status === 'طلب جديد');
     const monthlyBookings = myBookings.filter(b => b.workType === 'monthly_full' || b.workType === 'monthly_part');
+    const liveInBookings = myBookings.filter(b => b.workType === 'live_in');
     return `
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
@@ -988,6 +1002,10 @@ function renderOwnerDashboardView() {
                 <button onclick="navigateTo('cleaners')" class="btn-primary font-semibold px-4 py-2.5 rounded-xl text-xs transition flex items-center gap-2 shadow-sm"><i class="fa-solid fa-plus"></i><span>حجز جديد</span></button>
             </div>
         </div>
+        ${liveInBookings.length > 0 ? `<div class="bg-brand-50 border border-brand-100 rounded-2xl p-6 shadow-sm mb-8">
+            <h3 class="font-bold text-brand-900 text-base mb-4 flex items-center gap-2"><i class="fa-solid fa-bed text-brand-600"></i><span>ترتيبات المبيت</span></h3>
+            ${liveInBookings.map(b => `<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white border border-brand-100 rounded-xl p-4"><div><span class="font-bold text-sm text-gray-900 block">${b.cleanerName}</span><span class="text-xs text-gray-700">${b.frequency} - البداية: ${b.date} - ${b.villaName}</span><span class="text-xs text-brand-700 font-semibold block mt-1">تقدير: ${b.totalPrice.toLocaleString()} DH</span></div><span class="tag bg-brand-50 text-brand-700 border border-brand-100">${b.status}</span></div>`).join('')}
+        </div>` : ''}
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm"><span class="text-xs font-semibold text-gray-500">الحجوزات القادمة</span><div class="text-2xl font-bold text-gray-900 mt-2">${upcoming.length}</div></div>
             <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm"><span class="text-xs font-semibold text-gray-500">الخدمات المكتملة</span><div class="text-2xl font-bold text-brand-600 mt-2">17</div></div>
@@ -1048,7 +1066,7 @@ function renderOwnerDashboardView() {
                                 <td class="p-3 font-bold text-gray-900">${b.id}</td>
                                 <td class="p-3 font-medium">${b.cleanerName}</td>
                                 <td class="p-3">${b.villaName} - ${b.serviceType || 'خدمة شهرية'}</td>
-                                <td class="p-3"><span class="tag ${b.workType && b.workType.startsWith('monthly') ? 'bg-gray-900 text-white border-0' : 'bg-brand-50 text-brand-700 border border-brand-100'}">${b.workType === 'monthly_full' ? 'شهري كامل' : b.workType === 'monthly_part' ? 'شهري جزئي' : b.workType === 'weekly' ? 'أسبوعي' : 'حصة'}</span></td>
+                                <td class="p-3"><span class="tag ${b.workType && b.workType.startsWith('monthly') ? 'bg-gray-900 text-white border-0' : 'bg-brand-50 text-brand-700 border border-brand-100'}">${b.workType === 'monthly_full' ? 'شهري كامل' : b.workType === 'monthly_part' ? 'شهري جزئي' : b.workType === 'live_in' ? 'مع المبيت' : b.workType === 'weekly' ? 'أسبوعي' : 'حصة'}</span></td>
                                 <td class="p-3 font-bold text-brand-600">${b.totalPrice.toLocaleString()} DH</td>
                                 <td class="p-3"><span class="tag ${b.status === 'مكتمل' ? 'bg-gray-100 text-gray-700 border border-gray-200' : 'bg-brand-50 text-brand-700 border border-brand-100'}">${b.status}</span></td>
                                 <td class="p-3">${b.contactUnlocked ? '<span class="text-brand-600 font-bold">مفتوح ✓</span>' : (b.paymentPending ? '<span class="text-gray-400">قيد المراجعة</span>' : '<span class="text-gray-300">مقفل</span>')}</td>
@@ -1150,6 +1168,7 @@ function renderCleanerRegisterView() {
                         <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-100 transition"><input type="checkbox" id="reg-work-weekly" checked class="w-4 h-4 text-brand-600 rounded accent-brand-600"><div class="text-xs"><span class="font-bold block">بالأسبوع</span><span class="text-gray-400">1-3 مرات أسبوعياً</span></div></label>
                         <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-100 transition"><input type="checkbox" id="reg-work-monthly-full" class="w-4 h-4 text-brand-600 rounded accent-brand-600"><div class="text-xs"><span class="font-bold block">شهري - دوام كامل</span><span class="text-gray-400">8 ساعات/يوم</span></div></label>
                         <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-100 transition"><input type="checkbox" id="reg-work-monthly-part" class="w-4 h-4 text-brand-600 rounded accent-brand-600"><div class="text-xs"><span class="font-bold block">شهري - دوام جزئي</span><span class="text-gray-400">4 ساعات/يوم</span></div></label>
+                        <label class="flex items-center gap-3 p-3 bg-brand-50 rounded-xl border border-brand-100 cursor-pointer hover:bg-brand-100 transition"><input type="checkbox" id="reg-work-live-in" class="w-4 h-4 text-brand-600 rounded accent-brand-600"><i class="fa-solid fa-bed text-brand-600"></i><div class="text-xs"><span class="font-bold block">متاحة مع المبيت</span><span class="text-brand-700">إقامة بالفيلا باتفاق مسبق</span></div></label>
                     </div>
                 </div>
                 <div class="space-y-4">
@@ -1476,21 +1495,26 @@ function updateBookingFormForWorkType(cleanerId) {
     const workType = document.getElementById('book-worktype').value;
     const hourlySection = document.getElementById('hourly-options');
     const monthlySection = document.getElementById('monthly-options');
+    const liveInSection = document.getElementById('live-in-options');
     const priceDisplay = document.getElementById('profile-price-display');
     const priceUnit = document.getElementById('profile-price-unit');
     const priceNote = document.getElementById('profile-price-note');
     const submitText = document.getElementById('submit-btn-text');
     const cleaner = cleanersStore.find(c => c.id === cleanerId);
     if (workType === 'monthly_full') {
-        hourlySection.classList.add('hidden'); monthlySection.classList.remove('hidden');
+        hourlySection.classList.add('hidden'); monthlySection.classList.remove('hidden'); liveInSection.classList.add('hidden');
         priceDisplay.innerText = cleaner.monthlyFullRate.toLocaleString(); priceUnit.innerText = 'DH / شهر';
         priceNote.innerText = 'دوام كامل: 8 ساعات/يوم، 5-6 أيام/أسبوع'; submitText.innerText = 'تأكيد طلب العمل الشهري';
     } else if (workType === 'monthly_part') {
-        hourlySection.classList.add('hidden'); monthlySection.classList.remove('hidden');
+        hourlySection.classList.add('hidden'); monthlySection.classList.remove('hidden'); liveInSection.classList.add('hidden');
         priceDisplay.innerText = cleaner.monthlyPartRate.toLocaleString(); priceUnit.innerText = 'DH / شهر';
         priceNote.innerText = 'دوام جزئي: 4 ساعات/يوم، 5-6 أيام/أسبوع'; submitText.innerText = 'تأكيد طلب العمل الشهري';
+    } else if (workType === 'live_in') {
+        hourlySection.classList.add('hidden'); monthlySection.classList.add('hidden'); liveInSection.classList.remove('hidden');
+        priceDisplay.innerText = (cleaner.liveInRate || cleaner.monthlyFullRate).toLocaleString(); priceUnit.innerText = 'DH / شهر';
+        priceNote.innerText = 'تقدير تجريبي للمبيت، ويُثبت بعد الاتفاق على الإقامة والمهام'; submitText.innerText = 'إرسال طلب المبيت';
     } else {
-        hourlySection.classList.remove('hidden'); monthlySection.classList.add('hidden');
+        hourlySection.classList.remove('hidden'); monthlySection.classList.add('hidden'); liveInSection.classList.add('hidden');
         priceDisplay.innerText = cleaner.hourlyRate; priceUnit.innerText = 'DH / ساعة';
         priceNote.innerText = 'الأسعار تشمل ضريبة القيمة المضافة'; submitText.innerText = 'تأكيد حجز الخدمة';
     }
@@ -1518,6 +1542,14 @@ function calculateBookingTotal(cleanerId) {
         if (totalLabel) totalLabel.innerText = 'الإجمالي الشهري:';
         if (subtotalEl) subtotalEl.innerText = adjusted.toLocaleString() + ' DH';
         if (totalEl) totalEl.innerText = adjusted.toLocaleString() + ' DH';
+    } else if (workType === 'live_in') {
+        const duration = parseInt(document.getElementById('book-live-in-duration')?.value || '30');
+        const monthlyRate = cleaner.liveInRate || cleaner.monthlyFullRate;
+        const total = Math.round(monthlyRate * duration / 30);
+        if (priceLabel) priceLabel.innerText = 'تقدير ترتيب المبيت:';
+        if (totalLabel) totalLabel.innerText = 'التقدير للفترة المختارة:';
+        if (subtotalEl) subtotalEl.innerText = total.toLocaleString() + ' DH';
+        if (totalEl) totalEl.innerText = total.toLocaleString() + ' DH';
     } else {
         const hours = parseInt(document.getElementById('book-duration').value || '4');
         const service = document.getElementById('book-service').value;
@@ -1538,7 +1570,7 @@ function handleBookingSubmission(e, cleanerId) {
     const villaName = document.getElementById('book-villa').value;
     const errorBox = document.getElementById('booking-form-error');
     const requiredFields = [document.getElementById('book-villa')];
-    requiredFields.push(workType === 'monthly_full' || workType === 'monthly_part' ? document.getElementById('book-monthly-start') : document.getElementById('book-date'));
+    requiredFields.push(workType === 'monthly_full' || workType === 'monthly_part' ? document.getElementById('book-monthly-start') : workType === 'live_in' ? document.getElementById('book-live-in-start') : document.getElementById('book-date'));
     const missingField = requiredFields.find(field => !field || !field.value);
     document.querySelectorAll('#booking-form .is-invalid').forEach(field => field.classList.remove('is-invalid'));
     if (missingField) {
@@ -1564,6 +1596,12 @@ function handleBookingSubmission(e, cleanerId) {
         newBooking.durationHours = workType === 'monthly_full' ? 8 : 4;
         newBooking.frequency = days + ' أيام/أسبوع — ' + (workType === 'monthly_full' ? 'دوام كامل' : 'دوام جزئي');
         newBooking.serviceType = 'خدمة شهرية';
+    } else if (workType === 'live_in') {
+        const startDate = document.getElementById('book-live-in-start').value;
+        const duration = parseInt(document.getElementById('book-live-in-duration').value);
+        newBooking.date = startDate; newBooking.time = 'مبيت'; newBooking.durationHours = null;
+        newBooking.frequency = duration === 30 ? 'إقامة شهرية مع المبيت' : `إقامة مع المبيت لمدة ${duration} أيام`;
+        newBooking.serviceType = 'خدمة مع المبيت'; newBooking.liveInDurationDays = duration;
     } else {
         const serviceType = document.getElementById('book-service').value;
         const date = document.getElementById('book-date').value;
@@ -1634,6 +1672,7 @@ function handleCleanerRegistrationSubmit(e) {
     if (document.getElementById('reg-work-weekly').checked) workTypes.push('weekly');
     if (document.getElementById('reg-work-monthly-full').checked) workTypes.push('monthly_full');
     if (document.getElementById('reg-work-monthly-part').checked) workTypes.push('monthly_part');
+    if (document.getElementById('reg-work-live-in').checked) workTypes.push('live_in');
     const roles = [];
     if (document.getElementById('reg-role-cleaning').checked) roles.push('cleaning');
     if (document.getElementById('reg-role-cooking').checked) roles.push('cooking');
@@ -1654,6 +1693,7 @@ function handleCleanerRegistrationSubmit(e) {
         hourlyRate: parseInt(document.getElementById('reg-rate-hourly').value),
         monthlyFullRate: parseInt(document.getElementById('reg-rate-monthly-full').value),
         monthlyPartRate: parseInt(document.getElementById('reg-rate-monthly-part').value),
+        liveInRate: Math.round((parseInt(document.getElementById('reg-rate-monthly-full').value) || 2500) * 1.25),
         verified: true,
         photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400",
         bio: document.getElementById('reg-bio').value || "عاملة منزل جديدة وموثوقة.",
