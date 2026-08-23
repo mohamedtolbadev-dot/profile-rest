@@ -778,23 +778,24 @@
 
         function renderHomeView() {
             return `
-                <section class="border-b border-slate-100 bg-white">
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+                <section class="relative border-b border-slate-100 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1600" alt="" class="absolute inset-0 w-full h-full object-cover brightness-[0.35]">
+                    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
                         <div class="flex flex-col items-center text-center gap-6 max-w-3xl mx-auto mb-10">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-brand-50 border border-brand-200 text-brand-700 rounded-full text-xs font-semibold">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/10 border border-white/30 text-white rounded-full text-xs font-semibold">
                                 <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
                                 <span>الخدمة الأولى المخصصة للفيلات بالمغرب</span>
                             </div>
-                            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight">
-                                عاملة نظافة موثوقة لفيلاك، <span class="text-brand-600 underline decoration-brand-400 underline-offset-8">بكل سهولة</span>
+                            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+                                عاملة نظافة موثوقة لفيلاك، <span class="text-brand-400 underline decoration-brand-400 underline-offset-8">بكل سهولة</span>
                             </h1>
-                            <p class="text-slate-600 font-medium text-base sm:text-lg leading-relaxed max-w-2xl">
+                            <p class="text-white/90 font-medium text-base sm:text-lg leading-relaxed max-w-2xl">
                                 اعثر على عاملة مناسبة لفيلاك، تحقق من خبرتها وتقييماتها، واحجز خدمة التنظيف بالساعة، بالأسبوع أو بالشهر مع إمكانية الاحتفاظ بنفس العاملة.
                             </p>
-                            <div class="flex flex-wrap items-center justify-center gap-3 text-slate-700 text-sm font-semibold">
-                                <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full"><i class="fa-solid fa-circle-check text-brand-600"></i><span>ملفات موثوقة 100%</span></div>
-                                <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full"><i class="fa-solid fa-star text-brand-600"></i><span>تقييمات حقيقية</span></div>
-                                <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full"><i class="fa-solid fa-building text-brand-600"></i><span>خدمات مخصصة للفيلات</span></div>
+                            <div class="flex flex-wrap items-center justify-center gap-3 text-white text-sm font-semibold">
+                                <div class="flex items-center gap-2 bg-white/10 border border-white/20 px-3 py-1.5 rounded-full"><i class="fa-solid fa-circle-check text-brand-400"></i><span>ملفات موثوقة 100%</span></div>
+                                <div class="flex items-center gap-2 bg-white/10 border border-white/20 px-3 py-1.5 rounded-full"><i class="fa-solid fa-star text-brand-400"></i><span>تقييمات حقيقية</span></div>
+                                <div class="flex items-center gap-2 bg-white/10 border border-white/20 px-3 py-1.5 rounded-full"><i class="fa-solid fa-building text-brand-400"></i><span>خدمات مخصصة للفيلات</span></div>
                             </div>
                         </div>
 
@@ -859,13 +860,13 @@
                     </div>
                 </section>
 
-                <section class="py-12 bg-slate-900 text-white">
+                <section class="py-12 border-t border-slate-200" style="background-color:#FF385C;">
                     <div class="max-w-5xl mx-auto px-4 text-center space-y-3">
-                        <div class="w-12 h-12 bg-brand-600 text-white rounded-2xl flex items-center justify-center mx-auto text-xl mb-2">
+                        <div class="w-12 h-12 bg-white/20 text-white rounded-2xl flex items-center justify-center mx-auto text-xl mb-2">
                             <i class="fa-solid fa-shield-heart"></i>
                         </div>
-                        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">لأن شخصاً يدخل منزلك، الثقة ليست خياراً.</h2>
-                        <p class="text-slate-300 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
+                        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">لأن شخصاً يدخل منزلك، الثقة ليست خياراً.</h2>
+                        <p class="text-white/85 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
                             نظمنا لك عملية البحث والحجز والمتابعة حتى تختار الخدمة المناسبة لفيلاك وأنت مطمئن. جميع العاملات يخضعن لتوثيق الهوية والتحقق من الخبرة.
                         </p>
                     </div>
@@ -893,13 +894,13 @@
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div class="bg-slate-900 rounded-2xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8">
                             <div class="space-y-4 max-w-2xl">
-                                <span class="bg-brand-500 text-brand-950 text-xs font-semibold px-3 py-1 rounded-full border border-brand-600">خدمة اشتراك منتظمة</span>
+                                <span class="bg-white/10 text-white text-xs font-semibold px-3 py-1 rounded-full border border-white/20">خدمة اشتراك منتظمة</span>
                                 <h3 class="text-2xl sm:text-3xl font-bold leading-snug">فيلاك تستحق خدمة تليق بها</h3>
-                                <p class="text-slate-300 text-sm leading-relaxed">
+                                <p class="text-white/85 text-sm leading-relaxed">
                                     اختر عاملة مناسبة، حدد موعدك، واستمر مع نفس العاملة كل أسبوع أو كل شهر. نظام مرن يناسب احتياجات الفيلا سواءً كنت تسكن فيها أو تستأجرها.
                                 </p>
                             </div>
-                            <button onclick="navigateTo('cleaners')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3.5 rounded-xl transition shadow-sm text-sm whitespace-nowrap">
+                            <button onclick="navigateTo('cleaners')" class="bg-white hover:bg-slate-100 text-brand-600 font-bold px-6 py-3.5 rounded-xl transition shadow-sm text-sm whitespace-nowrap">
                                 ابدأ البحث الآن
                             </button>
                         </div>
@@ -915,7 +916,7 @@
                                 <p class="text-slate-600 text-sm leading-relaxed">
                                     أنشئي ملفك الشخصي، حددي مناطق عملك في مدينتك وأوقات توفرك، واستقبلي طلبات حجز مباشرة من أصحاب الفيلات. اختاري العمل بالساعة، بالأسبوع أو بالشهر.
                                 </p>
-                                <button onclick="navigateTo('cleaner-register')" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-6 py-3 rounded-2xl transition text-sm inline-flex items-center gap-2">
+                                <button onclick="navigateTo('cleaner-register')" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3 rounded-2xl transition text-sm inline-flex items-center gap-2">
                                     <i class="fa-solid fa-id-card"></i>
                                     <span>سجلي كعاملة نظافة الآن</span>
                                 </button>
