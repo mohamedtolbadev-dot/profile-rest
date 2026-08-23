@@ -778,50 +778,27 @@
 
         function renderHomeView() {
             return `
-                <section class="relative overflow-hidden border-b border-slate-100">
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
-                        <div class="relative rounded-2xl overflow-hidden h-56 sm:min-h-[440px] flex items-center justify-center sm:p-10">
-                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1600" alt="Villa Interior Morocco" class="absolute inset-0 w-full h-full object-cover brightness-[0.75] sm:brightness-[0.45]">
-                            <!-- Overlay content: tablet/desktop only -->
-                            <div class="hidden sm:flex relative flex-col items-center text-center gap-6 px-6 py-10 sm:py-12 max-w-2xl w-full [text-shadow:0_2px_16px_rgb(0_0_0_/_0.9),0_1px_3px_rgb(0_0_0_/_0.95)]">
-                                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-slate-950 border border-brand-400 text-brand-300 rounded-full text-xs font-semibold">
-                                    <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
-                                    <span>الخدمة الأولى المخصصة للفيلات بالمغرب</span>
-                                </div>
-                                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
-                                    عاملة نظافة موثوقة لفيلاك، <span class="text-brand-400 underline decoration-brand-400 underline-offset-8">بكل سهولة</span>
-                                </h1>
-                                <p class="text-white font-medium text-base sm:text-lg leading-relaxed max-w-2xl">
-                                    اعثر على عاملة مناسبة لفيلاك، تحقق من خبرتها وتقييماتها، واحجز خدمة التنظيف بالساعة، بالأسبوع أو بالشهر مع إمكانية الاحتفاظ بنفس العاملة.
-                                </p>
-                                <div class="flex flex-wrap items-center justify-center gap-3 text-white text-sm font-semibold">
-                                    <div class="flex items-center gap-2 bg-slate-950 px-3 py-1.5 rounded-full"><i class="fa-solid fa-circle-check text-brand-400"></i><span>ملفات موثوقة 100%</span></div>
-                                    <div class="flex items-center gap-2 bg-slate-950 px-3 py-1.5 rounded-full"><i class="fa-solid fa-star text-brand-400"></i><span>تقييمات حقيقية</span></div>
-                                    <div class="flex items-center gap-2 bg-slate-950 px-3 py-1.5 rounded-full"><i class="fa-solid fa-building text-brand-400"></i><span>خدمات مخصصة للفيلات</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Mobile-only content card: sits below the photo instead of overlaid on it -->
-                        <div class="sm:hidden -mt-8 relative mx-2 bg-slate-950 rounded-2xl p-5 space-y-4 text-center shadow-md">
-                            <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-brand-400 text-brand-700 rounded-full text-[11px] font-semibold mx-auto">
+                <section class="border-b border-slate-100 bg-white">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+                        <div class="flex flex-col items-center text-center gap-6 max-w-3xl mx-auto mb-10">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-brand-50 border border-brand-200 text-brand-700 rounded-full text-xs font-semibold">
                                 <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
                                 <span>الخدمة الأولى المخصصة للفيلات بالمغرب</span>
                             </div>
-                            <h1 class="text-2xl font-extrabold text-white leading-tight">
-                                عاملة نظافة موثوقة لفيلاك، <span class="text-brand-400 underline decoration-brand-400 underline-offset-4">بكل سهولة</span>
+                            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight">
+                                عاملة نظافة موثوقة لفيلاك، <span class="text-brand-600 underline decoration-brand-400 underline-offset-8">بكل سهولة</span>
                             </h1>
-                            <p class="text-slate-300 text-sm leading-relaxed">
-                                اعثر على عاملة مناسبة لفيلاك، تحقق من خبرتها وتقييماتها، واحجز خدمة التنظيف بالساعة، بالأسبوع أو بالشهر.
+                            <p class="text-slate-600 font-medium text-base sm:text-lg leading-relaxed max-w-2xl">
+                                اعثر على عاملة مناسبة لفيلاك، تحقق من خبرتها وتقييماتها، واحجز خدمة التنظيف بالساعة، بالأسبوع أو بالشهر مع إمكانية الاحتفاظ بنفس العاملة.
                             </p>
-                            <div class="grid grid-cols-1 gap-2 text-slate-800 text-xs font-semibold pt-1">
-                                <div class="flex items-center gap-2 bg-white px-3 py-2.5 rounded-xl"><i class="fa-solid fa-circle-check text-brand-600"></i><span>ملفات موثوقة 100%</span></div>
-                                <div class="flex items-center gap-2 bg-white px-3 py-2.5 rounded-xl"><i class="fa-solid fa-star text-brand-600"></i><span>تقييمات حقيقية</span></div>
-                                <div class="flex items-center gap-2 bg-white px-3 py-2.5 rounded-xl"><i class="fa-solid fa-building text-brand-600"></i><span>خدمات مخصصة للفيلات</span></div>
+                            <div class="flex flex-wrap items-center justify-center gap-3 text-slate-700 text-sm font-semibold">
+                                <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full"><i class="fa-solid fa-circle-check text-brand-600"></i><span>ملفات موثوقة 100%</span></div>
+                                <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full"><i class="fa-solid fa-star text-brand-600"></i><span>تقييمات حقيقية</span></div>
+                                <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full"><i class="fa-solid fa-building text-brand-600"></i><span>خدمات مخصصة للفيلات</span></div>
                             </div>
                         </div>
 
-                        <div class="max-w-2xl mx-auto mt-4 sm:-mt-10 relative px-4 sm:px-0">
+                        <div class="max-w-2xl mx-auto px-4 sm:px-0">
                             <div class="bg-white border border-slate-200 shadow-md rounded-2xl p-5 sm:p-6">
                                 <h3 class="text-base font-bold text-slate-900 mb-4 flex items-center gap-2 justify-center">
                                     <i class="fa-solid fa-sliders text-brand-600"></i>
