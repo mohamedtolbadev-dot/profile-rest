@@ -335,6 +335,7 @@ function renderApp() {
         case 'owner-dashboard': container.innerHTML = renderOwnerDashboardView(); break;
         case 'cleaner-register': container.innerHTML = renderCleanerRegisterView(); break;
         case 'admin-dashboard': container.innerHTML = renderAdminDashboardView(); break;
+        case 'admin-cleaner-detail': container.innerHTML = renderAdminCleanerDetailView(viewParams.id); break;
         case 'messages': container.innerHTML = renderMessagesView(); break;
         case 'notifications': container.innerHTML = renderNotificationsView(); break;
         case 'how-it-works': container.innerHTML = renderHowItWorksView(); break;
@@ -1249,7 +1250,7 @@ function renderAdminDashboardView() {
             </div>` : '<div class="text-center py-6 text-gray-400 text-xs">لا توجد طلبات خلاص معلقة حالياً.</div>'}
         </div>
         <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-            <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
                 <h3 class="font-bold text-gray-900 text-base">قائمة العاملات وتأكيد التوثيق</h3>
                 <button onclick="navigateTo('cleaner-register')" class="btn-primary text-xs font-bold px-4 py-2 rounded-xl transition shadow-sm flex items-center gap-2"><i class="fa-solid fa-plus"></i><span>تسجيل عاملة جديدة</span></button>
             </div>
@@ -1267,12 +1268,152 @@ function renderAdminDashboardView() {
                                 <td class="p-3">${c.monthlyFullRate ? c.monthlyFullRate.toLocaleString() + ' DH' : '—'}</td>
                                 <td class="p-3 font-bold text-gray-900">★ ${c.rating}</td>
                                 <td class="p-3"><span class="tag ${c.verified ? 'bg-brand-50 text-brand-800 border border-brand-200' : 'bg-gray-100 text-gray-600 border border-gray-200'}">${c.verified ? 'موثقة ✓' : 'غير موثقة'}</span></td>
-                                <td class="p-3"><button onclick="toggleVerifyCleanerAdmin('${c.id}')" class="text-brand-600 font-semibold hover:underline">${c.verified ? 'إلغاء التوثيق' : 'تأكيد التوثيق'}</button></td>
+                                <td class="p-3">
+                                    <div class="flex items-center gap-3">
+                                        <button onclick="navigateTo('admin-cleaner-detail', {id: '${c.id}'})" class="text-gray-700 font-semibold hover:text-brand-600 hover:underline flex items-center gap-1"><i class="fa-solid fa-eye text-[11px]"></i><span>عرض التفاصيل</span></button>
+                                        <span class="text-gray-300">|</span>
+                                        <button onclick="toggleVerifyCleanerAdmin('${c.id}')" class="text-brand-600 font-semibold hover:underline">${c.verified ? 'إلغاء التوثيق' : 'تأكيد التوثيق'}</button>
+                                    </div>
+                                </td>
                             </tr>
                         `).join('')}
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>`;
+}
+
+function renderAdminCleanerDetailView(cleanerId) {
+    const cleaner = cleanersStore.find(c => c.id === cleanerId);
+    if (!cleaner) {
+        return `
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+            <div class="w-14 h-14 bg-gray-100 text-gray-400 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl"><i class="fa-solid fa-user-slash"></i></div>
+            <h2 class="text-lg font-bold text-gray-900 mb-2">العاملة غير موجودة</h2>
+            <p class="text-xs text-gray-500 mb-6">ربما تم حذف ملفها من قاعدة البيانات.</p>
+            <button onclick="navigateTo('admin-dashboard')" class="btn-primary text-xs font-bold px-5 py-2.5 rounded-xl">العودة إلى لوحة الإدارة</button>
+        </div>`;
+    }
+    const cleanerBookings = bookingsStore.filter(b => b.cleanerId === cleanerId).sort((a, b) => (a.date < b.date ? 1 : -1));
+    const cleanerReviews = reviewsStore.filter(r => r.cleanerId === cleanerId);
+    const newCount = cleanerBookings.filter(b => b.status === 'طلب جديد').length;
+    const confirmedCount = cleanerBookings.filter(b => b.status === 'مؤكد').length;
+    const completedCount = cleanerBookings.filter(b => b.status === 'مكتمل').length;
+    const cancelledCount = cleanerBookings.filter(b => b.status === 'ملغى').length;
+    const totalRevenue = cleanerBookings.filter(b => b.status === 'مؤكد' || b.status === 'مكتمل').reduce((sum, b) => sum + (b.totalPrice || 0), 0);
+
+    const statusChipClass = (status) => {
+        if (status === 'مؤكد') return 'bg-brand-50 text-brand-700 border-brand-200';
+        if (status === 'مكتمل') return 'bg-gray-100 text-gray-700 border-gray-200';
+        if (status === 'طلب جديد') return 'bg-amber-50 text-amber-700 border-amber-200';
+        if (status === 'ملغى') return 'bg-red-50 text-red-700 border-red-200';
+        return 'bg-gray-100 text-gray-700 border-gray-200';
+    };
+
+    return `
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <button onclick="navigateTo('admin-dashboard')" class="mb-6 text-xs font-semibold text-gray-600 hover:text-brand-600 flex items-center gap-2 transition">
+            <i class="fa-solid fa-arrow-right"></i><span>العودة إلى لوحة الإدارة</span>
+        </button>
+
+        <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-6">
+            <div class="flex items-start sm:items-center gap-5">
+                <img src="${cleaner.photo}" alt="${cleaner.name}" class="w-16 h-16 rounded-full object-cover ring-4 ring-brand-50">
+                <div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <h1 class="text-xl font-bold text-gray-900">${cleaner.name}</h1>
+                        <span class="tag ${cleaner.verified ? 'bg-brand-50 text-brand-800 border border-brand-200' : 'bg-gray-100 text-gray-600 border border-gray-200'}">${cleaner.verified ? 'موثقة ✓' : 'غير موثقة'}</span>
+                    </div>
+                    <p class="text-xs text-gray-500 flex items-center gap-1 mt-1"><i class="fa-solid fa-location-dot text-brand-600 text-[10px]"></i><span>${cleaner.city} - ${cleaner.area}</span></p>
+                    <div class="flex flex-wrap items-center gap-1.5 mt-2">${renderRoleBadgesHtml(cleaner)}</div>
+                </div>
+            </div>
+            <div class="flex items-center flex-wrap gap-2 w-full sm:w-auto">
+                <a href="tel:${cleaner.phone}" class="btn-outline text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-2 flex-1 sm:flex-none justify-center"><i class="fa-solid fa-phone"></i><span class="truncate">${cleaner.phone}</span></a>
+                <a href="https://wa.me/${cleaner.phone.replace(/[^0-9]/g,'')}" target="_blank" class="btn-primary text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-2 flex-1 sm:flex-none justify-center"><i class="fa-brands fa-whatsapp text-sm"></i><span>واتساب</span></a>
+                <button onclick="toggleVerifyCleanerAdmin('${cleaner.id}')" class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold px-4 py-2.5 rounded-xl transition w-full sm:w-auto">${cleaner.verified ? 'إلغاء التوثيق' : 'تأكيد التوثيق'}</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-6">
+            <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm text-center"><div class="text-xl font-bold text-gray-900">${cleanerBookings.length}</div><div class="text-[11px] text-gray-500 mt-1">كل الحجوزات</div></div>
+            <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm text-center"><div class="text-xl font-bold text-amber-600">${newCount}</div><div class="text-[11px] text-gray-500 mt-1">طلبات جديدة</div></div>
+            <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm text-center"><div class="text-xl font-bold text-brand-600">${confirmedCount}</div><div class="text-[11px] text-gray-500 mt-1">مؤكدة/نشطة</div></div>
+            <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm text-center"><div class="text-xl font-bold text-gray-700">${completedCount}</div><div class="text-[11px] text-gray-500 mt-1">مكتملة</div></div>
+            <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm text-center"><div class="text-xl font-bold text-gray-900">${totalRevenue.toLocaleString()} DH</div><div class="text-[11px] text-gray-500 mt-1">قيمة الحجوزات النشطة</div></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            <div class="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+                <h3 class="font-bold text-gray-900 text-sm">معلومات العاملة</h3>
+                <div class="grid grid-cols-2 gap-4 text-xs">
+                    <div><span class="block text-gray-400 mb-1">سنوات الخبرة</span><span class="font-semibold text-gray-800">${cleaner.experienceYears} سنوات</span></div>
+                    <div><span class="block text-gray-400 mb-1">الخدمات المكتملة</span><span class="font-semibold text-gray-800">${cleaner.completedJobs}</span></div>
+                    <div><span class="block text-gray-400 mb-1">التقييم</span><span class="font-semibold text-gray-800">★ ${cleaner.rating} (${cleaner.reviewCount} تقييم)</span></div>
+                    <div><span class="block text-gray-400 mb-1">السعر بالساعة</span><span class="font-semibold text-gray-800">${cleaner.hourlyRate} DH</span></div>
+                    <div><span class="block text-gray-400 mb-1">الشهري (دوام كامل)</span><span class="font-semibold text-gray-800">${cleaner.monthlyFullRate ? cleaner.monthlyFullRate.toLocaleString() + ' DH' : '—'}</span></div>
+                    <div><span class="block text-gray-400 mb-1">الشهري (دوام جزئي)</span><span class="font-semibold text-gray-800">${cleaner.monthlyPartRate ? cleaner.monthlyPartRate.toLocaleString() + ' DH' : '—'}</span></div>
+                </div>
+                <div class="pt-3 border-t border-gray-100">
+                    <span class="block text-gray-400 text-xs mb-1.5">نبذة</span>
+                    <p class="text-xs text-gray-700 leading-relaxed">${cleaner.bio}</p>
+                </div>
+                <div class="pt-3 border-t border-gray-100">
+                    <span class="block text-gray-400 text-xs mb-1.5">الخدمات المقدمة</span>
+                    <div class="flex flex-wrap gap-1.5">${cleaner.services.map(s => `<span class="tag bg-gray-50 text-gray-700 border border-gray-200">${s}</span>`).join('')}</div>
+                </div>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+                <h3 class="font-bold text-gray-900 text-sm">تقييمات أصحاب الفيلات (${cleanerReviews.length})</h3>
+                ${cleanerReviews.length > 0 ? `
+                <div class="space-y-3 max-h-72 overflow-y-auto pl-1">
+                    ${cleanerReviews.map(r => `
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 space-y-1">
+                            <div class="flex items-center justify-between text-[11px]"><span class="font-bold text-gray-800">${r.authorName}</span><span class="text-brand-600 font-bold">★ ${r.rating}</span></div>
+                            <p class="text-[11px] text-gray-600 leading-relaxed line-clamp-3">${r.comment}</p>
+                        </div>
+                    `).join('')}
+                </div>` : '<p class="text-xs text-gray-400 text-center py-4">لا توجد تقييمات بعد.</p>'}
+            </div>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <h3 class="font-bold text-gray-900 text-base mb-4 flex items-center gap-2"><i class="fa-regular fa-calendar-check text-brand-600"></i><span>كل حجوزات ${cleaner.name} (${cleanerBookings.length})</span></h3>
+            ${cleanerBookings.length > 0 ? `
+            <div class="overflow-x-auto">
+                <table class="w-full text-right text-xs">
+                    <thead class="bg-gray-50 text-gray-500 uppercase">
+                        <tr><th class="p-3 rounded-r-xl">رقم الحجز</th><th class="p-3">صاحب الفيلا</th><th class="p-3">الفيلا</th><th class="p-3">الخدمة</th><th class="p-3">التاريخ</th><th class="p-3">السعر</th><th class="p-3">الحالة</th><th class="p-3 rounded-l-xl">الإجراء</th></tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        ${cleanerBookings.map(b => `
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="p-3 font-mono text-gray-600">${b.id}</td>
+                                <td class="p-3 font-semibold text-gray-800">${b.ownerName}</td>
+                                <td class="p-3 text-gray-600">${b.villaName}</td>
+                                <td class="p-3 text-gray-600">${b.serviceType || '—'}</td>
+                                <td class="p-3 text-gray-600">${b.date} — ${b.time}</td>
+                                <td class="p-3 font-semibold text-gray-800">${b.totalPrice.toLocaleString()} DH</td>
+                                <td class="p-3"><span class="tag ${statusChipClass(b.status)} border">${b.status}</span></td>
+                                <td class="p-3">
+                                    ${b.status === 'طلب جديد' ? `
+                                        <div class="flex items-center gap-2">
+                                            <button onclick="updateBookingStatus('${b.id}', 'مؤكد')" class="text-brand-600 font-bold hover:underline">تأكيد</button>
+                                            <button onclick="updateBookingStatus('${b.id}', 'ملغى')" class="text-gray-500 font-semibold hover:underline">رفض</button>
+                                        </div>
+                                    ` : b.status === 'مؤكد' ? `
+                                        <div class="flex items-center gap-2">
+                                            <button onclick="updateBookingStatus('${b.id}', 'مكتمل')" class="text-gray-700 font-bold hover:underline">إنهاء</button>
+                                            <button onclick="cancelBooking('${b.id}')" class="text-red-500 font-semibold hover:underline">إلغاء</button>
+                                        </div>
+                                    ` : '<span class="text-gray-400">—</span>'}
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>` : '<div class="text-center py-8 text-gray-400 text-xs">لا توجد أي حجوزات مرتبطة بهذه العاملة حتى الآن.</div>'}
         </div>
     </div>`;
 }
