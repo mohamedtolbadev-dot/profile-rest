@@ -56,6 +56,23 @@
  }
  @media (min-width: 1024px) { .sticky-booking { position: sticky; top: 96px; } }
  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+ .text-shine {
+ background: linear-gradient(100deg, #111827 38%, #111827 44%, rgba(219,39,119,0.35) 50%, #111827 56%, #111827 100%);
+ background-size: 250% 100%;
+ background-position: 200% 0;
+ -webkit-background-clip: text;
+ background-clip: text;
+ -webkit-text-fill-color: transparent;
+ color: transparent;
+ animation: text-shine-sweep 3.5s ease-in-out infinite;
+ animation-delay: .6s;
+ }
+ @keyframes text-shine-sweep {
+ 0% { background-position: 200% 0; }
+ 55% { background-position: -50% 0; }
+ 100% { background-position: -50% 0; }
+ }
+ @media (prefers-reduced-motion: reduce) { .text-shine { animation: none; background-position: 0 0; -webkit-text-fill-color: initial; color: inherit; background: none; } }
  </style>
 </head>
 <body class="min-h-full flex flex-col justify-between text-gray-800 pb-16 md:pb-0">
@@ -351,8 +368,8 @@ function renderHomeView() {
  <span class="w-2 h-2 rounded-full bg-brand-600"></span>
  <span>الخدمة الأولى المخصصة للفيلات بالمغرب</span>
  </div>
- <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-[1.15] mb-5">
- عاملة منزل موثوقة لفيلاك، <span class="text-brand-600">بكل سهولة</span>
+ <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.15] mb-5">
+ <span class="text-shine">عاملة منزل موثوقة لفيلاك،</span> <span class="text-brand-600">بكل سهولة</span>
  </h1>
  <p class="text-gray-500 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-8">
  اعثر على عاملة مناسبة لفيلاك — تنظيف، طبخ أو رعاية أطفال — تحقق من خبرتها وتقييماتها، واحجز بالساعة، بالأسبوع أو بالشهر مع إمكانية الاحتفاظ بنفس العاملة.
